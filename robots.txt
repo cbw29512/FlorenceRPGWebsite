@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cbw29512.github.io/FlorenceRPGWebsite/sitemap.xml
