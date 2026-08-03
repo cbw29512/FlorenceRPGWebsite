@@ -1,0 +1,48 @@
+@media (max-width: 1100px) {
+  .site-nav a { padding-inline: .55rem; font-size: .9rem; }
+  .system-roadmap { grid-template-columns: repeat(3,1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > p:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 880px) {
+  .header-inner { flex-wrap: wrap; padding-block: .6rem; }
+  .menu-button { display: inline-flex; align-items: center; gap: .4rem; margin-left: auto; }
+  .site-nav {
+    display: none;
+    flex: 1 0 100%;
+    align-items: stretch;
+    flex-direction: column;
+    padding-bottom: .7rem;
+  }
+  .site-nav[data-open="true"] { display: flex; }
+  .site-nav .nav-cta { margin-left: 0; text-align: center; }
+  .hero-grid, .steps-grid, .community-grid, .interest-card { grid-template-columns: 1fr; }
+  .hero-grid { padding-top: 4.2rem; }
+  .hero-copy { max-width: 46rem; }
+  .hero-art { min-height: 34rem; }
+  .program-grid { grid-template-columns: 1fr; }
+  .program-card ul { min-height: auto; }
+  .community-grid > div:first-child { max-width: 42rem; }
+}
+@media (max-width: 640px) {
+  .container { width: min(calc(100% - 1.25rem),var(--max)); }
+  .brand img { width: 2.9rem; height: 2.9rem; }
+  .brand strong { font-size: 1.02rem; }
+  .brand small { display: none; }
+  h1 { font-size: clamp(2.85rem,14vw,4.35rem); }
+  .hero-grid { min-height: auto; padding-block: 3.7rem 4.5rem; }
+  .hero-actions .button { width: 100%; }
+  .trust-list { grid-template-columns: 1fr; margin-top: 2rem; }
+  .hero-art { min-height: 29rem; }
+  .hero-art > img { width: 100%; }
+  .launch-card { right: 50%; bottom: 0; width: 96%; transform: translateX(50%); }
+  .commitment-grid, .interest-form { grid-template-columns: 1fr; }
+  .system-roadmap { grid-template-columns: repeat(2,1fr); }
+  .steps li { grid-template-columns: 3rem 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-grid > p:last-child { grid-column: auto; }
+}
+@media (max-width: 420px) {
+  .system-roadmap { grid-template-columns: 1fr; }
+  .menu-button span:last-child { display: none; }
+}
