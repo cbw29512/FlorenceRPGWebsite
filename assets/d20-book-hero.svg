@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" role="img" aria-labelledby="title desc">
+<title id="title">A polished gold and purple twenty-sided die above an open book</title>
+<desc id="desc">An accurate icosahedron-style d20 with twenty triangular faces, representing tabletop role-playing games and shared stories.</desc>
+<defs>
+  <radialGradient id="halo" cx="50%" cy="42%" r="55%">
+    <stop offset="0%" stop-color="#8b4db3" stop-opacity=".38"/>
+    <stop offset="62%" stop-color="#4d2679" stop-opacity=".08"/>
+    <stop offset="100%" stop-color="#171322" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="bookPaper" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#fffaf1"/>
+    <stop offset="100%" stop-color="#ddc9a8"/>
+  </linearGradient>
+  <linearGradient id="bookEdge" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#5a3924"/>
+    <stop offset="50%" stop-color="#8c6844"/>
+    <stop offset="100%" stop-color="#5a3924"/>
+  </linearGradient>
+  <filter id="dieShadow" x="-30%" y="-30%" width="160%" height="180%">
+    <feDropShadow dx="0" dy="26" stdDeviation="18" flood-color="#08050e" flood-opacity=".68"/>
+  </filter>
+  <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="18"/>
+  </filter>
+</defs>
+<ellipse cx="350" cy="292" rx="285" ry="268" fill="url(#halo)"/>
+<circle cx="350" cy="280" r="238" fill="none" stroke="#8a77ad" stroke-opacity=".36" stroke-width="3"/>
+<circle cx="350" cy="280" r="205" fill="none" stroke="#f0b950" stroke-opacity=".18" stroke-width="2" stroke-dasharray="3 13"/>
+<g filter="url(#dieShadow)">
+  <polygon points="115.4,415.5 205.0,363.7 115.4,144.5" fill="#21182f" stroke="#f0b950" stroke-width="6" stroke-linejoin="round"/><polygon points="350.0,112.6 584.6,144.5 350.0,9.1" fill="#281a3a" stroke="#f0b950" stroke-width="6" stroke-linejoin="round"/><polygon points="350.0,112.6 115.4,144.5 350.0,9.1" fill="#321e49" stroke="#f0b950" stroke-width="6" stroke-linejoin="round"/><polygon points="584.6,415.5 495.0,363.7 584.6,144.5" fill="#3a2253" stroke="#f0b950" stroke-width="6" stroke-linejoin="round"/><polygon points="350.0,550.9 115.4,415.5 205.0,363.7" fill="#452761" stroke="#f0b950" stroke-width="6" stroke-linejoin="round"/><polygon points="350.0,550.9 584.6,415.5 495.0,363.7" fill="#4d2b6d" stroke="#f0b950" stroke-width="6" stroke-linejoin="round"/><polygon points="350.0,112.6 205.0,363.7 115.4,144.5" fill="#59327a" stroke="#f0b950" stroke-width="6" stroke-linejoin="round"/><polygon points="350.0,112.6 495.0,363.7 584.6,144.5" fill="#64398a" stroke="#f0b950" stroke-width="6" stroke-linejoin="round"/><polygon points="350.0,550.9 495.0,363.7 205.0,363.7" fill="#70439a" stroke="#f0b950" stroke-width="6" stroke-linejoin="round"/><polygon points="350.0,112.6 495.0,363.7 205.0,363.7" fill="#6a3b8e" stroke="#f0b950" stroke-width="6" stroke-linejoin="round"/>
+  <text x="350.0" y="302.0" text-anchor="middle" fill="#fff5df" font-family="Georgia, 'Times New Roman', serif" font-size="74" font-weight="700">20</text>
+</g>
+<ellipse cx="350" cy="552" rx="230" ry="36" fill="#0c0912" opacity=".48" filter="url(#softGlow)"/>
+<g>
+  <path d="M95 500 C175 462 272 470 350 526 C428 470 525 462 605 500 L598 611 C503 578 420 585 350 634 C280 585 197 578 102 611 Z" fill="#1a1424" stroke="#69ddcf" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M110 505 C184 476 272 484 342 531 L342 615 C277 576 203 568 115 594 Z" fill="url(#bookPaper)" stroke="#f0b950" stroke-width="3"/>
+  <path d="M590 505 C516 476 428 484 358 531 L358 615 C423 576 497 568 585 594 Z" fill="url(#bookPaper)" stroke="#f0b950" stroke-width="3"/>
+  <path d="M350 526 L350 634" stroke="#69ddcf" stroke-width="8" stroke-linecap="round"/>
+  <path d="M127 526 C201 504 273 510 326 542 M127 548 C201 526 273 532 326 562 M127 570 C201 548 273 554 326 582" fill="none" stroke="#8b6d4a" stroke-opacity=".55" stroke-width="3"/>
+  <path d="M573 526 C499 504 427 510 374 542 M573 548 C499 526 427 532 374 562 M573 570 C499 548 427 554 374 582" fill="none" stroke="#8b6d4a" stroke-opacity=".55" stroke-width="3"/>
+  <path d="M105 612 C200 578 280 590 350 636 C420 590 500 578 595 612" fill="none" stroke="url(#bookEdge)" stroke-width="11" stroke-linecap="round"/>
+</g>
+</svg>
