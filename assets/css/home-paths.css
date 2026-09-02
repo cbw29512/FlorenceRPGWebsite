@@ -9,11 +9,14 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
+  align-items: stretch;
 }
 .hero-choice {
   display: grid;
-  align-content: start;
+  grid-template-rows: auto auto auto 1fr auto auto;
+  align-content: stretch;
   min-height: 18rem;
+  height: 100%;
   padding: 1.4rem;
   border: 1px solid rgba(255,255,255,.14);
   border-radius: 1rem;
@@ -39,7 +42,28 @@
 }
 .hero-choice h2 { margin-bottom: .55rem; font-size: clamp(1.65rem, 3vw, 2.3rem); }
 .hero-choice p { margin: 0; color: #d4cad9; }
-.hero-choice strong { align-self: end; margin-top: 1.4rem; color: var(--gold-light); }
+.hero-choice small { align-self: end; margin-top: 1rem; }
+.hero-choice > strong {
+  display: inline-flex;
+  min-height: 44px;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  align-self: end;
+  margin-top: .85rem;
+  padding: .68rem .95rem;
+  border: 1px solid rgba(246,205,119,.6);
+  border-radius: .6rem;
+  background: var(--gold-light);
+  color: #23150a;
+  line-height: 1.15;
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
+.hero-choice:hover > strong,
+.hero-choice:focus-visible > strong {
+  background: #fff0bf;
+  border-color: #fff0bf;
+}
 .path-note { margin: 1.25rem 0 0; color: #cfc4d5; font-size: .95rem; }
 .system-choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .system-choice {
