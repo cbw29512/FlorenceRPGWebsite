@@ -31,6 +31,14 @@ const bundles = {
     'assets/css/fantasy-theme.css',
     'assets/css/guild-pages.css'
   ],
+  'assets/css/form-bundle.css': [
+    'assets/css/base.css',
+    'assets/css/components.css',
+    'assets/css/responsive.css',
+    'assets/css/home-paths.css',
+    'assets/css/fantasy-theme.css',
+    'assets/css/guild-pages.css'
+  ],
   'assets/css/core-bundle.css': [
     'assets/css/base.css',
     'assets/css/components.css'
@@ -43,6 +51,8 @@ const pageBundles = {
   'one-shots.html': { output: 'assets/css/one-shots-bundle.css', inputs: bundles['assets/css/one-shots-bundle.css'] },
   'guild-hall.html': { output: 'assets/css/guild-bundle.css', inputs: bundles['assets/css/guild-bundle.css'] },
   'tools.html': { output: 'assets/css/guild-bundle.css', inputs: bundles['assets/css/guild-bundle.css'] },
+  'join.html': { output: 'assets/css/form-bundle.css', inputs: bundles['assets/css/form-bundle.css'] },
+  'youth-groups.html': { output: 'assets/css/form-bundle.css', inputs: bundles['assets/css/form-bundle.css'] },
   '404.html': { output: 'assets/css/guild-bundle.css', inputs: bundles['assets/css/guild-bundle.css'] },
   'thanks.html': { output: 'assets/css/core-bundle.css', inputs: bundles['assets/css/core-bundle.css'] }
 };
@@ -90,6 +100,7 @@ for (const [page, config] of Object.entries(pageBundles)) {
       .replaceAll('index.html#games', 'index.html#systems')
       .replaceAll('index.html#learn', 'first-adventure.html')
       .replaceAll('index.html#community', 'guild-hall.html')
+      .replaceAll('index.html#interest', 'join.html')
       .replace(
         '<button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">',
         '<button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">'
