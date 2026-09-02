@@ -9,7 +9,8 @@ module.exports = {
         'http://localhost/guild-hall.html',
         'http://localhost/one-shots.html',
         'http://localhost/tools.html',
-        'http://localhost/thanks.html'
+        'http://localhost/join.html',
+        'http://localhost/youth-groups.html'
       ],
       settings: {
         onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
