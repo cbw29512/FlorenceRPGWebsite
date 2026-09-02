@@ -7,8 +7,7 @@ const bundles = {
     'assets/css/components.css',
     'assets/css/responsive.css',
     'assets/css/home-paths.css',
-    'assets/css/fantasy-theme.css',
-    'assets/css/guild-pages.css'
+    'assets/css/fantasy-theme.css'
   ],
   'assets/css/adventure-bundle.css': [
     'assets/css/base.css',
