@@ -1,0 +1,34 @@
+name: Lighthouse quality gate
+
+on:
+  push:
+    branches: [main, 'feature/**']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Build production CSS
+        run: node scripts/build-css.mjs
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.15.x
+      - name: Collect Lighthouse reports
+        run: lhci collect
+      - name: Print failing audits
+        run: node scripts/lighthouse-summary.mjs
+      - name: Enforce Lighthouse targets
+        run: lhci assert
+      - name: Publish Lighthouse reports
+        if: always()
+        continue-on-error: true
+        run: lhci upload

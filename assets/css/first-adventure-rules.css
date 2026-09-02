@@ -17,6 +17,8 @@
 .adventure-promise small { color: #c8bdcf; line-height: 1.5; }
 .example-note { margin: 1rem 0 0; color: #675d68; font-size: .9rem; }
 .rules-section { background: #21152c; color: var(--text); }
+.rules-section .section-heading > p:last-child,
+.flow-section .section-heading > p:last-child { color: #ddd2e2; }
 .rule-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .rule-grid article {
   padding: 1.25rem;
