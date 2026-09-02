@@ -1,0 +1,85 @@
+.hero-choice-shell {
+  position: relative;
+  padding-block: clamp(4rem, 8vw, 6.5rem);
+}
+.hero-choice-copy { max-width: 54rem; margin-bottom: 2rem; }
+.hero-choice-copy h1 { max-width: 13ch; }
+.hero-choice-copy .hero-lede { max-width: 48rem; }
+.hero-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.hero-choice {
+  display: grid;
+  align-content: start;
+  min-height: 18rem;
+  padding: 1.4rem;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 1rem;
+  background: rgba(255,255,255,.055);
+  text-decoration: none;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+.hero-choice:hover {
+  transform: translateY(-3px);
+  border-color: rgba(246,205,119,.55);
+  background: rgba(255,255,255,.085);
+}
+.hero-choice-icon {
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(246,205,119,.3);
+  border-radius: .85rem;
+  color: var(--gold-light);
+  font-size: 1.45rem;
+}
+.hero-choice h2 { margin-bottom: .55rem; font-size: clamp(1.65rem, 3vw, 2.3rem); }
+.hero-choice p { margin: 0; color: #d4cad9; }
+.hero-choice strong { align-self: end; margin-top: 1.4rem; color: var(--gold-light); }
+.path-note { margin: 1.25rem 0 0; color: #cfc4d5; font-size: .95rem; }
+.system-choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.system-choice {
+  padding: 1.3rem;
+  border: 1px solid #d8cbd4;
+  border-radius: 1rem;
+  background: rgba(255,255,255,.65);
+}
+.system-choice h3 { font-family: Georgia, serif; font-size: 1.45rem; }
+.system-choice p { color: #5a505d; }
+.system-choice a { color: var(--purple); font-weight: 900; }
+.system-choice .status-label {
+  display: inline-block;
+  margin-bottom: .65rem;
+  padding: .22rem .5rem;
+  border-radius: 999px;
+  background: #eee3f2;
+  color: #59316b;
+  font-size: .75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.signup-fieldset {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid #d6c9d4;
+  border-radius: .75rem;
+}
+.signup-fieldset legend { padding: 0 .35rem; color: #3f3442; font-weight: 900; }
+.check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .65rem 1rem; }
+.check-grid label { display: flex; align-items: center; gap: .55rem; font-weight: 750; }
+.check-grid input { width: 1.15rem; height: 1.15rem; margin: 0; }
+.bot-field { position: absolute; overflow: hidden; clip: rect(0 0 0 0); width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; }
+.form-note { grid-column: 1 / -1; margin: 0; color: #665c68; font-size: .88rem; }
+@media (max-width: 880px) {
+  .hero-choice-grid, .system-choice-grid { grid-template-columns: 1fr; }
+  .hero-choice { min-height: auto; }
+}
+@media (max-width: 560px) {
+  .check-grid { grid-template-columns: 1fr; }
+}
