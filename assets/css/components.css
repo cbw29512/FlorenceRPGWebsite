@@ -106,7 +106,8 @@
 .interest-card { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem,6vw,5rem); padding: clamp(1.5rem,4vw,3rem); border: 1px solid #d5c4b1; border-radius: 1.2rem; background: var(--paper); box-shadow: 0 24px 60px rgba(53,35,48,.11); }
 .interest-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .interest-form label { color: #3f3442; font-weight: 900; }
-.interest-form input, .interest-form select { width: 100%; min-height: 48px; margin-top: .35rem; padding: .7rem .75rem; border: 2px solid #cbbdca; border-radius: .6rem; background: #fff; color: #211925; }
+.interest-form input, .interest-form select, .interest-form textarea { width: 100%; min-height: 48px; margin-top: .35rem; padding: .7rem .75rem; border: 2px solid #cbbdca; border-radius: .6rem; background: #fff; color: #211925; }
+.interest-form textarea { min-height: 7rem; resize: vertical; }
 .interest-form .wide { grid-column: 1 / -1; }
 .form-status { min-height: 1.6rem; margin: 0; color: #365d4e; font-weight: 850; }
 
