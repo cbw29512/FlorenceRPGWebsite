@@ -5,7 +5,9 @@ const publicPages = [
   { file: 'first-adventure.html', route: '/first-adventure.html' },
   { file: 'guild-hall.html', route: '/guild-hall.html' },
   { file: 'one-shots.html', route: '/one-shots.html' },
-  { file: 'tools.html', route: '/tools.html' }
+  { file: 'tools.html', route: '/tools.html' },
+  { file: 'join.html', route: '/join.html' },
+  { file: 'youth-groups.html', route: '/youth-groups.html' }
 ];
 
 const allPages = [...publicPages.map((page) => page.file), 'thanks.html', '404.html'];
