@@ -43,6 +43,7 @@ const pageBundles = {
   'one-shots.html': { output: 'assets/css/one-shots-bundle.css', inputs: bundles['assets/css/one-shots-bundle.css'] },
   'guild-hall.html': { output: 'assets/css/guild-bundle.css', inputs: bundles['assets/css/guild-bundle.css'] },
   'tools.html': { output: 'assets/css/guild-bundle.css', inputs: bundles['assets/css/guild-bundle.css'] },
+  '404.html': { output: 'assets/css/guild-bundle.css', inputs: bundles['assets/css/guild-bundle.css'] },
   'thanks.html': { output: 'assets/css/core-bundle.css', inputs: bundles['assets/css/core-bundle.css'] }
 };
 
