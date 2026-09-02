@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Join the Guild | Light Tower Table Top Guild</title>
+  <meta name="description" content="Join the Light Tower Table Top Guild national interest pool as a player, Dungeon Master, Keeper, or both. Matching is 18+ and based on real preferences, ZIP code, and travel radius.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#130d18">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/home-paths.css">
+  <link rel="stylesheet" href="assets/css/fantasy-theme.css">
+  <link rel="stylesheet" href="assets/css/guild-pages.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="container header-inner">
+  <a class="brand" href="index.html" aria-label="Light Tower Table Top Guild home"><img src="assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>Find your table. Learn the game. Tell your story.</small></span></a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <nav id="primary-nav" class="site-nav" aria-label="Primary navigation"><a href="index.html">Home</a><a href="first-adventure.html">Learn D&amp;D</a><a href="guild-hall.html">Guild Hall</a><a href="one-shots.html">One-Shots</a><a href="tools.html">Tools</a><a class="nav-cta" href="join.html" aria-current="page">Join</a></nav>
+</div></header>
+<main id="main">
+  <section class="page-hero"><div class="container"><p class="eyebrow">18+ individual matching</p><h1>Tell us what kind of <em>table fits you.</em></h1><p>This is an interest pool, not a public profile. Your answers help Light Tower measure real demand and later propose compatible tables without exposing your contact information to strangers.</p><div class="hero-chip-row"><span>Player / GM / both</span><span>ZIP + travel radius</span><span>Real data only</span><span>No public profile</span></div></div></section>
+
+  <section class="section parchment-section"><div class="container interest-card"><div><p class="eyebrow dark">National adult interest pool</p><h2>Player, GM/Keeper, or both.</h2><p>Individual matching is 18+. You can change your preferences later when the matching backend is live.</p><p class="privacy-note">Your email and location information are private organizing data. Light Tower does not publish a searchable member directory.</p></div>
+    <form class="interest-form" name="guild-interest" method="POST" action="/thanks.html" data-netlify="true" data-netlify-honeypot="bot-field" data-interest-form novalidate>
+      <input type="hidden" name="form-name" value="guild-interest"><p class="bot-field"><label>Leave this empty<input name="bot-field" tabindex="-1" autocomplete="off"></label></p><div class="form-errors wide" data-form-errors role="alert" aria-live="assertive" tabindex="-1"></div>
+      <label>Name or nickname<input name="name" autocomplete="name" required></label><label>Email<input name="email" type="email" autocomplete="email" required></label>
+      <label>U.S. ZIP code<input name="zip" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}(-[0-9]{4})?" required></label><label>Travel radius<select name="travel-radius"><option value="5">5 miles</option><option value="10">10 miles</option><option value="25" selected>25 miles</option><option value="50">50 miles</option><option value="75">75 miles</option><option value="100">100 miles</option></select></label>
+      <label class="wide consent-label"><input id="age-confirm" type="checkbox" name="adult-18-plus" value="yes" required> I confirm I am 18 or older for individual Guild matching.</label>
+      <fieldset class="signup-fieldset"><legend>I want to</legend><div class="check-grid"><label><input id="role-player" type="checkbox" name="role" value="player"> Play</label><label><input id="role-gm" type="checkbox" name="role" value="gm"> DM / Keep / run games</label></div></fieldset>
+      <fieldset class="signup-fieldset"><legend>I am interested in</legend><div class="check-grid"><label><input id="system-dnd" type="checkbox" name="system" value="dnd"> Dungeons &amp; Dragons</label><label><input id="system-cthulhu" type="checkbox" name="system" value="cthulhu"> Call of Cthulhu</label><label><input id="system-other" type="checkbox" name="system" value="other"> Other TTRPGs</label></div></fieldset>
+      <label>Experience<select name="experience"><option>Never played</option><option>Beginner</option><option>Regular player</option><option>Experienced GM / Keeper</option></select></label><label>Preferred format<select name="format"><option>One-shot</option><option>Short adventure</option><option>Campaign</option><option>Not sure yet</option></select></label>
+      <label class="wide">What sounds best right now?<select name="next-step"><option>Learn how to play</option><option>Find people interested in playing</option><option>Join a beginner one-shot</option><option>Learn to DM / Keep</option><option>Run a game for others</option><option>Help organize a local chapter</option></select></label>
+      <label class="wide consent-label"><input type="checkbox" name="consent" value="yes" required> I agree to receive Light Tower Table Top Guild emails about community interest, learning opportunities, and table formation.</label>
+      <button class="button button-primary wide" type="submit">Join the National Interest Pool</button><p class="form-note">This form does not create a public profile or messaging account.</p>
+    </form>
+  </div></section>
+
+  <section class="section guild-dark"><div class="container"><div class="section-heading"><p class="eyebrow">Under 18?</p><h2>Use the youth-group path instead.</h2><p>Minors do not enter the adult individual matching pool. Existing youth groups can be submitted by a parent/guardian for manual review and appropriate supervised support.</p></div><a class="button button-gold" href="youth-groups.html">Open Youth Group Inquiry</a></div></section>
+</main>
+<footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Light Tower Table Top Guild</strong><span>Find your table. Learn the game. Tell your story.</span></div></div><div class="page-footer-nav"><a href="guild-hall.html">Guild Hall</a><a href="one-shots.html">One-Shots</a><a href="tools.html">Tools</a></div><p>© <span data-year>2026</span> Light Tower Table Top Guild.</p></div></footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
