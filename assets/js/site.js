@@ -8,13 +8,16 @@
       const button = document.querySelector(".menu-button");
       const nav = document.querySelector("#primary-nav");
       if (!button || !nav) return;
+      button.setAttribute("aria-label", "Menu");
       button.addEventListener("click", () => {
         const open = button.getAttribute("aria-expanded") === "true";
         button.setAttribute("aria-expanded", String(!open));
+        button.setAttribute("aria-label", open ? "Open menu" : "Close menu");
         nav.dataset.open = String(!open);
       });
       nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
         button.setAttribute("aria-expanded", "false");
+        button.setAttribute("aria-label", "Open menu");
         nav.dataset.open = "false";
       }));
     } catch (error) { logError("Navigation could not be initialized.", error); }
