@@ -33,6 +33,8 @@ for (const page of pages) {
   if ((html.match(/<h1\b/gi) || []).length !== 1) warn(page, 'must contain exactly one <h1>');
   if (!/<meta\s+name="description"\s+content="[^"]+"/i.test(html)) warn(page, 'missing meta description');
   if (!/<meta\s+name="viewport"/i.test(html)) warn(page, 'missing viewport meta');
+  if (!/<a\s+class="skip-link"\s+href="#main"/i.test(html)) warn(page, 'missing skip-to-main-content link');
+  if (!/<main[^>]+id="main"/i.test(html)) warn(page, 'missing main landmark with id="main"');
 
   const ids = [...html.matchAll(/\sid="([^"]+)"/gi)].map((match) => match[1]);
   const duplicates = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
@@ -69,7 +71,8 @@ for (const page of pages) {
     'Florence Tabletop Guild',
     'Right To Bear Arms',
     'Right to Bear Arms',
-    'community-interest'
+    'community-interest',
+    'index.html#interest'
   ];
   for (const phrase of forbidden) {
     if (html.includes(phrase)) warn(page, `stale public copy detected: "${phrase}"`);
@@ -87,6 +90,32 @@ for (const [formName, file] of Object.entries(formFiles)) {
   const hiddenPattern = new RegExp(`<input[^>]+name="form-name"[^>]+value="${formName}"`, 'i');
   if (!formPattern.test(html)) warn(file, `Netlify form not detectable: ${formName}`);
   if (!hiddenPattern.test(html)) warn(file, `missing hidden form-name for ${formName}`);
+}
+
+const join = exists('join.html') ? read('join.html') : '';
+if (!join.includes('name="accessibility-needs"')) warn('join.html', 'optional accessibility/table-needs field is missing');
+if (!join.includes('Other TTRPGs — interest only')) warn('join.html', 'other-system interest-only boundary is missing');
+
+const youth = exists('youth-groups.html') ? read('youth-groups.html') : '';
+if (!youth.includes('name="group-accessibility-needs"')) warn('youth-groups.html', 'optional youth-group venue/accessibility field is missing');
+if (!youth.includes('Other TTRPG — interest only')) warn('youth-groups.html', 'youth other-system interest-only boundary is missing');
+
+const tools = exists('tools.html') ? read('tools.html') : '';
+const requiredToolLinks = [
+  'https://nothingbutattrpgdiceroller.netlify.app/',
+  'https://cbw29512.github.io/dnd-character-forge/',
+  'https://cbw29512.github.io/D20-ironpit/'
+];
+for (const toolUrl of requiredToolLinks) {
+  if (!tools.includes(`href="${toolUrl}"`)) warn('tools.html', `required public tool link missing: ${toolUrl}`);
+}
+if (!tools.includes('<strong>Coming soon:</strong>')) warn('tools.html', 'future-tool Coming Soon notice is missing');
+
+const supportPages = ['index.html', 'guild-hall.html', 'one-shots.html', 'tools.html'];
+for (const page of supportPages) {
+  const html = exists(page) ? read(page) : '';
+  if (!html.includes('https://www.buymeacoffee.com/divclass016')) warn(page, 'canonical Buy Me a Coffee support link is missing');
+  if (!/no ads/i.test(html)) warn(page, 'ad-free community-support statement is missing');
 }
 
 const oneShots = exists('one-shots.html') ? read('one-shots.html') : '';
@@ -124,4 +153,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${pages.length} pages: internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, learning flow, adventure download integrity, and canonical branding all passed.`);
+console.log(`Validated ${pages.length} pages: accessibility landmarks, internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, community boundaries, public tool links, ad-free support, learning flow, adventure download integrity, and canonical branding all passed.`);
