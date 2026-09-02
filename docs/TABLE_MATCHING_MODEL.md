@@ -1,10 +1,10 @@
-# Florence Tabletop Guild — Table Matching Model
+# Light Tower Table Top Guild — Table Matching Model
 
 Status: architecture decision for the first public matching release.
 
 ## Definition of Done
 
-Florence Tabletop Guild is a **table-formation service**, not a messaging app. The matching feature is ready only when it can take structured interest data, form compatible tables, connect those tables to verified places to play, and send structured invitations without exposing private member contact information.
+Light Tower Table Top Guild is a **table-formation service**, not a messaging app. The matching feature is ready only when it can take structured interest data, form compatible tables, connect those tables to verified places to play, and send structured invitations without exposing private member contact information.
 
 The launch rules are:
 
@@ -18,6 +18,7 @@ The launch rules are:
 8. Matching uses hard eligibility filters before any preference score.
 9. A human/admin keeps final control over real-world table formation and venue approval.
 10. Participants can accept, decline, withdraw, or report a table without privately contacting another member.
+11. The model must work anywhere in the United States without requiring a local chapter.
 
 ## Data Schema
 
@@ -27,8 +28,10 @@ The launch rules are:
 - `display_name: text` — first name or nickname; not globally searchable
 - `email: text` — private
 - `participation_type: adult_18_plus | youth_group_guardian`
-- `experience: never_played | beginner | regular | experienced`
+- `zip_code: text` — private matching input, not a public profile field
 - `travel_radius_miles: integer`
+- `timezone: text` — IANA timezone such as `America/New_York`
+- `experience: never_played | beginner | regular | experienced`
 - `accessibility_needs: enum[]`
 - `status: active | paused | suspended | deleted`
 - `created_at: timestamp`
@@ -36,11 +39,12 @@ The launch rules are:
 
 ### youth_group_requests
 
-Youth requests are **not** people records in the matching pool.
+Youth requests are **not** people records in the adult matching pool.
 
 - `id: uuid`
 - `guardian_name: text`
 - `guardian_email: text`
+- `zip_code: text`
 - `participant_count: integer`
 - `age_range: text`
 - `system: dnd_2014 | dnd_2024 | call_of_cthulhu | other`
@@ -72,15 +76,21 @@ Do not collect unnecessary minor names, birthdays, phone numbers, social handles
 - `weekday: 0-6`
 - `start_local: time`
 - `end_local: time`
+- `timezone: text`
 - `cadence: weekly | biweekly | monthly | one_time`
 
-Timezone at launch: `America/New_York`.
+Store absolute event timestamps in UTC and render them in each participant's local timezone. Recurring availability remains attached to the participant's declared IANA timezone so nationwide matching does not assume Eastern Time.
 
 ### venues
 
 - `id: uuid`
 - `name: text`
 - `address: text` — public business/public-facility address only
+- `city: text`
+- `state: text`
+- `zip_code: text`
+- `latitude: numeric nullable`
+- `longitude: numeric nullable`
 - `venue_type: game_store | library | restaurant | brewery | community_space | other`
 - `status: candidate | contacted | verified | declined | inactive`
 - `source_url: text`
@@ -94,10 +104,27 @@ Timezone at launch: `America/New_York`.
 - `recurring_availability: json nullable`
 - `notes_private: text`
 
+### chapters
+
+A chapter is optional local organization, not a prerequisite for matching.
+
+- `id: uuid`
+- `slug: text`
+- `name: text`
+- `city: text`
+- `state: text`
+- `status: forming | active | paused | retired`
+- `founding_chapter: boolean`
+- `organizer_person_id: uuid nullable`
+- `verified_at: timestamp nullable`
+
+Florence, South Carolina is the founding chapter. Other chapters are created only when real local organization exists.
+
 ### tables
 
 - `id: uuid`
 - `gm_person_id: uuid`
+- `chapter_id: uuid nullable`
 - `system: enum`
 - `edition: text nullable`
 - `title: text`
@@ -108,7 +135,8 @@ Timezone at launch: `America/New_York`.
 - `min_players: integer`
 - `max_players: integer`
 - `venue_id: uuid nullable`
-- `start_at: timestamp nullable`
+- `start_at_utc: timestamp nullable`
+- `timezone: text`
 - `cadence: one_shot | weekly | biweekly | monthly`
 - `status: draft | matching | ready_for_review | inviting | confirmed | completed | cancelled`
 
@@ -157,9 +185,9 @@ An adult player is eligible for a table only when:
 
 1. Both player and GM/Keeper records are active and 18+.
 2. Game system/edition is compatible.
-3. There is enough schedule overlap for the session.
+3. There is enough schedule overlap after timezone normalization.
 4. The table has an open seat.
-5. Travel radius reaches the selected verified venue, or the table is still in pre-venue planning.
+5. The selected verified venue is inside the player's declared travel radius, or the table is still in pre-venue planning.
 6. Required accessibility needs are compatible with verified venue information.
 7. Content rating and table environment are compatible.
 8. No moderation/safety rule blocks the pairing.
@@ -183,12 +211,12 @@ Suggested thresholds:
 
 ## Efficient Formation Flow
 
-1. Adult player submits structured preferences once.
+1. Adult participant submits structured preferences once.
 2. GM/Keeper creates a structured table request.
 3. Matching engine removes impossible candidates, then ranks the remainder.
 4. Admin sees a compact proposed table rather than conversations.
 5. Admin confirms venue permission/availability and approves the proposal.
-6. Selected participants receive the same structured invitation: game, date/time, venue, seat count, content expectations, accessibility notes, safety tools, and table rules.
+6. Selected participants receive the same structured invitation: game, date/time in their local timezone, venue, seat count, content expectations, accessibility notes, safety tools, and table rules.
 7. Acceptances fill seats; declines immediately promote the next compatible candidate.
 8. Once minimum seats are accepted, the table becomes confirmed.
 9. Operational updates are event-wide announcements, not private member-to-member messages.
@@ -213,15 +241,15 @@ The UI must distinguish:
 
 Never convert `candidate` to `verified` automatically.
 
-Initial real-world venue candidates identified for research include Heroes Hideout, Florence County Library System, and Seminar Brewing. They remain candidates until directly confirmed; listing them internally does not imply sponsorship, partnership, reservation availability, or endorsement.
+Florence-area places previously identified during founding-chapter research remain **candidates** until directly confirmed. Internal research does not imply sponsorship, partnership, reservation availability, or endorsement.
 
-## Tool Hub
+## Tool Bench
 
 Verified public tool URLs:
 
 - **Nothing But A TTRPG Dice Roller** — https://nothingbutattrpgdiceroller.netlify.app/
-- **D&D 5e Character Forge** — https://cbw29512.github.io/dnd-character-forge/
+- **D&D Character Forge** — https://cbw29512.github.io/dnd-character-forge/
 
-Character Forge currently identifies itself as a release-candidate/friend-test build, so Florence should label it accurately until that project is formally promoted.
+Character Forge currently identifies itself as a release-candidate/friend-test build, so Light Tower labels it **Public Preview / Release Candidate** until that project is formally promoted.
 
-Tool links must remain optional and must not share Florence matching data unless a future integration is deliberately designed with explicit consent.
+Tool links remain optional and do not share Light Tower matching data unless a future integration is deliberately designed with explicit consent.
