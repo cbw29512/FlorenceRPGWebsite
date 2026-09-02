@@ -33,7 +33,7 @@ The public interest form collects the minimum information needed to measure real
 - desired next step
 - 18+ confirmation and email consent
 
-Future matching should apply hard filters before preference scoring. Public counts must come from real stored records rather than fabricated launch numbers.
+Matching applies hard compatibility filters before any preference scoring. Public counts must come from real stored records rather than fabricated launch numbers.
 
 ## D&D learning path
 
@@ -60,14 +60,26 @@ A public download link should only be enabled after the exact binary ZIP has bee
 
 Using a Guild tool does not imply Guild matching data is shared with that separate project.
 
-## Community forms
+## Community forms and private intake
 
-The static site is prepared for **Netlify Forms**:
+JavaScript-enabled submissions use dedicated Supabase Edge Functions and service-role-only database RPCs:
 
-- `guild-interest` — adult national interest pool
-- `youth-group-interest` — parent/guardian existing-youth-group inquiry
+- `guild-interest` — adult national interest pool → `guild-interest` Edge Function
+- `youth-group-interest` — existing youth-group inquiry → `youth-group-interest` Edge Function
 
-Both forms use honeypot fields. `thanks.html` is the post-submission confirmation page and is marked `noindex`.
+The browser never receives a service-role key and cannot query the private intake tables. Adult accessibility information is stored separately from the general adult submission. Youth group data uses its own tables and Edge Function; optional venue/accessibility information is also stored separately. Youth inquiries never enter adult automatic matching.
+
+The existing Netlify form definitions remain as a no-JavaScript fallback. Both paths retain honeypot fields. `thanks.html` is the post-submission confirmation page and is marked `noindex`.
+
+## Matching backend boundaries
+
+The Supabase backend separates three layers:
+
+1. **Interest intake** — private, non-public submissions used to measure demand and begin organizer follow-up.
+2. **Authenticated matching records** — member interests, matching preferences, availability, proposals, invitations, and confirmed games protected by Row Level Security.
+3. **Sensitive organizer data** — accessibility, guardian, safety, and compatibility-evaluation data in the non-exposed `private` schema.
+
+There is intentionally no public member-directory table or stranger-messaging system. Member-facing policies expose only the authenticated user's own records, invitations, and confirmed games in which that user participates.
 
 ## Architecture
 
@@ -77,6 +89,8 @@ first-adventure.html
 guild-hall.html
 one-shots.html
 tools.html
+join.html
+youth-groups.html
 thanks.html
 netlify.toml
 assets/
@@ -94,6 +108,7 @@ assets/
 │   └── guild-pages.css
 └── js/
     ├── site.js
+    ├── guild-intake.js
     └── first-adventure.js
 ```
 
@@ -106,19 +121,19 @@ The production build bundles/inlines page CSS and Lighthouse CI checks:
 - Best Practices
 - SEO
 
-The public gate includes Home, Learn D&D, Guild Hall, One-Shots, Tools, and the confirmation page.
+The public gate covers all production pages configured in `lighthouserc.js`, and source validation runs before and after the production build steps.
 
-## Netlify deployment
+## Deployment
 
-This is a static site. Connect the repository to Netlify and publish the repository root. `netlify.toml` sets the publish directory to `.` and adds baseline response headers.
+This remains a static front end. Netlify publishes the repository root using `netlify.toml`; Supabase provides the private intake and matching backend.
 
 After deployment:
 
-1. Enable **Forms → Form detection**.
-2. Confirm Netlify detects `guild-interest` and `youth-group-interest`.
-3. Submit test entries and verify they appear under Forms.
-4. Add the final Netlify/custom domain to canonical metadata, `robots.txt`, and a fresh `sitemap.xml`.
-5. Configure form-submission notifications if desired.
+1. Confirm both adult and youth forms submit successfully with JavaScript enabled.
+2. Confirm the submissions appear only in the expected private Supabase tables.
+3. Confirm Netlify still detects both forms for no-JavaScript fallback.
+4. Keep the Supabase service-role key server-side only; never add it to this repository or browser JavaScript.
+5. Run the repository quality workflow before merging any production change.
 
 ## Trademark notice
 
