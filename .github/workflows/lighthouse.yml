@@ -18,8 +18,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+      - name: Validate source site
+        run: node scripts/validate-site.mjs
       - name: Build production CSS
         run: node scripts/build-css.mjs
+      - name: Validate production output
+        run: node scripts/validate-site.mjs
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli@0.15.x
       - name: Collect Lighthouse reports
