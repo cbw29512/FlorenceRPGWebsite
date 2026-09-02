@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Organizer Console | Light Tower Table Top Guild</title>
+  <meta name="description" content="Private organizer console for reviewing Guild interest, forming compatible adult tables, and managing confirmed games.">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#130d18">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/fantasy-theme.css">
+  <link rel="stylesheet" href="assets/css/guild-pages.css">
+  <link rel="stylesheet" href="assets/css/organizer.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="container header-inner">
+  <a class="brand" href="index.html" aria-label="Light Tower Table Top Guild home"><img src="assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>Private organizer operations</small></span></a>
+  <nav class="site-nav" aria-label="Organizer navigation"><a href="guild-hall.html">Back to Guild Hall</a><a href="index.html">Public site</a></nav>
+</div></header>
+<main id="main">
+  <section class="page-hero"><div class="container"><p class="eyebrow">Authorized organizers only</p><h1>Guild <em>Organizer Console</em></h1><p>Review private intake, promote approved adults into the matching pool, form compatible tables, invite members, and confirm games. This page is intentionally excluded from public navigation and search indexing.</p></div></section>
+  <section class="section parchment-section"><div class="container organizer-shell">
+    <div class="organizer-panel organizer-login" data-organizer-login>
+      <p class="eyebrow dark">Secure access</p><h2>Sign in by email link</h2>
+      <p>Only pre-authorized organizer accounts can load Guild data. A successful email login alone does not grant organizer access.</p>
+      <form data-organizer-login-form><label>Organizer email<input name="email" type="email" autocomplete="email" required></label><button class="button button-primary" type="submit">Send secure sign-in link</button></form>
+    </div>
+    <p class="organizer-status" data-organizer-status role="status" aria-live="polite"></p>
+    <div class="organizer-hidden" data-organizer-app>
+      <section class="organizer-panel"><div class="organizer-toolbar"><div><p class="eyebrow dark">Operations</p><h2>Guild status</h2></div><button class="button button-ghost" type="button" data-organizer-signout>Sign out</button></div><div class="organizer-grid" data-organizer-kpis></div></section>
+      <section class="organizer-panel"><p class="eyebrow dark">Table formation</p><h2>Create an adult table proposal</h2><p class="organizer-private-note">Matching uses hard compatibility filters first. Exact member ZIP and accessibility information remain organizer-only.</p>
+        <form class="organizer-form" data-proposal-form>
+          <label>Game system<select name="system-name" required><option value="D&D">Dungeons &amp; Dragons</option><option value="Call of Cthulhu">Call of Cthulhu</option></select></label>
+          <label>Venue mode<select name="venue-mode" required><option value="in_person">In person</option><option value="online">Online</option><option value="hybrid">Hybrid</option></select></label>
+          <label>Coarse location<input name="coarse-location" maxlength="120" placeholder="Example: Florence, SC"></label>
+          <label>Target table size<input name="target-size" type="number" min="2" max="12" value="5" required></label>
+          <label>Day<select name="day-of-week" required><option value="0">Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option></select></label>
+          <label>Start time<input name="start-time" type="time" required></label><label>End time<input name="end-time" type="time" required></label>
+          <div class="wide"><button class="button button-primary" type="submit">Create proposal</button></div>
+        </form>
+      </section>
+      <section class="organizer-panel"><p class="eyebrow dark">Adult interest</p><h2>Review and promote</h2><div class="organizer-list" data-adult-list></div></section>
+      <section class="organizer-panel"><p class="eyebrow dark">Youth groups</p><h2>Manual review only</h2><p class="organizer-private-note">Youth inquiries never enter adult automatic matching and do not create minor profiles.</p><div class="organizer-list" data-youth-list></div></section>
+      <section class="organizer-panel"><p class="eyebrow dark">Active work</p><h2>Table proposals</h2><div class="organizer-list" data-proposal-list></div></section>
+    </div>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Light Tower Table Top Guild</strong><span>Private organizer operations.</span></div></div><p>© <span data-year>2026</span> Light Tower Table Top Guild.</p></div></footer>
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/organizer-auth.js" defer></script>
+<script src="assets/js/organizer-api.js" defer></script>
+<script src="assets/js/organizer-render.js" defer></script>
+<script src="assets/js/organizer-console.js" defer></script>
+</body>
+</html>
