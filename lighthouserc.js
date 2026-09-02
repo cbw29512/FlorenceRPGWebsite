@@ -6,6 +6,7 @@ module.exports = {
       url: [
         'http://localhost/index.html',
         'http://localhost/first-adventure.html',
+        'http://localhost/one-shots.html',
         'http://localhost/thanks.html'
       ],
       settings: {
