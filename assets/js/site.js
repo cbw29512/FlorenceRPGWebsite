@@ -28,53 +28,53 @@
     }
   };
 
-  const addFirstAdventurePath = () => {
-    try {
-      const nav = document.querySelector("#primary-nav");
-      if (nav && !nav.querySelector('a[href="first-adventure.html"]')) {
-        const link = document.createElement("a");
-        link.href = "first-adventure.html";
-        link.textContent = "First Adventure";
-        const cta = nav.querySelector(".nav-cta");
-        nav.insertBefore(link, cta || null);
-      }
+  const focusInterestForm = () => {
+    const firstInput = document.querySelector('[data-interest-form] input[name="name"]');
+    if (firstInput) window.setTimeout(() => firstInput.focus(), 250);
+  };
 
-      const learnHeading = document.querySelector("#learn .section-heading");
-      if (learnHeading && !learnHeading.querySelector('a[href="first-adventure.html"]')) {
-        const link = document.createElement("a");
-        link.className = "button button-ghost";
-        link.href = "first-adventure.html";
-        link.textContent = "See a Complete Adventure";
-        link.style.marginLeft = ".65rem";
-        learnHeading.appendChild(link);
-      }
+  const setupPathSelection = () => {
+    try {
+      document.querySelectorAll("[data-role-target]").forEach((link) => {
+        link.addEventListener("click", () => {
+          const role = link.dataset.roleTarget;
+          const checkbox = document.querySelector(`#role-${role}`);
+          if (checkbox) checkbox.checked = true;
+          focusInterestForm();
+        });
+      });
+
+      document.querySelectorAll("[data-system-target]").forEach((link) => {
+        link.addEventListener("click", () => {
+          const system = link.dataset.systemTarget;
+          const checkbox = document.querySelector(`#system-${system}`);
+          if (checkbox) checkbox.checked = true;
+          focusInterestForm();
+        });
+      });
     } catch (error) {
-      logError("The first-adventure pathway could not be added.", error);
+      logError("Path selection could not be initialized.", error);
     }
   };
 
-  const setupPreviewForm = () => {
+  const setupInterestValidation = () => {
     try {
       const form = document.querySelector("[data-interest-form]");
-      const status = document.querySelector("[data-form-status]");
-      if (!form || !status) return;
+      if (!form) return;
 
       form.addEventListener("submit", (event) => {
-        try {
-          event.preventDefault();
-          const data = new FormData(form);
-          const name = String(data.get("name") || "Adventurer").trim();
-          const interest = String(data.get("interest") || "tabletop RPGs");
-          status.textContent = `${name}, the launch-list preview works. Your interest in ${interest} was not sent or stored.`;
-          status.focus();
-        } catch (error) {
-          logError("Preview signup could not be processed.", error);
-          status.textContent = "The preview could not be processed. Please try again.";
-          status.focus();
-        }
+        const roles = form.querySelectorAll('input[name="role"]:checked');
+        const systems = form.querySelectorAll('input[name="system"]:checked');
+        if (roles.length && systems.length) return;
+
+        event.preventDefault();
+        const missing = [];
+        if (!roles.length) missing.push("whether you want to play or run games");
+        if (!systems.length) missing.push("at least one game system");
+        window.alert(`Please choose ${missing.join(" and ")}.`);
       });
     } catch (error) {
-      logError("The preview form could not be initialized.", error);
+      logError("Interest form validation could not be initialized.", error);
     }
   };
 
@@ -89,9 +89,9 @@
   };
 
   try {
-    addFirstAdventurePath();
     setupNavigation();
-    setupPreviewForm();
+    setupPathSelection();
+    setupInterestValidation();
     setYear();
   } catch (error) {
     logError("The site could not finish initializing.", error);
