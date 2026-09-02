@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Your First D&D Adventure | Florence Tabletop Guild</title>
-  <meta name="description" content="Walk through a complete beginner-friendly Dungeons & Dragons adventure while learning ability checks, saving throws, initiative, attacks, Armor Class, damage, hit points, spells, and other core 5e mechanics.">
+  <title>Your First D&D Adventure | Light Tower Table Top Guild</title>
+  <meta name="description" content="A beginner-friendly Dungeons & Dragons walkthrough with fuller sample characters, clear initiative order, advantage and disadvantage, saving throws, combat examples, and an annotated character-sheet guide.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#130d18">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
@@ -16,17 +18,18 @@
 <a class="skip-link" href="#main">Skip to main content</a>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Florence Tabletop Guild home">
+    <a class="brand" href="index.html" aria-label="Light Tower Table Top Guild home">
       <img src="assets/guild-mark.svg" alt="" width="62" height="62">
-      <span><strong>Florence Tabletop Guild</strong><small>Find your table. Tell your story.</small></span>
+      <span><strong>Light Tower Table Top Guild</strong><small>Find your table. Learn the game. Tell your story.</small></span>
     </a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav"><span aria-hidden="true">☰</span><span>Menu</span></button>
     <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
-      <a href="index.html#games">Find a Game</a>
-      <a href="index.html#learn">Learn to Play</a>
-      <a href="first-adventure.html" aria-current="page">First Adventure</a>
-      <a href="index.html#community">Community</a>
-      <a class="nav-cta" href="index.html#interest">Join the Launch List</a>
+      <a href="index.html">Home</a>
+      <a href="first-adventure.html" aria-current="page">Learn D&amp;D</a>
+      <a href="guild-hall.html">Guild Hall</a>
+      <a href="one-shots.html">One-Shots</a>
+      <a href="tools.html">Tools</a>
+      <a class="nav-cta" href="join.html">Join</a>
     </nav>
   </div>
 </header>
@@ -35,18 +38,19 @@
   <section class="adventure-hero">
     <div class="container adventure-hero-grid">
       <div>
-        <p class="eyebrow">D&D 5e beginner walkthrough</p>
+        <p class="eyebrow">D&amp;D 5e beginner walkthrough</p>
         <h1>Play through your first adventure before you ever sit at the table.</h1>
-        <p>Follow four heroes through a complete one-shot. Along the way, we will stop exactly when a rule matters and show you what the player rolls, what the Dungeon Master decides, and what happens next.</p>
+        <p>Follow four heroes through a complete one-shot. When a rule matters, we stop and show what the player looks at, what gets rolled, what the Dungeon Master compares it to, and what happens next.</p>
         <div class="hero-actions">
-          <a class="button button-gold" href="#party">Start the adventure</a>
-          <a class="button button-ghost" href="#rules">Learn the basic rules first</a>
+          <a class="button button-gold" href="#party">Meet the party</a>
+          <a class="button button-ghost" href="#rules">Learn the core rules</a>
+          <a class="button button-ghost" href="character-sheet-guide.html">Understand a character sheet</a>
         </div>
       </div>
       <aside class="adventure-promise" aria-label="What this walkthrough teaches">
         <strong>No homework required.</strong>
-        <span>Roleplay · Ability checks · Saving throws · Initiative · Attacks · AC · Damage · HP · Spells · Death saves · Resting · Leveling</span>
-        <small>This page sticks to core 5e concepts shared by common D&D play. Your table may use either the 2014 or 2024 rules and can explain any edition-specific differences when they matter.</small>
+        <span>Roleplay · Checks · Saves · Advantage · Disadvantage · Initiative · Attacks · AC · Damage · HP · Spells · Resting</span>
+        <small>This walkthrough uses core 5e concepts. Edition-specific features can differ between 2014 and 2024 rules, so always use the rules for the character sheet at your table.</small>
       </aside>
     </div>
   </section>
@@ -54,34 +58,69 @@
   <section class="section paper" id="party">
     <div class="container">
       <div class="section-heading">
-        <p class="eyebrow dark">Four ready-to-play heroes</p>
+        <p class="eyebrow dark">Four ready-to-play teaching heroes</p>
         <h2>This is your party.</h2>
-        <p>You do not need to build a character before your first game. A beginner table can hand you a pre-generated character and teach you while you play.</p>
+        <p>These examples use simple 2014-rules level-2 teaching builds so the math stays concrete. The core procedures—checks, saves, initiative, attacks, AC, HP, and turn order—also teach the same basic table habits used across 5e. You can open the annotated sheet to see where the numbers live and how a DM calls for them.</p>
       </div>
       <div class="party-grid">
-        <article class="pregen-card"><div class="pregen-token" aria-hidden="true">F</div><h3>Mara Stonehand</h3><p><strong>Fighter</strong> · Front line</p><p>AC 17 · HP 22 · Longsword +5</p><p><strong>Think:</strong> protect friends, hold the line, hit threats.</p></article>
-        <article class="pregen-card"><div class="pregen-token" aria-hidden="true">R</div><h3>Tess Quickstep</h3><p><strong>Rogue</strong> · Scout</p><p>AC 15 · HP 17 · Shortbow +5</p><p><strong>Think:</strong> investigate, sneak, notice danger, improvise.</p></article>
-        <article class="pregen-card"><div class="pregen-token" aria-hidden="true">C</div><h3>Brother Alden</h3><p><strong>Cleric</strong> · Support</p><p>AC 18 · HP 20 · Divine magic</p><p><strong>Think:</strong> support the party, heal, protect, stand firm.</p></article>
-        <article class="pregen-card"><div class="pregen-token" aria-hidden="true">W</div><h3>Elira Vale</h3><p><strong>Wizard</strong> · Arcane specialist</p><p>AC 12 · HP 14 · Spell attack +5</p><p><strong>Think:</strong> solve problems with knowledge and magic.</p></article>
+        <article class="pregen-card">
+          <div class="pregen-heading"><div class="pregen-token" aria-hidden="true">F</div><div><h3>Mara Stonehand</h3><p><strong>Level 2 Fighter</strong> · Front line</p></div></div>
+          <dl class="pregen-stats"><div><dt>AC</dt><dd>17</dd></div><div><dt>HP</dt><dd>22</dd></div><div><dt>Initiative</dt><dd>+2</dd></div><div><dt>Speed</dt><dd>30 ft.</dd></div></dl>
+          <p><strong>Main attack:</strong> Longsword +5 to hit, 1d8 + 3 slashing.</p>
+          <p><strong>Good saves:</strong> Strength +5, Constitution +5.</p>
+          <p><strong>Signature tools:</strong> Second Wind, Action Surge, Defense fighting style.</p>
+          <p><strong>Think:</strong> protect friends, hold the line, hit the biggest threat.</p>
+          <a class="pregen-link" href="character-sheet-guide.html">Open Mara's annotated sheet →</a>
+        </article>
+        <article class="pregen-card">
+          <div class="pregen-heading"><div class="pregen-token" aria-hidden="true">R</div><div><h3>Tess Quickstep</h3><p><strong>Level 2 Rogue</strong> · Scout</p></div></div>
+          <dl class="pregen-stats"><div><dt>AC</dt><dd>15</dd></div><div><dt>HP</dt><dd>17</dd></div><div><dt>Initiative</dt><dd>+3</dd></div><div><dt>Speed</dt><dd>30 ft.</dd></div></dl>
+          <p><strong>Main attack:</strong> Shortbow +5 to hit, 1d6 + 3 piercing.</p>
+          <p><strong>Useful skills:</strong> Investigation +4, Stealth +5, Perception +3.</p>
+          <p><strong>Signature tool:</strong> Sneak Attack when its requirements are met.</p>
+          <p><strong>Think:</strong> investigate, sneak, notice danger, find an opening.</p>
+        </article>
+        <article class="pregen-card">
+          <div class="pregen-heading"><div class="pregen-token" aria-hidden="true">C</div><div><h3>Brother Alden</h3><p><strong>Level 2 Cleric</strong> · Support</p></div></div>
+          <dl class="pregen-stats"><div><dt>AC</dt><dd>18</dd></div><div><dt>HP</dt><dd>19</dd></div><div><dt>Initiative</dt><dd>+0</dd></div><div><dt>Speed</dt><dd>30 ft.</dd></div></dl>
+          <p><strong>Spell attack:</strong> +5. <strong>Spell save DC:</strong> 13.</p>
+          <p><strong>Good saves:</strong> Wisdom +5, Charisma +2.</p>
+          <p><strong>Signature tools:</strong> healing, buffs, defensive magic, Channel Divinity.</p>
+          <p><strong>Think:</strong> support the party, heal when needed, stand firm.</p>
+        </article>
+        <article class="pregen-card">
+          <div class="pregen-heading"><div class="pregen-token" aria-hidden="true">W</div><div><h3>Elira Vale</h3><p><strong>Level 2 Wizard</strong> · Arcane specialist</p></div></div>
+          <dl class="pregen-stats"><div><dt>AC</dt><dd>12</dd></div><div><dt>HP</dt><dd>14</dd></div><div><dt>Initiative</dt><dd>+2</dd></div><div><dt>Speed</dt><dd>30 ft.</dd></div></dl>
+          <p><strong>Spell attack:</strong> +5. <strong>Spell save DC:</strong> 13.</p>
+          <p><strong>Strong ability:</strong> Intelligence +3 for arcane knowledge and spellcasting.</p>
+          <p><strong>Signature tools:</strong> ranged magic, utility spells, battlefield control.</p>
+          <p><strong>Think:</strong> solve problems with knowledge, planning, and magic.</p>
+        </article>
       </div>
-      <p class="example-note">The numbers above are teaching examples, not downloadable character sheets yet. The finished beginner pack can give each player a complete pregen.</p>
+      <div class="party-next-step">
+        <div><strong>Want to understand the actual sheet?</strong><p>Open Mara's annotated character sheet. Every major box is numbered and paired with a player example and a DM example.</p></div>
+        <a class="button button-primary" href="character-sheet-guide.html">Break down the character sheet</a>
+      </div>
     </div>
   </section>
 
   <section class="section rules-section" id="rules">
     <div class="container">
       <div class="section-heading centered">
-        <p class="eyebrow">The rules in about two minutes</p>
-        <h2>Most of D&D follows one simple loop.</h2>
-        <p>The Dungeon Master describes the situation. You say what your character tries. If success is uncertain, dice help decide what happens.</p>
+        <p class="eyebrow">The core rules in plain English</p>
+        <h2>Most of D&amp;D follows one simple loop.</h2>
+        <p>The DM describes the situation. You describe what your character tries. If the outcome is uncertain and the result matters, a d20 roll often decides what happens.</p>
       </div>
       <div class="rule-grid">
-        <article><span class="rule-icon" aria-hidden="true">d20</span><h3>Checks</h3><p>Roll a d20, add the relevant modifier, and compare the total with a Difficulty Class (DC) chosen by the DM.</p><code>d20 + modifier ≥ DC</code></article>
-        <article><span class="rule-icon" aria-hidden="true">↟</span><h3>Proficiency</h3><p>If your character is trained in the relevant skill, weapon, or save, their proficiency bonus is normally already included in the bonus on the sheet.</p></article>
-        <article><span class="rule-icon" aria-hidden="true">2d20</span><h3>Advantage</h3><p>With advantage, roll two d20s and use the higher result. With disadvantage, use the lower result.</p></article>
-        <article><span class="rule-icon" aria-hidden="true">AC</span><h3>Attacks</h3><p>Roll d20 + attack bonus. If the total meets or beats the target's Armor Class, the attack hits and you roll damage.</p></article>
-        <article><span class="rule-icon" aria-hidden="true">♥</span><h3>Hit Points</h3><p>Damage reduces HP. Reaching 0 HP usually knocks a player character unconscious and can begin death saving throws.</p></article>
-        <article><span class="rule-icon" aria-hidden="true">✦</span><h3>Spells</h3><p>Some spells use an attack roll. Others make the target roll a saving throw against the caster's spell save DC. Read the spell to know which.</p></article>
+        <article><span class="rule-icon" aria-hidden="true">d20</span><h3>Ability checks</h3><p>The DM names an ability or skill and a Difficulty Class. Roll a d20, add the bonus shown on your sheet, and compare the total to the DC.</p><code>d20 + modifier ≥ DC</code><p class="rule-example">Example: 9 + Investigation 4 = 13 vs DC 12 → success.</p></article>
+        <article><span class="rule-icon" aria-hidden="true">+PB</span><h3>Proficiency</h3><p>Proficiency means your character is trained. On a finished sheet, that bonus is normally already included in proficient skills, saves, weapons, and spell numbers.</p><p class="rule-example">You usually use the printed total; you do not add proficiency a second time.</p></article>
+        <article><span class="rule-icon" aria-hidden="true">↑2</span><h3>Advantage</h3><p>Roll two d20s and use the higher die, then add the normal modifier.</p><code>roll 2d20 → keep higher</code><p class="rule-example">Roll 6 and 15 → use 15.</p></article>
+        <article><span class="rule-icon" aria-hidden="true">↓2</span><h3>Disadvantage</h3><p>Roll two d20s and use the lower die, then add the normal modifier.</p><code>roll 2d20 → keep lower</code><p class="rule-example">Roll 6 and 15 → use 6.</p></article>
+        <article><span class="rule-icon" aria-hidden="true">INIT</span><h3>Initiative</h3><p>When combat starts, roll a d20 and add your Initiative bonus—normally your Dexterity modifier unless a rule changes it. The DM ranks everyone from highest total to lowest.</p><code>highest total acts first</code><p class="rule-example">17 goes before 14, then 12, then 10. The same order repeats next round.</p></article>
+        <article><span class="rule-icon" aria-hidden="true">SAVE</span><h3>Saving throws</h3><p>A save resists something happening to you: a trap, poison, spell, blast, or similar danger. The DM tells you which save and the DC.</p><code>d20 + save modifier ≥ DC</code><p class="rule-example">Dex save: 7 + 5 = 12 vs DC 12 → success.</p></article>
+        <article><span class="rule-icon" aria-hidden="true">AC</span><h3>Attacks &amp; Armor Class</h3><p>For an attack roll, use the attack bonus printed beside the weapon or spell. Meet or beat the target's AC to hit, then roll the listed damage.</p><code>d20 + attack bonus ≥ AC</code><p class="rule-example">Mara: d20 + 5 vs AC 15.</p></article>
+        <article><span class="rule-icon" aria-hidden="true">HP</span><h3>Hit Points</h3><p>Damage reduces HP. At 0 HP, a player character usually falls unconscious and may begin death saving throws. Healing that restores HP can bring them back.</p><p class="rule-example">22 HP − 8 damage = 14 HP remaining.</p></article>
+        <article><span class="rule-icon" aria-hidden="true">✦</span><h3>Spells</h3><p>Some spells make an attack roll. Others force a target to make a saving throw against the caster's spell save DC. The spell tells you which procedure to use.</p><p class="rule-example">Elira: spell attack +5; spell save DC 13.</p></article>
       </div>
     </div>
   </section>
@@ -97,54 +136,52 @@
       <div class="adventure-flow">
         <article class="story-card">
           <div class="story-number">1</div>
-          <div><h3>Meet at the inn</h3><p>The heroes meet at the Lantern & Ladle. The mayor arrives, explains the missing seal, and offers a reward.</p><div class="story-tags"><span>Roleplay</span><span>Quest hook</span><span>Party introductions</span></div></div>
-          <div class="table-view"><strong>Rule: You can simply talk.</strong><p>Most roleplay needs no roll. Players speak in character or describe what they say. The DM answers as the NPC. Dice enter only when the outcome is meaningfully uncertain.</p><div class="example-roll"><b>Mara:</b> “What exactly did the thieves take?”<br><b>DM:</b> The mayor answers. No check required.</div></div>
+          <div><h3>Meet at the inn</h3><p>The heroes meet at the Lantern &amp; Ladle. The mayor arrives, explains the missing seal, and offers a reward.</p><div class="story-tags"><span>Roleplay</span><span>Quest hook</span><span>Party introductions</span></div></div>
+          <div class="table-view"><strong>Rule: You can simply talk.</strong><p>Most roleplay needs no roll. Say what your character says or describe the approach. The DM answers as the NPC. Dice enter only when the outcome is meaningfully uncertain.</p><div class="example-roll"><b>Mara:</b> “What exactly did the thieves take?”<br><b>DM:</b> The mayor answers. No check required.</div></div>
         </article>
 
         <article class="story-card">
           <div class="story-number">2</div>
-          <div><h3>Ask around town</h3><p>The blacksmith saw muddy footprints headed north. A shepherd heard metal clanging near the mine. A tavern regular insists witches did it.</p><div class="story-tags"><span>Investigation</span><span>NPCs</span><span>Red herrings</span></div></div>
-          <div class="table-view"><strong>Rule: Ability checks resolve uncertain attempts.</strong><p>Tess studies the muddy tracks. The DM asks for an Intelligence (Investigation) check and sets DC 12.</p><div class="example-roll">Tess rolls <b>9 + 4 = 13</b>. Success. She notices small boot prints and ore dust leading toward Blackstone Mine.</div><p class="rule-footnote">A failed check should not always stop the adventure. It can cost time, reveal less information, or create a complication instead.</p></div>
+          <div><h3>Ask around town</h3><p>The blacksmith saw muddy footprints headed north. A shepherd heard metal clanging near the mine. A tavern regular insists witches did it.</p><div class="story-tags"><span>Investigation</span><span>NPCs</span><span>Clues</span></div></div>
+          <div class="table-view"><strong>Rule: Ability checks resolve uncertain attempts.</strong><p>Tess studies the muddy tracks. The DM asks for an Intelligence (Investigation) check, DC 12. Tess looks at her sheet: Investigation +4.</p><div class="example-roll">Tess rolls <b>9 + 4 = 13</b>. She succeeds and notices small boot prints mixed with ore dust leading toward Blackstone Mine.</div><p class="rule-footnote">A failed check does not have to stop the adventure. It can cost time, reveal less, create danger, or move the clue somewhere else.</p></div>
         </article>
 
         <article class="story-card">
           <div class="story-number">3</div>
-          <div><h3>Travel to the old mine</h3><p>A washed-out trail ends at a broken footbridge. The party needs to cross before continuing toward the mine.</p><div class="story-tags"><span>Exploration</span><span>Teamwork</span><span>Advantage</span></div></div>
-          <div class="table-view"><strong>Rule: Good ideas can change the roll.</strong><p>Mara braces a rope while Tess crosses. The DM decides that this help gives Tess advantage on the check.</p><div class="example-roll">Tess rolls <b>6 and 15</b>. With advantage she uses <b>15</b>, adds her modifier, and crosses safely.</div><p class="rule-footnote">Advantage means two d20s, keep the higher. Disadvantage means keep the lower.</p></div>
+          <div><h3>Travel to the old mine</h3><p>A washed-out trail ends at a broken footbridge. The party needs to cross before continuing toward the mine.</p><div class="story-tags"><span>Exploration</span><span>Teamwork</span><span>Advantage</span><span>Disadvantage</span></div></div>
+          <div class="table-view"><strong>Rule: Circumstances can change how you roll.</strong><p>Mara braces a rope while Tess crosses. The DM decides the help gives Tess advantage.</p><div class="example-roll">Tess rolls <b>6 and 15</b>. Advantage keeps <b>15</b>, then she adds the normal modifier.</div><p>If the bridge were slick with oil and the DM imposed disadvantage instead, the same rolls would keep <strong>6</strong>.</p><p class="rule-footnote">Advantage and disadvantage change which d20 result you use; they do not replace your normal modifier.</p></div>
         </article>
 
         <article class="story-card">
           <div class="story-number">4</div>
-          <div><h3>The mine fights back</h3><p>Inside, a pressure plate releases falling rubble. Tess noticed something odd but steps too close while examining it.</p><div class="story-tags"><span>Trap</span><span>Saving throw</span><span>Damage</span></div></div>
-          <div class="table-view"><strong>Rule: Saving throws resist danger happening to you.</strong><p>The DM calls for a DC 12 Dexterity saving throw. Tess rolls d20 + her Dexterity save modifier.</p><div class="example-roll">Tess rolls <b>7 + 5 = 12</b>. She succeeds and dives clear. A failed save might deal damage or cause another listed effect.</div></div>
+          <div><h3>The mine fights back</h3><p>Inside, a pressure plate releases falling rubble while Tess is examining the floor.</p><div class="story-tags"><span>Trap</span><span>Saving throw</span><span>Damage</span></div></div>
+          <div class="table-view"><strong>Rule: Saving throws resist danger happening to you.</strong><p>The DM says, “Tess, make a DC 12 Dexterity saving throw.” Tess does not choose a skill; she finds <strong>Dexterity save +5</strong> on her sheet.</p><div class="example-roll">Tess rolls <b>7 + 5 = 12</b>. Meeting the DC succeeds, so she dives clear. If the trap said a failed save deals 6 damage, a total of 11 would fail and she would take that listed effect.</div></div>
         </article>
 
         <article class="story-card combat-story">
           <div class="story-number">5</div>
-          <div><h3>Goblins!</h3><p>A patrol blocks the passage. Talking fails and weapons come out. Combat begins.</p><div class="story-tags"><span>Initiative</span><span>Combat</span><span>AC</span><span>Damage</span></div></div>
-          <div class="table-view"><strong>Rule: Combat happens in rounds and turns.</strong><p>Everyone rolls initiative. On your turn you can move up to your Speed and take an action. Some characters also have something that lets them take a bonus action. Reactions happen only when a rule gives you a trigger for one.</p></div>
+          <div><h3>Goblins!</h3><p>A patrol blocks the passage. Talking breaks down and weapons come out. Combat begins.</p><div class="story-tags"><span>Initiative</span><span>Turn order</span><span>Combat</span><span>AC</span></div></div>
+          <div class="table-view"><strong>Rule: Initiative tells everyone when they act.</strong><p>Everyone rolls <strong>d20 + Initiative bonus</strong>. The DM puts the totals in order from highest to lowest. The highest total takes the first turn, then the next highest, all the way to the lowest. When the round ends, start again at the top in the same order.</p><div class="initiative-example" aria-label="Example initiative order"><span><b>17</b> Tess</span><span><b>14</b> Mara</span><span><b>12</b> Goblins</span><span><b>10</b> Elira</span><span><b>6</b> Alden</span></div><p class="rule-footnote">Initiative is normally based on Dexterity. Some features can change or improve it, so use the Initiative bonus printed on the character sheet.</p></div>
         </article>
       </div>
 
       <section class="combat-lab" data-rule-lab aria-labelledby="combat-lab-title">
-        <div>
-          <p class="eyebrow">Try the dice</p>
-          <h2 id="combat-lab-title">Play one round of the goblin fight.</h2>
-          <p>This is a teaching simulator, not the full D&D combat engine. Roll the same kinds of checks you would make at the table.</p>
-        </div>
-        <div class="combat-actions">
-          <button class="button button-gold" type="button" data-roll-initiative>1. Roll initiative</button>
-          <button class="button button-gold" type="button" data-roll-attack>2. Mara attacks</button>
-          <button class="button button-gold" type="button" data-roll-save>3. Tess makes a save</button>
+        <div><p class="eyebrow">Try the dice in order</p><h2 id="combat-lab-title">Play one teaching round.</h2><p>Only the next step is active. Finish it and the following button lights up. Later steps stay gray and cannot be used out of order.</p></div>
+        <div class="combat-actions" aria-label="Combat teaching steps">
+          <button class="button lab-step is-active" type="button" data-roll-initiative aria-current="step"><span>1</span> Roll initiative</button>
+          <button class="button lab-step" type="button" data-roll-attack disabled><span>2</span> Mara attacks</button>
+          <button class="button lab-step" type="button" data-roll-save disabled><span>3</span> Tess makes a save</button>
+          <button class="button lab-reset" type="button" data-reset-lab disabled>Run it again</button>
         </div>
         <div class="combat-output" data-rule-output tabindex="-1" aria-live="polite">
-          <strong>Ready</strong><span>Start with initiative. The d20 decides plenty, but your modifiers represent what your character is good at.</span>
+          <strong>Step 1 — Initiative</strong>
+          <span>Roll for everyone, add each Initiative bonus, then rank the totals from highest to lowest.</span>
         </div>
         <div class="combat-explainer">
-          <article><h3>Attack roll</h3><p>Mara's example attack is <strong>d20 + 5</strong> against <strong>AC 15</strong>. Meeting or beating AC hits.</p></article>
-          <article><h3>Damage</h3><p>On a normal hit, this example rolls <strong>1d8 + 3</strong>. Damage reduces the target's hit points.</p></article>
-          <article><h3>Critical hit</h3><p>A natural 20 on an attack hits critically. Roll the attack's damage dice twice, then add modifiers once.</p></article>
-          <article><h3>Natural 1</h3><p>A natural 1 on an attack roll misses. Natural 1s and 20s do not automatically fail or succeed on ordinary ability checks.</p></article>
+          <article><h3>Initiative order</h3><p>Highest total acts first. Work down the list. After the lowest takes a turn, start a new round at the top.</p></article>
+          <article><h3>Attack roll</h3><p>Mara uses <strong>d20 + 5</strong> against <strong>AC 15</strong>. Meeting or beating AC hits.</p></article>
+          <article><h3>Damage</h3><p>On a normal longsword hit, Mara rolls <strong>1d8 + 3</strong>. Subtract that from the target's HP.</p></article>
+          <article><h3>Saving throw</h3><p>Tess uses the saving-throw bonus named by the DM. For this example: <strong>d20 + 5 vs DC 12</strong>.</p></article>
         </div>
       </section>
 
@@ -152,25 +189,25 @@
         <article class="story-card">
           <div class="story-number">6</div>
           <div><h3>The goblin chief</h3><p>Deep in the mine, the chief wears the silver seal on his belt. Several frightened goblins watch from behind overturned crates.</p><div class="story-tags"><span>Boss scene</span><span>Spells</span><span>Choices</span></div></div>
-          <div class="table-view"><strong>Rule: Your character sheet gives you options, not a script.</strong><ul><li>Mara can charge the chief.</li><li>Tess can hide and look for an opening.</li><li>Alden can support allies or use divine magic.</li><li>Elira can make a spell attack or cast a spell that forces a saving throw.</li><li>The whole party can negotiate, distract, threaten, surrender, retreat, or invent something else.</li></ul></div>
+          <div class="table-view"><strong>Rule: Your sheet gives you options, not a script.</strong><ul><li>Mara can attack, move, use a feature, help, dodge, or attempt another reasonable action.</li><li>Tess can look for a Sneak Attack opportunity, hide, scout, or improvise.</li><li>Alden can attack, heal, support, or cast a spell.</li><li>Elira can use a spell attack, force a saving throw, or solve the problem without damage.</li><li>The whole party can negotiate, distract, threaten, retreat, surrender, or invent another plan.</li></ul></div>
         </article>
 
         <article class="story-card">
           <div class="story-number">7</div>
-          <div><h3>A hero goes down</h3><p>Imagine Mara reaches 0 HP during the final fight. She falls unconscious while the others scramble to finish the battle and help her.</p><div class="story-tags"><span>0 HP</span><span>Death saves</span><span>Healing</span></div></div>
-          <div class="table-view"><strong>Rule: 0 HP is dangerous, but it is not automatically death.</strong><p>At the start of her turns while dying, Mara makes a death saving throw: <strong>10 or higher succeeds; 9 or lower fails</strong>. Three successes stabilize her; three failures mean death. A natural 20 restores 1 HP, while a natural 1 counts as two failures.</p><p class="rule-footnote">Healing that restores HP can bring an unconscious character back into the fight.</p></div>
+          <div><h3>A hero goes down</h3><p>Imagine Mara reaches 0 HP during the final fight. She falls unconscious while the others scramble to help.</p><div class="story-tags"><span>0 HP</span><span>Death saves</span><span>Healing</span></div></div>
+          <div class="table-view"><strong>Rule: 0 HP is dangerous, but it is not automatically death.</strong><p>At the start of her turns while dying, Mara makes a death saving throw. Three successes stabilize her; three failures mean death. A natural 20 restores 1 HP, while a natural 1 counts as two failures.</p><p class="rule-footnote">Edition details can vary; use the death-save rules for the ruleset your table is playing.</p></div>
         </article>
 
         <article class="story-card">
           <div class="story-number">8</div>
-          <div><h3>Catch your breath</h3><p>The chief is defeated or outmaneuvered, the seal is recovered, and the party finds a safe chamber before making the trip home.</p><div class="story-tags"><span>Short rest</span><span>Resources</span><span>Recovery</span></div></div>
-          <div class="table-view"><strong>Rule: Adventures are about managing resources.</strong><p>Characters spend hit points, spell slots, class features, items, and other resources. Resting can restore some of them depending on the rule involved. Players decide whether resting is worth the time and risk.</p></div>
+          <div><h3>Catch your breath</h3><p>The chief is defeated or outmaneuvered, the seal is recovered, and the party finds a safe chamber before heading home.</p><div class="story-tags"><span>Short rest</span><span>Resources</span><span>Recovery</span></div></div>
+          <div class="table-view"><strong>Rule: Adventures are about managing resources.</strong><p>Characters spend HP, Hit Dice, spell slots, class features, items, and other resources. Resting restores only what the relevant rules say it restores. The party decides whether the time and safety are worth it.</p></div>
         </article>
 
         <article class="story-card">
           <div class="story-number">9</div>
-          <div><h3>Return to the mayor</h3><p>The party brings the recovered seal home. The mayor pays the promised reward, the inn celebrates, and someone mentions strange lights at the abandoned watchtower.</p><div class="story-tags"><span>Reward</span><span>Level up</span><span>Next adventure</span></div></div>
-          <div class="table-view"><strong>BAM — you finished a one-shot.</strong><ul><li>The quest had a beginning, middle, climax, and ending.</li><li>Your decisions changed how scenes unfolded.</li><li>The DM can award treasure and advancement appropriate to the game.</li><li>A milestone can level the party when the DM decides the story has reached an appropriate point.</li></ul></div>
+          <div><h3>Return to the mayor</h3><p>The party brings the seal home. The mayor pays the reward, the inn celebrates, and someone mentions strange lights at the abandoned watchtower.</p><div class="story-tags"><span>Reward</span><span>Advancement</span><span>Next adventure</span></div></div>
+          <div class="table-view"><strong>BAM — you finished a one-shot.</strong><ul><li>The quest had a beginning, middle, climax, and ending.</li><li>Your choices changed how the scenes unfolded.</li><li>The DM can award treasure and advancement appropriate to the campaign.</li><li>The watchtower hook can become the first thread of a longer game.</li></ul></div>
         </article>
       </div>
     </div>
@@ -178,30 +215,34 @@
 
   <section class="section paper">
     <div class="container">
-      <div class="section-heading centered"><p class="eyebrow dark">What you actually need to remember</p><h2>You do not need to memorize D&D before playing D&D.</h2><p>The character sheet holds most of your numbers. The DM tells you when a roll is needed. You say what you want to do and learn the rules as they become relevant.</p></div>
+      <div class="section-heading centered"><p class="eyebrow dark">What you actually need to remember</p><h2>You do not need to memorize D&amp;D before playing D&amp;D.</h2><p>Your character sheet stores the numbers. The DM tells you when a roll is needed. You describe what you want to do, find the relevant bonus, roll, and learn the rules as they become relevant.</p></div>
       <div class="lesson-panel">
         <article><h3>Describe intent first.</h3><p>“I check the doorway for a trap” is more useful than “I roll Investigation.” The DM decides whether a roll is needed and what applies.</p></article>
-        <article><h3>Failure moves the story.</h3><p>A poor roll can cost HP, time, position, information, resources, or create a new problem. It does not have to make the adventure stop.</p></article>
+        <article><h3>Use the printed bonus.</h3><p>If the sheet says Investigation +4 or Longsword +5, that number already includes the normal pieces used to calculate it.</p></article>
         <article><h3>The DM is not your opponent.</h3><p>The DM portrays the world, applies the rules, presents consequences, and helps the entire table create an exciting game.</p></article>
+      </div>
+      <div class="character-sheet-callout">
+        <div><p class="eyebrow dark">Next lesson</p><h2>Now learn where every number lives.</h2><p>Use a complete sample character sheet and walk through ability scores, proficiency, saves, skills, AC, initiative, HP, attacks, features, equipment, and what the DM says when each part matters.</p></div>
+        <a class="button button-primary" href="character-sheet-guide.html">Open the annotated character sheet</a>
       </div>
     </div>
   </section>
 
   <section class="section interest-section">
     <div class="container adventure-cta">
-      <p class="eyebrow dark">Ready for a real table?</p>
-      <h2>You now know enough to start learning by playing.</h2>
-      <p>Join Florence Tabletop Guild as a player, a DM, or both. Beginners are welcome.</p>
-      <a class="button button-primary" href="index.html#interest">Tell us how you want to play</a>
+      <p class="eyebrow dark">Ready for the next step?</p>
+      <h2>You know enough to start learning by playing.</h2>
+      <p>Join the Guild interest pool, build a supported-SRD character, or browse a table-ready one-shot.</p>
+      <div class="hero-actions"><a class="button button-primary" href="join.html">Tell us how you want to play</a><a class="button button-secondary" href="tools.html">Open Guild Tools</a><a class="button button-secondary" href="one-shots.html">Browse One-Shots</a></div>
     </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
-    <div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Florence Tabletop Guild</strong><span>Find your table. Tell your story.</span></div></div>
+    <div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Light Tower Table Top Guild</strong><span>Find your table. Learn the game. Tell your story.</span></div></div>
     <p>This original example is an independent teaching walkthrough and is not an official Dungeons & Dragons adventure.</p>
-    <p>© <span data-year>2026</span> Florence Tabletop Guild.</p>
+    <p>© <span data-year>2026</span> Light Tower Table Top Guild.</p>
   </div>
 </footer>
 <script src="assets/js/site.js" defer></script>

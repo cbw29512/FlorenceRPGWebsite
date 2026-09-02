@@ -5,20 +5,25 @@
 .adventure-hero .container { padding-block: clamp(4rem, 8vw, 6.5rem); }
 .adventure-hero p { color: #d7ccdd; font-size: 1.1rem; }
 .adventure-hero .button { margin-top: .8rem; }
-.party-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.party-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 .pregen-card {
-  padding: 1.25rem;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 1.3rem;
   border: 1px solid #d6c8d8;
   border-radius: 1rem;
   background: #fffaf3;
   box-shadow: 0 14px 34px rgba(45, 29, 47, .08);
 }
+.pregen-heading { display: flex; gap: .9rem; align-items: center; margin-bottom: .65rem; }
+.pregen-heading h3, .pregen-heading p { margin: 0; }
 .pregen-token {
   display: grid;
   width: 3.25rem;
   height: 3.25rem;
+  flex: 0 0 3.25rem;
   place-items: center;
-  margin-bottom: .9rem;
   border-radius: 50%;
   background: #26172e;
   color: var(--gold-light);
@@ -28,11 +33,39 @@
 }
 .pregen-card p { margin: .35rem 0; color: #5e5561; }
 .pregen-card strong { color: #3d2748; }
+.pregen-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .5rem;
+  margin: .5rem 0 .75rem;
+}
+.pregen-stats div {
+  padding: .55rem .4rem;
+  border: 1px solid #e2d7e4;
+  border-radius: .7rem;
+  background: #faf3ea;
+  text-align: center;
+}
+.pregen-stats dt { color: #6d5c70; font-size: .72rem; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; }
+.pregen-stats dd { margin: .08rem 0 0; color: #2d1936; font-family: Georgia, serif; font-size: 1.05rem; font-weight: 900; }
+.pregen-link { margin-top: auto; padding-top: .65rem; color: #572776; font-weight: 900; }
+.party-next-step {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid #d7c6da;
+  border-radius: 1rem;
+  background: #f7eee4;
+}
+.party-next-step p { margin: .25rem 0 0; color: #5e5561; }
 .flow-section { background: #17111f; color: var(--text); }
 .adventure-flow { display: grid; gap: 1rem; margin-top: 2rem; }
 .story-card {
   display: grid;
-  grid-template-columns: 5rem minmax(0, .95fr) minmax(0, 1.05fr);
+  grid-template-columns: 5rem minmax(0, .88fr) minmax(0, 1.12fr);
   gap: 1.25rem;
   align-items: start;
   padding: 1.3rem;
@@ -66,6 +99,15 @@
 .table-view { padding-left: 1.1rem; border-left: 2px solid rgba(230,174,78,.38); }
 .table-view strong { color: var(--gold-light); }
 .table-view ul { margin: .55rem 0 0; padding-left: 1.15rem; color: #d5cadb; }
+.initiative-example { display: flex; flex-wrap: wrap; gap: .45rem; margin: .8rem 0; }
+.initiative-example span {
+  padding: .4rem .6rem;
+  border: 1px solid rgba(246,205,119,.28);
+  border-radius: .6rem;
+  background: rgba(246,205,119,.08);
+  color: #fff4dd;
+}
+.initiative-example b { color: var(--gold-light); }
 .lesson-panel {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -79,16 +121,33 @@
   background: var(--paper);
 }
 .lesson-panel p { margin-bottom: 0; color: #5e555f; }
+.character-sheet-callout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 1.2rem;
+  padding: 1.35rem;
+  border: 1px solid #d6cabf;
+  border-radius: 1rem;
+  background: #f6ecdf;
+}
+.character-sheet-callout h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.character-sheet-callout p { margin-bottom: 0; color: #5e555f; }
 .adventure-cta { text-align: center; }
 .adventure-cta p { margin-inline: auto; color: #5d535f; }
 @media (max-width: 900px) {
-  .party-grid { grid-template-columns: repeat(2, 1fr); }
+  .party-grid { grid-template-columns: 1fr; }
   .story-card { grid-template-columns: 4rem 1fr; }
   .table-view { grid-column: 2; }
   .lesson-panel { grid-template-columns: 1fr; }
+  .character-sheet-callout { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .pregen-stats { grid-template-columns: repeat(2, 1fr); }
+  .party-next-step { align-items: stretch; flex-direction: column; }
 }
 @media (max-width: 560px) {
-  .party-grid { grid-template-columns: 1fr; }
   .story-card { grid-template-columns: 1fr; }
   .story-number { width: 3.2rem; height: 3.2rem; }
   .table-view { grid-column: auto; padding-left: 0; border-left: 0; }

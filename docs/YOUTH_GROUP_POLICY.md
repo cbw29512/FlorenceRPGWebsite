@@ -1,8 +1,8 @@
-# Florence Tabletop Guild — Youth Group Policy
+# Light Tower Table Top Guild — Youth Group Policy
 
 ## Core rule
 
-Florence Tabletop Guild individual player/GM matching is **18+**.
+Light Tower Table Top Guild individual player/GM matching is **18+**.
 
 A person under 18 is not entered into the individual matching pool and is never paired one-to-one with an unknown adult through the Guild.
 
@@ -20,7 +20,7 @@ Youth participation is allowed only when all of these are true:
 
 ## Young Game Masters
 
-Florence Tabletop Guild may help a young person learn to become a Dungeon Master/Game Master/Keeper.
+Light Tower Table Top Guild may help a young person learn to become a Dungeon Master/Game Master/Keeper.
 
 The preferred youth model is to **teach the young GM how to run their own group** rather than assigning an unrelated adult to become the group's regular GM.
 
