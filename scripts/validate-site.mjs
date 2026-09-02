@@ -7,6 +7,8 @@ const pages = [
   'guild-hall.html',
   'one-shots.html',
   'tools.html',
+  'join.html',
+  'youth-groups.html',
   'thanks.html',
   '404.html'
 ];
@@ -72,12 +74,17 @@ for (const page of pages) {
   }
 }
 
-const index = exists('index.html') ? read('index.html') : '';
-for (const formName of ['guild-interest', 'youth-group-interest']) {
+const formFiles = {
+  'guild-interest': 'join.html',
+  'youth-group-interest': 'youth-groups.html'
+};
+
+for (const [formName, file] of Object.entries(formFiles)) {
+  const html = exists(file) ? read(file) : '';
   const formPattern = new RegExp(`<form[^>]+name="${formName}"[^>]+data-netlify="true"`, 'i');
   const hiddenPattern = new RegExp(`<input[^>]+name="form-name"[^>]+value="${formName}"`, 'i');
-  if (!formPattern.test(index)) warn('index.html', `Netlify form not detectable: ${formName}`);
-  if (!hiddenPattern.test(index)) warn('index.html', `missing hidden form-name for ${formName}`);
+  if (!formPattern.test(html)) warn(file, `Netlify form not detectable: ${formName}`);
+  if (!hiddenPattern.test(html)) warn(file, `missing hidden form-name for ${formName}`);
 }
 
 const oneShots = exists('one-shots.html') ? read('one-shots.html') : '';
