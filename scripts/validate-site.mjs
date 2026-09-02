@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const pages = [
   'index.html',
@@ -91,6 +92,25 @@ for (const [formName, file] of Object.entries(formFiles)) {
 const oneShots = exists('one-shots.html') ? read('one-shots.html') : '';
 if (!oneShots.includes('Right to OwlBear Arms')) warn('one-shots.html', 'canonical adventure title missing: Right to OwlBear Arms');
 
+const adventureZipPath = 'assets/Right_to_OwlBear_Arms_Complete_Adventure_Bundle_v1.1.zip';
+const adventureZipSize = 1524131;
+const adventureZipSha256 = 'b2aace66aed7cb0d5d01096d26fe73be998324f0cba4088629b9dea7db184c11';
+if (!exists(adventureZipPath)) {
+  warn('one-shots.html', `production adventure ZIP missing: ${adventureZipPath}`);
+} else {
+  const adventureZip = fs.readFileSync(adventureZipPath);
+  const actualSha256 = crypto.createHash('sha256').update(adventureZip).digest('hex');
+  if (adventureZip.length !== adventureZipSize) {
+    warn('one-shots.html', `adventure ZIP size changed: expected ${adventureZipSize}, got ${adventureZip.length}`);
+  }
+  if (actualSha256 !== adventureZipSha256) {
+    warn('one-shots.html', `adventure ZIP checksum changed: expected ${adventureZipSha256}, got ${actualSha256}`);
+  }
+  if (!oneShots.includes(`href="${adventureZipPath}" download`)) {
+    warn('one-shots.html', 'verified adventure ZIP is not wired to a same-site download link');
+  }
+}
+
 const learn = exists('first-adventure.html') ? read('first-adventure.html') : '';
 if (!learn.includes('character-sheet-guide.html')) warn('first-adventure.html', 'annotated character-sheet guide is not linked');
 if (!learn.includes('data-roll-initiative') || !learn.includes('data-roll-attack') || !learn.includes('data-roll-save')) {
@@ -104,4 +124,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${pages.length} pages: internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, learning flow, and canonical branding all passed.`);
+console.log(`Validated ${pages.length} pages: internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, learning flow, adventure download integrity, and canonical branding all passed.`);
