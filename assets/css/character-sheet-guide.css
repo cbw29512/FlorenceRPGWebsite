@@ -1,0 +1,109 @@
+.sheet-hero {
+  background: linear-gradient(120deg, #100b17, #261530 58%, #38223f);
+  color: var(--text);
+}
+.sheet-hero .container { padding-block: clamp(4rem, 8vw, 6.5rem); }
+.sheet-hero p { color: #d7ccdd; font-size: 1.08rem; }
+.sheet-hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(18rem, .75fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.sheet-legend { display: grid; gap: .7rem; padding: 1.3rem; border: 1px solid rgba(246,205,119,.3); border-radius: 1rem; background: rgba(255,255,255,.055); }
+.sheet-legend strong { color: var(--gold-light); font-family: Georgia, serif; font-size: 1.35rem; }
+.sheet-legend span { color: #eee4f0; }
+.sheet-intro { display: flex; justify-content: space-between; gap: 1.5rem; align-items: end; margin-bottom: 1.5rem; }
+.sheet-intro p { margin-bottom: 0; color: #5f5661; }
+.character-sheet {
+  padding: clamp(1rem, 2vw, 1.6rem);
+  border: 2px solid #2c1a34;
+  border-radius: 1rem;
+  background: #fffaf3;
+  box-shadow: 0 20px 55px rgba(44,26,52,.12);
+}
+.sheet-name-row { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: .7rem; }
+.sheet-field,
+.sheet-box,
+.big-stat,
+.abilities-panel {
+  position: relative;
+  border: 1px solid #cdbfd0;
+  border-radius: .7rem;
+  background: #fffdf9;
+}
+.sheet-field { display: grid; gap: .15rem; padding: .7rem .8rem; }
+.sheet-field small,
+.big-stat small { color: #756977; font-size: .68rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+.sheet-field strong { color: #281831; }
+.callout-number {
+  display: inline-grid;
+  width: 1.7rem;
+  height: 1.7rem;
+  place-items: center;
+  margin-right: .35rem;
+  border-radius: 50%;
+  background: #2b1833;
+  color: var(--gold-light);
+  font-size: .75rem;
+  font-weight: 950;
+  vertical-align: middle;
+}
+.sheet-core-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(17rem, .7fr); gap: .8rem; margin-top: .8rem; }
+.abilities-panel { padding: .9rem; }
+.abilities-panel h3, .sheet-box h3 { font-size: 1rem; color: #34203e; }
+.ability-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: .5rem; }
+.ability-grid div { display: grid; place-items: center; padding: .65rem .35rem; border: 1px solid #ded2df; border-radius: .65rem; background: #faf4eb; }
+.ability-grid small { color: #6d626f; font-size: .65rem; font-weight: 900; text-transform: uppercase; }
+.ability-grid strong { color: #281831; font-family: Georgia, serif; font-size: 1.35rem; }
+.ability-grid b { color: #6b2b85; }
+.combat-numbers { display: grid; grid-template-columns: repeat(2, 1fr); gap: .5rem; }
+.big-stat { display: grid; align-content: center; min-height: 5.1rem; padding: .65rem; text-align: center; }
+.big-stat strong { color: #281831; font-family: Georgia, serif; font-size: 1.45rem; }
+.big-stat em { color: #6d626f; font-size: .72rem; font-style: normal; }
+.hp-stat { grid-column: 1 / -1; }
+.sheet-detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .8rem; margin-top: .8rem; }
+.sheet-box { padding: .9rem; }
+.number-list { list-style: none; margin: 0; padding: 0; }
+.number-list li { display: flex; justify-content: space-between; gap: 1rem; padding: .28rem 0; border-bottom: 1px solid #eee5ef; }
+.number-list li:last-child { border-bottom: 0; }
+.number-list .proficient span::before { content: "●"; margin-right: .45rem; color: #6b2b85; }
+.number-list li:not(.proficient) span::before { content: "○"; margin-right: .45rem; color: #9b8d9e; }
+.sheet-note { margin-bottom: 0; color: #6b616d; font-size: .82rem; }
+.attack-row { display: grid; grid-template-columns: 1.1fr .8fr 1fr; gap: .6rem; padding: .55rem 0; border-bottom: 1px solid #eee5ef; }
+.attack-row:last-of-type { border-bottom: 0; }
+.features-box p, .equipment-box p { color: #554c57; }
+.dm-lesson-section { background: #1d1425; color: var(--text); }
+.dm-lesson-section .section-heading > p:last-child { color: #d9cedd; }
+.dm-example-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.dm-example-grid article { padding: 1.15rem; border: 1px solid rgba(255,255,255,.12); border-radius: .9rem; background: rgba(255,255,255,.045); }
+.dm-example-grid article > span { display: inline-grid; min-width: 2rem; height: 2rem; place-items: center; margin-bottom: .7rem; padding-inline: .45rem; border-radius: .55rem; background: rgba(246,205,119,.12); color: var(--gold-light); font-weight: 950; }
+.dm-example-grid h3 { color: #fff8eb; }
+.dm-example-grid p { color: #d6cadb; }
+.five-questions { display: grid; gap: .7rem; max-width: 58rem; margin: 0 auto; padding: 0; counter-reset: questions; list-style: none; }
+.five-questions li { display: grid; grid-template-columns: minmax(13rem, .65fr) 1fr; gap: 1rem; padding: .9rem 1rem; border: 1px solid #d7cbd8; border-radius: .8rem; background: #fffaf3; }
+.five-questions b { color: #33203c; }
+.five-questions span { color: #615763; }
+.sheet-next { display: flex; justify-content: center; gap: .8rem; flex-wrap: wrap; margin-top: 1.5rem; }
+@media (max-width: 960px) {
+  .sheet-hero-grid, .sheet-core-grid { grid-template-columns: 1fr; }
+  .sheet-name-row { grid-template-columns: repeat(2, 1fr); }
+  .wide-field { grid-column: 1 / -1; }
+  .ability-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .sheet-intro { align-items: stretch; flex-direction: column; }
+  .sheet-detail-grid, .dm-example-grid { grid-template-columns: 1fr; }
+  .five-questions li { grid-template-columns: 1fr; gap: .25rem; }
+}
+@media (max-width: 520px) {
+  .sheet-name-row { grid-template-columns: 1fr; }
+  .wide-field { grid-column: auto; }
+  .ability-grid, .combat-numbers { grid-template-columns: repeat(2, 1fr); }
+  .hp-stat { grid-column: 1 / -1; }
+  .attack-row { grid-template-columns: 1fr; }
+}
+@media print {
+  .site-header, .site-footer, .sheet-hero, .sheet-intro, .dm-lesson-section, .post-sheet, .sheet-next { display: none !important; }
+  body { background: #fff; color: #000; }
+  .section { padding: 0; }
+  .container { width: 100%; max-width: none; }
+  .character-sheet { box-shadow: none; border-color: #000; }
+  .character-sheet, .sheet-field, .sheet-box, .big-stat, .abilities-panel, .ability-grid div { background: #fff; }
+  .callout-number { background: #fff; color: #000; border: 1px solid #000; }
+}

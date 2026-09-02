@@ -4,6 +4,7 @@ import path from 'node:path';
 const pages = [
   'index.html',
   'first-adventure.html',
+  'character-sheet-guide.html',
   'guild-hall.html',
   'one-shots.html',
   'tools.html',
@@ -90,6 +91,12 @@ for (const [formName, file] of Object.entries(formFiles)) {
 const oneShots = exists('one-shots.html') ? read('one-shots.html') : '';
 if (!oneShots.includes('Right to OwlBear Arms')) warn('one-shots.html', 'canonical adventure title missing: Right to OwlBear Arms');
 
+const learn = exists('first-adventure.html') ? read('first-adventure.html') : '';
+if (!learn.includes('character-sheet-guide.html')) warn('first-adventure.html', 'annotated character-sheet guide is not linked');
+if (!learn.includes('data-roll-initiative') || !learn.includes('data-roll-attack') || !learn.includes('data-roll-save')) {
+  warn('first-adventure.html', 'combat teaching sequence is incomplete');
+}
+
 if (errors.length) {
   console.error('\nSite validation failed:\n');
   for (const error of errors) console.error(`- ${error}`);
@@ -97,4 +104,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${pages.length} pages: internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, and canonical branding all passed.`);
+console.log(`Validated ${pages.length} pages: internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, learning flow, and canonical branding all passed.`);

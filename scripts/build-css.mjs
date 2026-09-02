@@ -16,6 +16,12 @@ const bundles = {
     'assets/css/first-adventure.css',
     'assets/css/first-adventure-rules.css'
   ],
+  'assets/css/character-sheet-bundle.css': [
+    'assets/css/base.css',
+    'assets/css/components.css',
+    'assets/css/responsive.css',
+    'assets/css/character-sheet-guide.css'
+  ],
   'assets/css/one-shots-bundle.css': [
     'assets/css/base.css',
     'assets/css/components.css',
@@ -47,6 +53,7 @@ const bundles = {
 const pageBundles = {
   'index.html': { output: 'assets/css/home-bundle.css', inputs: bundles['assets/css/home-bundle.css'] },
   'first-adventure.html': { output: 'assets/css/adventure-bundle.css', inputs: bundles['assets/css/adventure-bundle.css'] },
+  'character-sheet-guide.html': { output: 'assets/css/character-sheet-bundle.css', inputs: bundles['assets/css/character-sheet-bundle.css'] },
   'one-shots.html': { output: 'assets/css/one-shots-bundle.css', inputs: bundles['assets/css/one-shots-bundle.css'] },
   'guild-hall.html': { output: 'assets/css/guild-bundle.css', inputs: bundles['assets/css/guild-bundle.css'] },
   'tools.html': { output: 'assets/css/guild-bundle.css', inputs: bundles['assets/css/guild-bundle.css'] },

@@ -6,6 +6,7 @@ module.exports = {
       url: [
         'http://localhost/index.html',
         'http://localhost/first-adventure.html',
+        'http://localhost/character-sheet-guide.html',
         'http://localhost/guild-hall.html',
         'http://localhost/one-shots.html',
         'http://localhost/tools.html',

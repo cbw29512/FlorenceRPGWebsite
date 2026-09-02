@@ -3,6 +3,7 @@ import fs from 'node:fs';
 const publicPages = [
   { file: 'index.html', route: '/' },
   { file: 'first-adventure.html', route: '/first-adventure.html' },
+  { file: 'character-sheet-guide.html', route: '/character-sheet-guide.html' },
   { file: 'guild-hall.html', route: '/guild-hall.html' },
   { file: 'one-shots.html', route: '/one-shots.html' },
   { file: 'tools.html', route: '/tools.html' },
