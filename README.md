@@ -9,6 +9,9 @@ The site now includes:
 - A consistent Florence Tabletop Guild brand system
 - A mathematically accurate icosahedron-style d20 used in the logo, favicon, and hero art
 - Beginner pathways for Dungeons & Dragons and Call of Cthulhu
+- A guided D&D first-adventure walkthrough that teaches the shape of a complete one-shot
+- Contextual beginner explanations for ability checks, saving throws, advantage/disadvantage, initiative, Armor Class, attacks, damage, hit points, spell resolution, death saves, resting, and advancement
+- An interactive teaching lab for initiative, weapon attacks, critical hits, damage, and saving throws
 - Game Master and Keeper recruitment
 - A community-voted roadmap for additional TTRPG systems
 - Youth safety, accessibility, and community-standard commitments
@@ -19,6 +22,7 @@ The site now includes:
 
 ```text
 index.html
+first-adventure.html
 assets/
 ├── d20-book-hero.svg
 ├── guild-mark.svg
@@ -26,12 +30,15 @@ assets/
 ├── css/
 │   ├── base.css
 │   ├── components.css
-│   └── responsive.css
+│   ├── responsive.css
+│   ├── first-adventure.css
+│   └── first-adventure-rules.css
 └── js/
-    └── site.js
+    ├── site.js
+    └── first-adventure.js
 ```
 
-The production files are kept modular and below roughly 150 lines each where practical.
+The production files are kept modular and below roughly 150 lines each where practical. Content-heavy HTML pages may exceed that threshold while behavior and styling remain separated.
 
 ## GitHub Pages
 
@@ -41,7 +48,7 @@ Publish from the repository's `main` branch and root folder:
 
 ## Validation
 
-The redesign was checked for:
+The redesign is checked for:
 
 - Duplicate IDs and broken internal anchors
 - Missing local assets
@@ -49,10 +56,13 @@ The redesign was checked for:
 - Balanced CSS blocks
 - JavaScript syntax
 - Responsive breakpoints and reduced-motion support
+- Beginner rules language that distinguishes attack rolls, ability checks, saving throws, Armor Class, and Difficulty Class
 
 ## Status
 
-This remains a visual MVP. The interest form does not send or store data, and real event dates, seat counts, venues, accounts, and reservations will be connected in the production application.
+This remains a visual/community MVP. The interest form does not send or store data yet, and real member accounts, DM/player roles, messaging, event dates, seat counts, venues, and reservations will be connected in the production application.
+
+The D&D first-adventure walkthrough is the first complete learning path. A parallel Call of Cthulhu walkthrough is planned after the D&D experience is visually reviewed and rules-audited.
 
 ## Trademark notice
 
