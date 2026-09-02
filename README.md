@@ -58,6 +58,8 @@ The redesign is checked for:
 - Responsive breakpoints and reduced-motion support
 - Beginner rules language that distinguishes attack rolls, ability checks, saving throws, Armor Class, and Difficulty Class
 
+The walkthrough intentionally focuses on core 5e concepts that are common across typical 2014 and 2024 play. Edition-specific exceptions should be taught at the table when they become relevant rather than overloaded into the first-time-player path.
+
 ## Status
 
 This remains a visual/community MVP. The interest form does not send or store data yet, and real member accounts, DM/player roles, messaging, event dates, seat counts, venues, and reservations will be connected in the production application.
