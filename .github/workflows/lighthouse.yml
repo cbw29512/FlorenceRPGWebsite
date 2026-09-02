@@ -22,8 +22,12 @@ jobs:
         run: node scripts/validate-site.mjs
       - name: Validate organizer security
         run: node scripts/validate-organizer.mjs
+      - name: Validate member security
+        run: node scripts/validate-member.mjs
       - name: Check organizer JavaScript
         run: node scripts/check-organizer-js.mjs
+      - name: Check member JavaScript
+        run: node scripts/check-member-js.mjs
       - name: Build production CSS
         run: node scripts/build-css.mjs
       - name: Build deployment metadata
@@ -32,6 +36,8 @@ jobs:
         run: node scripts/validate-site.mjs
       - name: Validate production organizer
         run: node scripts/validate-organizer.mjs
+      - name: Validate production member portal
+        run: node scripts/validate-member.mjs
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli@0.15.x
       - name: Collect Lighthouse reports
