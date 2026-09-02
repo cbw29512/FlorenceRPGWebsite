@@ -20,6 +20,7 @@
 .pack-grid h3 { font-size: 1.05rem; }
 .pack-grid p { margin: 0; color: #5d525a; font-size: .93rem; }
 .one-shot-promise { background: #17101d; color: #fff7e8; }
+.one-shot-promise .section-heading > p { color: #ddd2e2; }
 .promise-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
 .promise-grid article { padding: 1.2rem; border: 1px solid rgba(246,205,119,.2); border-radius: .85rem; background: rgba(255,255,255,.045); }
 .promise-grid strong { display: block; margin-bottom: .45rem; color: var(--gold-light); font-family: Georgia,serif; font-size: 1.1rem; }
