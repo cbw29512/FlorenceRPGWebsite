@@ -28,6 +28,31 @@
     }
   };
 
+  const addFirstAdventurePath = () => {
+    try {
+      const nav = document.querySelector("#primary-nav");
+      if (nav && !nav.querySelector('a[href="first-adventure.html"]')) {
+        const link = document.createElement("a");
+        link.href = "first-adventure.html";
+        link.textContent = "First Adventure";
+        const cta = nav.querySelector(".nav-cta");
+        nav.insertBefore(link, cta || null);
+      }
+
+      const learnHeading = document.querySelector("#learn .section-heading");
+      if (learnHeading && !learnHeading.querySelector('a[href="first-adventure.html"]')) {
+        const link = document.createElement("a");
+        link.className = "button button-ghost";
+        link.href = "first-adventure.html";
+        link.textContent = "See a Complete Adventure";
+        link.style.marginLeft = ".65rem";
+        learnHeading.appendChild(link);
+      }
+    } catch (error) {
+      logError("The first-adventure pathway could not be added.", error);
+    }
+  };
+
   const setupPreviewForm = () => {
     try {
       const form = document.querySelector("[data-interest-form]");
@@ -64,6 +89,7 @@
   };
 
   try {
+    addFirstAdventurePath();
     setupNavigation();
     setupPreviewForm();
     setYear();
