@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Youth Group Inquiry | Light Tower Table Top Guild</title>
+  <meta name="description" content="Parents and guardians can submit an existing youth tabletop group to Light Tower Table Top Guild for manual review, supervised support, and possible young Game Master training.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#130d18">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/home-paths.css">
+  <link rel="stylesheet" href="assets/css/fantasy-theme.css">
+  <link rel="stylesheet" href="assets/css/guild-pages.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="container header-inner">
+  <a class="brand" href="index.html" aria-label="Light Tower Table Top Guild home"><img src="assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>Find your table. Learn the game. Tell your story.</small></span></a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <nav id="primary-nav" class="site-nav" aria-label="Primary navigation"><a href="index.html">Home</a><a href="first-adventure.html">Learn D&amp;D</a><a href="guild-hall.html">Guild Hall</a><a href="one-shots.html">One-Shots</a><a href="tools.html">Tools</a><a class="nav-cta" href="join.html">Adult Join</a></nav>
+</div></header>
+<main id="main">
+  <section class="page-hero"><div class="container"><p class="eyebrow">Parent / guardian path</p><h1>Existing youth group? <em>Keep the group together.</em></h1><p>Youth participation is handled separately from adult matching. A parent, guardian, or authorized responsible adult can submit an existing group for manual review, supervised support, or young-DM training.</p><div class="hero-chip-row"><span>No minor profiles</span><span>No adult/minor private matching</span><span>Guardian consent</span><span>Manual review</span></div></div></section>
+
+  <section class="section parchment-section"><div class="container interest-card"><div><p class="eyebrow dark">Youth group inquiry</p><h2>Tell us about the group.</h2><p>The Guild founder may help train a young DM/GM in an appropriate supervised/group setting but does not serve as the regular DM for a youth group.</p><p class="privacy-note">Collect only what is needed at this stage. Do not enter individual minor names, phone numbers, social handles, or private home addresses.</p></div>
+    <form class="interest-form" name="youth-group-interest" method="POST" action="/thanks.html" data-netlify="true" data-netlify-honeypot="bot-field-youth">
+      <input type="hidden" name="form-name" value="youth-group-interest"><p class="bot-field"><label>Leave this empty<input name="bot-field-youth" tabindex="-1" autocomplete="off"></label></p>
+      <label>Parent / guardian name<input name="guardian-name" autocomplete="name" required></label><label>Parent / guardian email<input name="guardian-email" type="email" autocomplete="email" required></label>
+      <label>U.S. ZIP code<input name="zip" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}(-[0-9]{4})?" required></label><label>Approximate group size<input name="group-size" type="number" min="2" max="20" required></label>
+      <label>Age range<input name="age-range" placeholder="Example: 13–16" required></label><label>Game<select name="system"><option>Dungeons &amp; Dragons</option><option>Call of Cthulhu</option><option>Other TTRPG</option></select></label>
+      <label class="wide">Group status<select name="group-status"><option>We already have a young DM / GM</option><option>We want help training a young DM / GM</option><option>We are still figuring that out</option></select></label>
+      <label class="wide consent-label"><input type="checkbox" name="guardian-consent" value="yes" required> I am a parent/legal guardian or authorized responsible adult submitting this existing youth-group inquiry, and I understand additional guardian consent may be required before an event is arranged.</label>
+      <button class="button button-primary wide" type="submit">Submit Youth Group Inquiry</button><p class="form-note">Youth-group requests are reviewed manually and never enter adult automatic matching.</p>
+    </form>
+  </div></section>
+
+  <section class="section guild-dark"><div class="container"><div class="section-heading"><p class="eyebrow">How this differs from adult matching</p><h2>No youth discovery pool.</h2><p>Light Tower does not create searchable profiles for minors or pair individual minors with unknown adults. The unit of participation is the existing group, with guardian knowledge and consent.</p></div><a class="button button-gold" href="guild-hall.html#safety">Read Guild participation rules</a></div></section>
+</main>
+<footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Light Tower Table Top Guild</strong><span>Find your table. Learn the game. Tell your story.</span></div></div><div class="page-footer-nav"><a href="guild-hall.html">Guild Hall</a><a href="join.html">Adult Join</a><a href="first-adventure.html">Learn D&amp;D</a></div><p>© <span data-year>2026</span> Light Tower Table Top Guild.</p></div></footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
