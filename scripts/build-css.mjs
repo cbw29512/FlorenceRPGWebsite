@@ -16,6 +16,13 @@ const bundles = {
     'assets/css/first-adventure.css',
     'assets/css/first-adventure-rules.css'
   ],
+  'assets/css/one-shots-bundle.css': [
+    'assets/css/base.css',
+    'assets/css/components.css',
+    'assets/css/responsive.css',
+    'assets/css/fantasy-theme.css',
+    'assets/css/one-shots.css'
+  ],
   'assets/css/core-bundle.css': [
     'assets/css/base.css',
     'assets/css/components.css'
@@ -30,6 +37,10 @@ const pageBundles = {
   'first-adventure.html': {
     output: 'assets/css/adventure-bundle.css',
     inputs: bundles['assets/css/adventure-bundle.css']
+  },
+  'one-shots.html': {
+    output: 'assets/css/one-shots-bundle.css',
+    inputs: bundles['assets/css/one-shots-bundle.css']
   },
   'thanks.html': {
     output: 'assets/css/core-bundle.css',
