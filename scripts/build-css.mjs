@@ -38,18 +38,25 @@ const pageBundles = {
 };
 
 const stylesheetTag = (file) => `<link rel="stylesheet" href="${file}">`;
+const minifyCss = (css) => css
+  .replace(/\/\*[\s\S]*?\*\//g, '')
+  .replace(/\s+/g, ' ')
+  .replace(/\s*([{}:;,])\s*/g, '$1')
+  .replace(/;}/g, '}')
+  .trim();
+
+const builtCss = new Map();
 
 for (const [output, inputs] of Object.entries(bundles)) {
   try {
     const css = inputs
-      .map((input) => {
-        const source = fs.readFileSync(input, 'utf8').trim();
-        return `/* ${input} */\n${source}`;
-      })
-      .join('\n\n');
+      .map((input) => fs.readFileSync(input, 'utf8').trim())
+      .join('\n');
+    const minified = minifyCss(css);
 
+    builtCss.set(output, minified);
     fs.mkdirSync(path.dirname(output), { recursive: true });
-    fs.writeFileSync(output, `${css}\n`, 'utf8');
+    fs.writeFileSync(output, `${minified}\n`, 'utf8');
     console.log(`Built ${output} from ${inputs.length} source files.`);
   } catch (error) {
     console.error(`Failed to build ${output}:`, error);
@@ -64,12 +71,13 @@ for (const [page, config] of Object.entries(pageBundles)) {
       const tag = stylesheetTag(input);
       html = html.replace(`${tag}\n`, '').replace(tag, '');
     }
+    html = html.replace(`${stylesheetTag(config.output)}\n`, '').replace(stylesheetTag(config.output), '');
+    html = html.replace(/\s*<style data-production-css>[\s\S]*?<\/style>/, '');
 
-    const bundleTag = stylesheetTag(config.output);
+    const css = builtCss.get(config.output);
     const iconMarker = '<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">';
-    if (!html.includes(bundleTag)) {
-      html = html.replace(iconMarker, `${iconMarker}\n  ${bundleTag}`);
-    }
+    if (!css) throw new Error(`No CSS was built for ${config.output}`);
+    html = html.replace(iconMarker, `${iconMarker}\n  <style data-production-css>${css}</style>`);
 
     html = html
       .replaceAll('index.html#games', 'index.html#systems')
@@ -80,7 +88,7 @@ for (const [page, config] of Object.entries(pageBundles)) {
       );
 
     fs.writeFileSync(page, html, 'utf8');
-    console.log(`Optimized ${page} for production.`);
+    console.log(`Inlined optimized CSS into ${page}.`);
   } catch (error) {
     console.error(`Failed to rewrite ${page}:`, error);
     process.exitCode = 1;
