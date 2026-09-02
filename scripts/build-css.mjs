@@ -71,8 +71,16 @@ for (const [page, config] of Object.entries(pageBundles)) {
       html = html.replace(iconMarker, `${iconMarker}\n  ${bundleTag}`);
     }
 
+    html = html
+      .replaceAll('index.html#games', 'index.html#systems')
+      .replaceAll('index.html#learn', 'first-adventure.html')
+      .replace(
+        '<button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">',
+        '<button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">'
+      );
+
     fs.writeFileSync(page, html, 'utf8');
-    console.log(`Rewrote ${page} to use ${config.output}.`);
+    console.log(`Optimized ${page} for production.`);
   } catch (error) {
     console.error(`Failed to rewrite ${page}:`, error);
     process.exitCode = 1;
