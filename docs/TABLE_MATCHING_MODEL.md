@@ -4,182 +4,167 @@ Status: architecture decision for the first public matching release.
 
 ## Definition of Done
 
-The matching system is ready for public use only when all of the following are true:
+Florence Tabletop Guild is a **table-formation service**, not a messaging app. The matching feature is ready only when it can take structured interest data, form compatible tables, connect those tables to verified places to play, and send structured invitations without exposing private member contact information.
 
-1. It uses structured player, GM/Keeper, table, availability, and venue records. It does not expose a user-to-user inbox, direct messages, public email addresses, phone numbers, or free-form public profiles.
-2. Public matching is 18+ at launch. Users under 18 are not matched with unknown adults and are directed to supervised public youth programs instead.
-3. Every published venue is explicitly marked as either `candidate` or `verified`. A venue cannot be presented as a Guild host until a human has confirmed the venue permits the use and recorded when/how that confirmation happened.
-4. A player can specify system, experience level, preferred campaign length, availability, travel radius, accessibility needs, table environment, and play-style preferences.
-5. A GM/Keeper can specify the same compatibility fields plus table capacity, minimum players, content rating, safety tools, beginner friendliness, and venue requirements.
-6. Matching uses hard eligibility filters before scoring. No amount of preference similarity can override age, schedule, venue, capacity, or safety incompatibility.
-7. A match does not expose members to one another immediately. The Guild/admin flow creates a proposed table, reviews it, then sends each person an invitation to the same structured event.
-8. Participants can accept, decline, withdraw, or report a table/event without contacting another member.
-9. Free-form text is minimized. Where text is necessary, it is private to organizers/admins until reviewed.
-10. Every public count, venue claim, event listing, and availability statement is generated from stored records with a verification timestamp. No fabricated member counts, fake events, fake testimonials, or implied venue partnerships.
-11. The system records moderation/report events and supports suspension of a person, table, venue listing, or organizer without deleting the audit trail.
-12. The user-facing site remains usable for learning D&D and using Guild tools without creating a matching profile.
+The launch rules are:
 
-## Product Boundary: This Is Not a Messaging App
-
-The Guild exists to form real tabletop groups and help them reach a real table. It is not a social feed, dating surface, chat service, or anonymous conversation platform.
-
-Not included:
-- Direct messages
-- Open chat rooms
-- Public comments
-- Public user search
-- Follower/friend counts
-- Swipe mechanics
-- Public contact details
-- Photo-first profiles
-- Location tracking
-- Public home addresses
-- Unmoderated adult/minor matching
-
-Allowed communication:
-- Structured event invitations
-- RSVP / decline / waitlist actions
-- Organizer announcements sent to the whole registered table
-- Safety/report forms
-- Admin-to-participant operational email when necessary
+1. **Individual matching is 18+.**
+2. A person under 18 is never placed in the adult matching pool and is never individually paired with an unknown adult.
+3. Youth participation is allowed only through an **existing youth group** with parent/guardian consent, following `docs/YOUTH_GROUP_POLICY.md`.
+4. The Guild may train a young DM/GM/Keeper in an appropriate supervised/group context; the founder does not serve as the regular DM for a youth group.
+5. There are no direct messages, open chat rooms, public member search, public email/phone numbers, swipe mechanics, public home addresses, follower systems, or anonymous conversations.
+6. Every public event, venue, seat count, and community statistic comes from stored records and has a source or verification timestamp. No fake events, fabricated counts, fake testimonials, or implied venue partnerships.
+7. A venue is never called a Guild venue until a human has confirmed permission to use it.
+8. Matching uses hard eligibility filters before any preference score.
+9. A human/admin keeps final control over real-world table formation and venue approval.
+10. Participants can accept, decline, withdraw, or report a table without privately contacting another member.
 
 ## Data Schema
 
 ### people
 
-| Field | Type | Notes |
-| --- | --- | --- |
-| id | uuid | Internal only |
-| display_name | text | First name or nickname; not globally searchable |
-| email | text | Private; never exposed to other members |
-| age_band | enum | `adult_18_plus`; future youth flows must be separate/supervised |
-| experience | enum | `never_played`, `beginner`, `regular`, `experienced` |
-| travel_radius_miles | integer | Used only for matching |
-| accessibility_needs | enum[] | Structured options, private to matching/admin flow |
-| status | enum | `active`, `paused`, `suspended`, `deleted` |
-| created_at | timestamp | Audit |
-| last_active_at | timestamp | Helps avoid stale matching |
+- `id: uuid`
+- `display_name: text` — first name or nickname; not globally searchable
+- `email: text` — private
+- `participation_type: adult_18_plus | youth_group_guardian`
+- `experience: never_played | beginner | regular | experienced`
+- `travel_radius_miles: integer`
+- `accessibility_needs: enum[]`
+- `status: active | paused | suspended | deleted`
+- `created_at: timestamp`
+- `last_active_at: timestamp`
+
+### youth_group_requests
+
+Youth requests are **not** people records in the matching pool.
+
+- `id: uuid`
+- `guardian_name: text`
+- `guardian_email: text`
+- `participant_count: integer`
+- `age_range: text`
+- `system: dnd_2014 | dnd_2024 | call_of_cthulhu | other`
+- `experience: never_played | beginner | regular`
+- `has_youth_gm: boolean`
+- `wants_gm_training: boolean`
+- `accessibility_needs: enum[]`
+- `availability_summary: structured json`
+- `guardian_consent_status: pending | verified | declined`
+- `guardian_consent_verified_at: timestamp nullable`
+- `status: new | reviewing | approved | declined | completed`
+
+Do not collect unnecessary minor names, birthdays, phone numbers, social handles, or individual profiles.
 
 ### role_preferences
 
-| Field | Type | Notes |
-| --- | --- | --- |
-| person_id | uuid | FK people |
-| role | enum | `player`, `gm`, `keeper` |
-| system | enum | `dnd_2014`, `dnd_2024`, `call_of_cthulhu`, `other` |
-| beginner_friendly | boolean | Especially important for GMs |
-| campaign_length | enum[] | `one_shot`, `short_arc`, `campaign` |
-| play_style | enum[] | `combat`, `roleplay`, `exploration`, `mystery`, `horror`, `balanced` |
-| content_rating | enum | `family`, `teen`, `mature` (18+ matching still applies at launch) |
-| max_table_size | integer | Preference, not public profile data |
+- `person_id: uuid`
+- `role: player | gm | keeper`
+- `system: dnd_2014 | dnd_2024 | call_of_cthulhu | other`
+- `beginner_friendly: boolean`
+- `campaign_length: one_shot[] | short_arc[] | campaign[]`
+- `play_style: combat[] | roleplay[] | exploration[] | mystery[] | horror[] | balanced[]`
+- `content_rating: family | teen | mature`
+- `max_table_size: integer`
 
 ### availability_slots
 
-| Field | Type | Notes |
-| --- | --- | --- |
-| person_id | uuid | FK people |
-| weekday | integer | 0-6 |
-| start_local | time | America/New_York at launch |
-| end_local | time | Must overlap minimum session duration |
-| cadence | enum | `weekly`, `biweekly`, `monthly`, `one_time` |
+- `person_id: uuid`
+- `weekday: 0-6`
+- `start_local: time`
+- `end_local: time`
+- `cadence: weekly | biweekly | monthly | one_time`
+
+Timezone at launch: `America/New_York`.
 
 ### venues
 
-| Field | Type | Notes |
-| --- | --- | --- |
-| id | uuid | Internal |
-| name | text | Real-world venue name |
-| address | text | Public business/public-facility address only |
-| venue_type | enum | `game_store`, `library`, `restaurant`, `brewery`, `community_space`, `other` |
-| status | enum | `candidate`, `contacted`, `verified`, `declined`, `inactive` |
-| source_url | text | Where the public information came from |
-| source_checked_at | timestamp | Freshness record |
-| permission_contact | text | Private organizer note; never public |
-| permission_verified_at | timestamp | Required before `verified` |
-| capacity | integer nullable | Only after verified |
-| min_age | integer nullable | Venue/event constraint |
-| alcohol_present | boolean | Helps table suitability |
-| accessibility_features | enum[] | Only verified facts |
-| recurring_availability | json nullable | Only after venue confirmation |
-| notes_private | text | Admin only |
+- `id: uuid`
+- `name: text`
+- `address: text` — public business/public-facility address only
+- `venue_type: game_store | library | restaurant | brewery | community_space | other`
+- `status: candidate | contacted | verified | declined | inactive`
+- `source_url: text`
+- `source_checked_at: timestamp`
+- `permission_contact: text` — private organizer note
+- `permission_verified_at: timestamp nullable`
+- `capacity: integer nullable`
+- `min_age: integer nullable`
+- `alcohol_present: boolean`
+- `accessibility_features: enum[]` — only verified facts
+- `recurring_availability: json nullable`
+- `notes_private: text`
 
 ### tables
 
-| Field | Type | Notes |
-| --- | --- | --- |
-| id | uuid | Internal |
-| gm_person_id | uuid | FK people |
-| system | enum | Hard match filter |
-| edition | text nullable | e.g. 2014 / 2024 |
-| title | text | Moderated table title |
-| campaign_length | enum | Match field |
-| play_style | enum[] | Match field |
-| beginner_friendly | boolean | Match field |
-| content_rating | enum | Must be compatible |
-| min_players | integer | Readiness threshold |
-| max_players | integer | Hard capacity |
-| venue_id | uuid nullable | Must be verified before confirmed event |
-| start_at | timestamp nullable | Event time |
-| cadence | enum | `one_shot`, `weekly`, `biweekly`, `monthly` |
-| status | enum | `draft`, `matching`, `ready_for_review`, `inviting`, `confirmed`, `completed`, `cancelled` |
+- `id: uuid`
+- `gm_person_id: uuid`
+- `system: enum`
+- `edition: text nullable`
+- `title: text`
+- `campaign_length: enum`
+- `play_style: enum[]`
+- `beginner_friendly: boolean`
+- `content_rating: enum`
+- `min_players: integer`
+- `max_players: integer`
+- `venue_id: uuid nullable`
+- `start_at: timestamp nullable`
+- `cadence: one_shot | weekly | biweekly | monthly`
+- `status: draft | matching | ready_for_review | inviting | confirmed | completed | cancelled`
 
 ### match_scores
 
-| Field | Type | Notes |
-| --- | --- | --- |
-| table_id | uuid | FK tables |
-| person_id | uuid | FK people |
-| eligibility | boolean | Hard filters pass/fail |
-| schedule_score | integer | 0-35 |
-| system_score | integer | 0-25 |
-| experience_score | integer | 0-15 |
-| campaign_score | integer | 0-10 |
-| style_score | integer | 0-10 |
-| accessibility_score | integer | 0-5 |
-| total_score | integer | 0-100 |
-| reason_codes | enum[] | Explainable matching |
-| calculated_at | timestamp | Audit/reproducibility |
+- `table_id: uuid`
+- `person_id: uuid`
+- `eligibility: boolean`
+- `schedule_score: 0-35`
+- `system_score: 0-25`
+- `experience_score: 0-15`
+- `campaign_score: 0-10`
+- `style_score: 0-10`
+- `accessibility_score: 0-5`
+- `total_score: 0-100`
+- `reason_codes: enum[]`
+- `calculated_at: timestamp`
 
 ### invitations
 
-| Field | Type | Notes |
-| --- | --- | --- |
-| id | uuid | Internal |
-| table_id | uuid | FK tables |
-| person_id | uuid | FK people |
-| status | enum | `pending`, `accepted`, `declined`, `expired`, `withdrawn` |
-| expires_at | timestamp | Prevent stale seats |
-| sent_at | timestamp | Audit |
-| responded_at | timestamp nullable | Audit |
+- `id: uuid`
+- `table_id: uuid`
+- `person_id: uuid`
+- `status: pending | accepted | declined | expired | withdrawn`
+- `expires_at: timestamp`
+- `sent_at: timestamp`
+- `responded_at: timestamp nullable`
 
 ### reports
 
-| Field | Type | Notes |
-| --- | --- | --- |
-| id | uuid | Internal |
-| reporter_person_id | uuid | Private |
-| subject_type | enum | `person`, `table`, `event`, `venue`, `organizer` |
-| subject_id | uuid | Target |
-| reason | enum | Structured reason |
-| details_private | text | Moderation only |
-| status | enum | `new`, `reviewing`, `resolved`, `dismissed`, `escalated` |
-| created_at | timestamp | Audit |
-| resolved_at | timestamp nullable | Audit |
+- `id: uuid`
+- `reporter_person_id: uuid`
+- `subject_type: person | table | event | venue | organizer`
+- `subject_id: uuid`
+- `reason: enum`
+- `details_private: text`
+- `status: new | reviewing | resolved | dismissed | escalated`
+- `created_at: timestamp`
+- `resolved_at: timestamp nullable`
 
 ## Matching Logic
 
-### Hard filters — fail first
+### Hard filters first
 
-A player is not eligible for a table unless all required conditions pass:
+An adult player is eligible for a table only when:
 
-1. Both records are active and the public-matching age band is `adult_18_plus`.
-2. The requested game system/edition is compatible.
-3. The player has at least one availability overlap long enough for the session.
+1. Both player and GM/Keeper records are active and 18+.
+2. Game system/edition is compatible.
+3. There is enough schedule overlap for the session.
 4. The table has an open seat.
-5. Travel radius can reach the selected verified venue, or the table has not yet selected a venue and is still in planning.
-6. Required accessibility needs are compatible with verified venue data.
+5. Travel radius reaches the selected verified venue, or the table is still in pre-venue planning.
+6. Required accessibility needs are compatible with verified venue information.
 7. Content rating and table environment are compatible.
-8. The person is not blocked by a moderation/safety rule for that organizer/table.
+8. No moderation/safety rule blocks the pairing.
+
+Youth-group requests never enter this algorithm.
 
 ### Weighted score after eligibility
 
@@ -190,60 +175,53 @@ A player is not eligible for a table unless all required conditions pass:
 - Play-style fit: **10 points**
 - Accessibility/venue fit: **5 points**
 
-Suggested operating thresholds:
-- 85-100: strong recommendation
-- 70-84: usable if table needs seats
-- below 70: do not auto-suggest
+Suggested thresholds:
 
-A table should become `ready_for_review` only when it has one GM/Keeper, a verified venue/time path, and at least the minimum number of strong/usable candidate players.
+- **85-100:** strong recommendation
+- **70-84:** usable if the table needs seats
+- **Below 70:** do not auto-suggest
 
 ## Efficient Formation Flow
 
-1. Person submits structured preferences once.
+1. Adult player submits structured preferences once.
 2. GM/Keeper creates a structured table request.
-3. Matching engine filters impossible candidates, then ranks the remainder.
-4. Admin sees a compact table proposal, not a stream of messages.
-5. Admin confirms venue availability/permission and approves the proposal.
-6. Each selected participant receives the same invitation with system, date/time, venue, content expectations, accessibility notes, and table rules.
-7. Acceptances fill seats. Declines immediately promote the next candidate.
-8. Once minimum seats are accepted, the table is confirmed. Contact information remains private unless the organizer deliberately uses an external, disclosed method after the event is formed.
+3. Matching engine removes impossible candidates, then ranks the remainder.
+4. Admin sees a compact proposed table rather than conversations.
+5. Admin confirms venue permission/availability and approves the proposal.
+6. Selected participants receive the same structured invitation: game, date/time, venue, seat count, content expectations, accessibility notes, safety tools, and table rules.
+7. Acceptances fill seats; declines immediately promote the next compatible candidate.
+8. Once minimum seats are accepted, the table becomes confirmed.
+9. Operational updates are event-wide announcements, not private member-to-member messages.
 
-This produces fewer moderation surfaces than a chat product and minimizes organizer work because the algorithm does the sorting while a human keeps final control over real-world gatherings.
+## Youth Group Flow
 
-## Youth Safety Boundary
-
-At launch, Florence Tabletop Guild does **not** match minors with adults or expose youth profiles.
-
-For under-18 visitors:
-- Learning content remains available.
-- The site may list verified supervised youth programs at libraries, schools, game stores, or other established organizations.
-- Youth events must be published from verified public sources or directly by a verified venue/organization.
-- No adult participant can privately contact a minor through the Guild.
-- A future youth matching feature would require a separate design with guardian consent, verified organizations, staff/volunteer controls, and appropriate legal/safeguarding review.
+1. Parent/guardian submits an existing group inquiry.
+2. The group remains outside adult matching.
+3. Guardian consent is verified before any youth event is arranged.
+4. The group may request a learn-to-play session or training for its own young DM/GM/Keeper.
+5. Venue and supervision requirements are reviewed manually.
+6. No individual youth contact data is exposed to adult participants.
 
 ## Real-Data Contract
 
-The UI must distinguish these states:
+The UI must distinguish:
 
-- **Verified Guild venue** — venue permission confirmed by a human and still current.
-- **Community venue candidate** — real place that appears suitable from public information but has not agreed to host Guild tables.
-- **Public event** — event copied/linked from an identifiable current source with source and last-checked date.
-- **Guild event** — event created from a confirmed Guild table and verified venue.
+- **Verified Guild venue** — permission confirmed by a human and still current.
+- **Community venue candidate** — a real place that appears potentially suitable from public information but has not agreed to host Guild tables.
+- **Public event** — a current event linked to an identifiable source and last-checked date.
+- **Guild event** — created from a confirmed Guild table and verified venue.
 
 Never convert `candidate` to `verified` automatically.
 
-Initial public-data venue candidates discovered for Florence:
-- Heroes Hideout — local game store/community play space.
-- Florence County Library System — public library with community programming/meeting space.
-- Seminar Brewing — large social venue with documented community events.
-
-These are candidates only until contacted/confirmed. Their presence in the data model does not imply sponsorship, endorsement, reservation availability, or partnership.
+Initial real-world venue candidates identified for research include Heroes Hideout, Florence County Library System, and Seminar Brewing. They remain candidates until directly confirmed; listing them internally does not imply sponsorship, partnership, reservation availability, or endorsement.
 
 ## Tool Hub
 
-The Florence site can safely promote useful first-party tools without turning them into required accounts:
+Verified public tool URLs:
 
-- Nothing But A TTRPG Dice Roller — https://nothingbutattrpgdiceroller.netlify.app/
-- D&D 5e Character Forge — https://cbw29512.github.io/dnd-character-forge/
+- **Nothing But A TTRPG Dice Roller** — https://nothingbutattrpgdiceroller.netlify.app/
+- **D&D 5e Character Forge** — https://cbw29512.github.io/dnd-character-forge/
 
-Tool links should open directly, disclose that they are separate tools, and never share Florence matching data unless a future integration is deliberately designed and consented to.
+Character Forge currently identifies itself as a release-candidate/friend-test build, so Florence should label it accurately until that project is formally promoted.
+
+Tool links must remain optional and must not share Florence matching data unless a future integration is deliberately designed with explicit consent.
