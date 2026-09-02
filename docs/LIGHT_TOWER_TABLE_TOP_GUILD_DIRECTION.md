@@ -21,7 +21,7 @@ The Guild should be usable anywhere in the United States.
 - **Find a Table** — structured 18+ matching by ZIP code, travel radius, system, schedule, experience, campaign length, accessibility, and table style.
 - **Run a Game** — GM/Keeper onboarding and table creation.
 - **Guild Hall** — real community activity: tables forming, confirmed games, approved GMs, verified venues, active chapters, volunteer opportunities, and Guild resources.
-- **One-Shots / Guild Vault** — complete downloadable adventure packages such as Right To Bear Arms.
+- **One-Shots / Guild Vault** — complete downloadable adventure packages such as **Right to OwlBear Arms**.
 - **Tools** — Dice Roller, Character Forge, and future first-party tools.
 - **Chapters** — Florence, SC as Founding Chapter; future chapters only where real activity exists.
 - **Safety** — 18+ individual matching, youth-group policy, table standards, reporting.
@@ -134,7 +134,7 @@ Track referral sources so future effort is driven by real conversion data.
 
 - **Nothing But A TTRPG Dice Roller** — live utility.
 - **D&D 5e Character Forge** — public preview/release-candidate until its own project is formally promoted.
-- **Right To Bear Arms** — first complete Guild Vault adventure package being prepared as a single ZIP.
+- **Right to OwlBear Arms** — first complete Guild Vault adventure package being prepared as a single ZIP.
 - **First Light** — planned flagship Session Zero / beginner-learning adventure.
 
 ## Product Rule: No Duplication
