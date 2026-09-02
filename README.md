@@ -2,27 +2,42 @@
 
 A responsive, accessibility-focused community website for tabletop role-playing games in Florence and the Pee Dee region of South Carolina.
 
-## Current experience
+## Product direction
 
-The site now includes:
+The homepage is intentionally a decision page. A visitor starts by choosing what they want to do:
 
-- A consistent Florence Tabletop Guild brand system
-- A mathematically accurate icosahedron-style d20 used in the logo, favicon, and hero art
-- Beginner pathways for Dungeons & Dragons and Call of Cthulhu
-- A guided D&D first-adventure walkthrough that teaches the shape of a complete one-shot
-- Contextual beginner explanations for ability checks, saving throws, advantage/disadvantage, initiative, Armor Class, attacks, damage, hit points, spell resolution, death saves, resting, and advancement
-- An interactive teaching lab for initiative, weapon attacks, critical hits, damage, and saving throws
-- Game Master and Keeper recruitment
-- A community-voted roadmap for additional TTRPG systems
-- Youth safety, accessibility, and community-standard commitments
-- Florence-focused SEO metadata and Organization structured data
-- Responsive keyboard-accessible navigation and a clearly labeled preview signup flow
+- **Play** — express interest in finding a local table.
+- **Learn** — use beginner walkthroughs and quick-reference guides.
+- **Run games** — join as a DM, Keeper, or other Game Master and help build tables.
+
+Members can identify as a **player, GM/Keeper, or both**. Dungeons & Dragons and Call of Cthulhu are the lead systems, with room for other TTRPGs as the Florence community grows.
+
+## D&D learning path
+
+`first-adventure.html` teaches a new player what a complete D&D one-shot looks like while introducing rules in context. The current walkthrough covers pregenerated characters, roleplay, ability checks, DCs, advantage/disadvantage, saving throws, initiative, attacks, Armor Class, damage, hit points, spells, death saves, resting, rewards, and milestone advancement.
+
+The next parallel learning path will teach Call of Cthulhu through an investigation-focused walkthrough rather than copying D&D's combat structure.
+
+## Community interest form
+
+The homepage form is prepared for **Netlify Forms**. It collects only the launch information needed to understand community demand:
+
+- name or nickname
+- email
+- player and/or GM/Keeper role
+- D&D, Call of Cthulhu, and/or other TTRPG interest
+- experience level
+- desired next step
+
+A honeypot field is included for basic spam filtering. `thanks.html` provides the post-submission confirmation page.
 
 ## Architecture
 
 ```text
 index.html
 first-adventure.html
+thanks.html
+netlify.toml
 assets/
 ├── d20-book-hero.svg
 ├── guild-mark.svg
@@ -31,6 +46,7 @@ assets/
 │   ├── base.css
 │   ├── components.css
 │   ├── responsive.css
+│   ├── home-paths.css
 │   ├── first-adventure.css
 │   └── first-adventure-rules.css
 └── js/
@@ -38,34 +54,24 @@ assets/
     └── first-adventure.js
 ```
 
-The production files are kept modular and below roughly 150 lines each where practical. Content-heavy HTML pages may exceed that threshold while behavior and styling remain separated.
+Production files are kept modular and below roughly 150 lines where practical.
 
-## GitHub Pages
+## Netlify deployment
 
-Publish from the repository's `main` branch and root folder:
+This is a static site. Connect this GitHub repository to Netlify and publish the repository root. `netlify.toml` already sets the publish directory to `.` and adds baseline response headers.
 
-`https://cbw29512.github.io/FlorenceRPGWebsite/`
+After the first Netlify deployment:
 
-## Validation
+1. Enable **Forms → Form detection** for the site.
+2. Confirm Netlify detects the `community-interest` form.
+3. Submit a test signup and verify it appears under Forms.
+4. Add the final Netlify/custom domain to canonical metadata, `robots.txt`, and `sitemap.xml`.
+5. Configure form-submission email notifications if desired.
 
-The redesign is checked for:
+## Current status
 
-- Duplicate IDs and broken internal anchors
-- Missing local assets
-- Bound form labels and semantic landmarks
-- Balanced CSS blocks
-- JavaScript syntax
-- Responsive breakpoints and reduced-motion support
-- Beginner rules language that distinguishes attack rolls, ability checks, saving throws, Armor Class, and Difficulty Class
-
-The walkthrough intentionally focuses on core 5e concepts that are common across typical 2014 and 2024 play. Edition-specific exceptions should be taught at the table when they become relevant rather than overloaded into the first-time-player path.
-
-## Status
-
-This remains a visual/community MVP. The interest form does not send or store data yet, and real member accounts, DM/player roles, messaging, event dates, seat counts, venues, and reservations will be connected in the production application.
-
-The D&D first-adventure walkthrough is the first complete learning path. A parallel Call of Cthulhu walkthrough is planned after the D&D experience is visually reviewed and rules-audited.
+The frontend community router and D&D walkthrough are functional static pages. The Netlify form becomes persistent once the site is deployed with form detection enabled. Accounts, direct player-to-GM messaging, event scheduling, and reservations remain later phases and should only be added after the interest-first launch proves demand.
 
 ## Trademark notice
 
-Florence Tabletop Guild is an independent community concept and is not affiliated with Wizards of the Coast, Chaosium, or the publishers of other games referenced on the site.
+Florence Tabletop Guild is an independent community project and is not affiliated with Wizards of the Coast, Chaosium, or the publishers of other games referenced on the site.
