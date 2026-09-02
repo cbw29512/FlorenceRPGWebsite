@@ -12,7 +12,7 @@
 html { scroll-padding-top: 6rem; }
 body { background: var(--guild-paper); }
 :focus-visible { outline: 3px solid #fff !important; outline-offset: 3px; box-shadow: 0 0 0 6px #502568; }
-.site-header { background: rgba(15,9,19,.96); border-color: rgba(242,198,109,.18); }
+.site-header { background: rgba(15,9,19,.98); border-color: rgba(242,198,109,.18); backdrop-filter: none; }
 .brand strong { letter-spacing: .045em; }
 .site-nav a { min-width: 44px; min-height: 44px; }
 .site-nav .support-nav { color: var(--guild-gold); border: 1px solid rgba(242,198,109,.36); }
@@ -24,6 +24,7 @@ body { background: var(--guild-paper); }
     radial-gradient(circle at 15% 75%, rgba(121,75,8,.18), transparent 24rem),
     linear-gradient(115deg, #0d0811 0%, #17101d 48%, #281631 100%);
 }
+.guild-hero .hero-glow { display: none; }
 .guild-hero::after {
   content: ""; position: absolute; inset: 1.4rem; pointer-events: none;
   border: 1px solid rgba(242,198,109,.16); border-radius: 1.3rem;
@@ -34,7 +35,7 @@ body { background: var(--guild-paper); }
 .guild-hero h1 em { color: var(--guild-gold); font-style: normal; }
 .hero-trust { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.4rem; }
 .hero-trust span { padding: .35rem .65rem; border: 1px solid var(--guild-line); border-radius: 999px; color: #efe4ef; font-size: .82rem; font-weight: 800; }
-.hero-choice { position: relative; overflow: hidden; border-color: rgba(242,198,109,.2); background: linear-gradient(160deg, rgba(255,255,255,.075), rgba(255,255,255,.025)); }
+.hero-choice { position: relative; overflow: hidden; border-color: rgba(242,198,109,.2); background: linear-gradient(160deg, rgba(255,255,255,.075), rgba(255,255,255,.025)); contain: layout paint; }
 .hero-choice::after { content: ""; position: absolute; inset: .55rem; border: 1px solid rgba(255,255,255,.06); border-radius: .7rem; pointer-events: none; }
 .path-glyph { display: grid; width: 3.4rem; height: 3.4rem; place-items: center; border: 1px solid var(--guild-line); border-radius: 50%; color: var(--guild-gold); font-size: 1.4rem; }
 .path-label { margin-top: 1rem; color: #d9c5df; font-size: .72rem; font-weight: 950; letter-spacing: .14em; }
@@ -45,7 +46,7 @@ body { background: var(--guild-paper); }
 .guild-banner span:last-child { border-right: 0; }
 .guild-banner b { color: var(--guild-gold); font-family: Georgia,serif; }
 .parchment-section { background: linear-gradient(180deg,#f7edd9,#fff8ec 58%,#f3e5ce); }
-.system-choice { position: relative; overflow: hidden; min-height: 28rem; padding: 1.6rem; background: rgba(255,253,247,.82); border-color: #cbb99f; box-shadow: 0 18px 44px rgba(57,34,38,.09); }
+.system-choice { position: relative; overflow: hidden; min-height: 28rem; padding: 1.6rem; background: rgba(255,253,247,.82); border-color: #cbb99f; box-shadow: 0 12px 28px rgba(57,34,38,.08); contain: layout paint; }
 .system-choice::after { content: ""; position: absolute; inset: .55rem; border: 1px solid rgba(74,49,63,.08); border-radius: .65rem; pointer-events: none; }
 .system-mark { display: grid; width: 4rem; height: 4rem; place-items: center; margin: 1.1rem 0; border: 2px solid #72537e; border-radius: 50%; color: #4a2858; font-family: Georgia,serif; font-weight: 900; }
 .system-choice h3 { font-size: 1.65rem; }
@@ -54,15 +55,15 @@ body { background: var(--guild-paper); }
 .guild-dark { background: linear-gradient(135deg,#17101d,#26152e); color: #fff8ed; }
 .guild-dark .section-heading p { color: #d7cbd9; }
 .guild-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin: 2rem 0 0; padding: 0; list-style: none; }
-.guild-steps li { padding: 1.25rem; border: 1px solid rgba(242,198,109,.18); border-radius: 1rem; background: rgba(255,255,255,.045); }
+.guild-steps li { padding: 1.25rem; border: 1px solid rgba(242,198,109,.18); border-radius: 1rem; background: rgba(255,255,255,.045); contain: layout paint; }
 .guild-steps li > span { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; margin-bottom: 1rem; border-radius: 50%; background: var(--guild-gold); color: #261706; font-family: Georgia,serif; font-weight: 900; }
 .guild-steps p { color: #d4c9d6; }
 .answer-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
-.answer-grid article { padding: 1.25rem; border-top: 3px solid #704281; background: rgba(255,255,255,.55); }
+.answer-grid article { padding: 1.25rem; border-top: 3px solid #704281; background: rgba(255,255,255,.55); contain: layout paint; }
 .answer-grid p { margin-bottom: 0; color: #5c5159; }
 .faq-section { background: #efe2cb; }
 .faq-list { display: grid; gap: .75rem; max-width: 58rem; }
-.faq-list details { border: 1px solid #c7b293; border-radius: .8rem; background: #fff8ec; }
+.faq-list details { border: 1px solid #c7b293; border-radius: .8rem; background: #fff8ec; contain: layout paint; }
 .faq-list summary { min-height: 48px; display: flex; align-items: center; padding: .9rem 1rem; cursor: pointer; color: #2c202a; font-weight: 900; }
 .faq-list p { padding: 0 1rem 1rem; margin: 0; color: #5d515a; }
 .support-section { background: #120c17; color: #fff7e8; }
