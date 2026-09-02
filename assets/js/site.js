@@ -1,6 +1,7 @@
 (() => {
   "use strict";
 
+  const GUILD_INTEREST_ENDPOINT = "https://vtqoxflirpfhnxzzpxfa.supabase.co/functions/v1/guild-interest";
   const logError = (message, error) => console.error(`[Light Tower Table Top Guild] ${message}`, error);
 
   const setupNavigation = () => {
@@ -50,40 +51,109 @@
     } catch (error) { logError("Join-page prefill could not be applied.", error); }
   };
 
-  const setupInterestValidation = () => {
+  const collectInterestPayload = (form) => ({
+    name: form.querySelector('input[name="name"]')?.value.trim() ?? "",
+    email: form.querySelector('input[name="email"]')?.value.trim() ?? "",
+    postalCode: form.querySelector('input[name="zip"]')?.value.trim() ?? "",
+    travelRadius: Number(form.querySelector('select[name="travel-radius"]')?.value ?? 0),
+    adultConfirmed: Boolean(form.querySelector('input[name="adult-18-plus"]')?.checked),
+    consentEmail: Boolean(form.querySelector('input[name="consent"]')?.checked),
+    roles: Array.from(form.querySelectorAll('input[name="role"]:checked')).map((node) => node.value),
+    systems: Array.from(form.querySelectorAll('input[name="system"]:checked')).map((node) => node.value),
+    experience: form.querySelector('select[name="experience"]')?.value ?? "",
+    preferredFormat: form.querySelector('select[name="format"]')?.value ?? "",
+    nextStep: form.querySelector('select[name="next-step"]')?.value ?? "",
+    accessibilityNeeds: form.querySelector('textarea[name="accessibility-needs"]')?.value.trim() ?? "",
+    botField: form.querySelector('input[name="bot-field"]')?.value ?? "",
+  });
+
+  const validateInterestPayload = (form, payload) => {
+    const messages = [];
+    try {
+      const email = form.querySelector('input[name="email"]');
+      if (!payload.name) messages.push("Enter a name or nickname.");
+      if (!email?.validity.valid) messages.push("Enter a valid email address.");
+      if (!/^\d{5}(?:-\d{4})?$/.test(payload.postalCode)) messages.push("Enter a valid U.S. ZIP code.");
+      if (!payload.adultConfirmed) messages.push("Confirm that you are 18 or older for individual matching.");
+      if (!payload.roles.length) messages.push("Choose Player, GM/Keeper, or both.");
+      if (!payload.systems.length) messages.push("Choose at least one game system.");
+      if (!payload.consentEmail) messages.push("Confirm that we may email you about Light Tower Table Top Guild.");
+    } catch (error) {
+      logError("Interest form payload validation failed.", error);
+      messages.push("Please review the form and try again.");
+    }
+    return messages;
+  };
+
+  const submitInterestPayload = async (payload) => {
+    try {
+      const response = await fetch(GUILD_INTEREST_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error(`Guild interest endpoint returned ${response.status}.`);
+      const result = await response.json();
+      if (!result?.ok) throw new Error("Guild interest endpoint did not confirm the submission.");
+      return true;
+    } catch (error) {
+      logError("Guild interest submission failed.", error);
+      return false;
+    }
+  };
+
+  const setupInterestSubmission = () => {
     try {
       const form = document.querySelector("[data-interest-form]");
       const errors = document.querySelector("[data-form-errors]");
-      if (!form || !errors) return;
-      form.addEventListener("submit", (event) => {
+      const submitButton = form?.querySelector('button[type="submit"]');
+      if (!form || !errors || !submitButton) return;
+
+      form.addEventListener("submit", async (event) => {
         try {
-          const messages = [];
-          const name = form.querySelector('input[name="name"]');
-          const email = form.querySelector('input[name="email"]');
-          const zip = form.querySelector('input[name="zip"]');
-          const age = form.querySelector('input[name="adult-18-plus"]');
-          const consent = form.querySelector('input[name="consent"]');
-          if (!name?.value.trim()) messages.push("Enter a name or nickname.");
-          if (!email?.validity.valid) messages.push("Enter a valid email address.");
-          if (zip && !/^\d{5}(?:-\d{4})?$/.test(zip.value.trim())) messages.push("Enter a valid U.S. ZIP code.");
-          if (!age?.checked) messages.push("Confirm that you are 18 or older for individual matching.");
-          if (!form.querySelectorAll('input[name="role"]:checked').length) messages.push("Choose Player, GM/Keeper, or both.");
-          if (!form.querySelectorAll('input[name="system"]:checked').length) messages.push("Choose at least one game system.");
-          if (!consent?.checked) messages.push("Confirm that we may email you about Light Tower Table Top Guild.");
-          if (!messages.length) { errors.dataset.visible = "false"; errors.textContent = ""; return; }
+          const payload = collectInterestPayload(form);
+          const messages = validateInterestPayload(form, payload);
+          if (messages.length) {
+            event.preventDefault();
+            errors.dataset.visible = "true";
+            errors.textContent = messages.join(" ");
+            errors.focus();
+            return;
+          }
+
+          // JavaScript-enabled submissions go to the private Supabase intake.
+          // The existing Netlify form remains as a no-JavaScript fallback.
           event.preventDefault();
+          errors.dataset.visible = "false";
+          errors.textContent = "";
+          submitButton.disabled = true;
+          submitButton.setAttribute("aria-busy", "true");
+          const originalText = submitButton.textContent;
+          submitButton.textContent = "Submitting…";
+
+          const submitted = await submitInterestPayload(payload);
+          if (submitted) {
+            window.location.assign("thanks.html");
+            return;
+          }
+
+          submitButton.disabled = false;
+          submitButton.removeAttribute("aria-busy");
+          submitButton.textContent = originalText;
           errors.dataset.visible = "true";
-          errors.textContent = messages.join(" ");
+          errors.textContent = "We could not save your interest right now. Please try again.";
           errors.focus();
         } catch (error) {
           event.preventDefault();
-          logError("Interest form validation failed.", error);
+          logError("Interest form submission could not be completed.", error);
+          submitButton.disabled = false;
+          submitButton.removeAttribute("aria-busy");
           errors.dataset.visible = "true";
-          errors.textContent = "Please review the form and try again.";
+          errors.textContent = "We could not save your interest right now. Please try again.";
           errors.focus();
         }
       });
-    } catch (error) { logError("Interest form validation could not be initialized.", error); }
+    } catch (error) { logError("Interest form submission could not be initialized.", error); }
   };
 
   const setYear = () => {
@@ -94,6 +164,6 @@
   repairLegacyLinks();
   setupNavigation();
   setupJoinPrefill();
-  setupInterestValidation();
+  setupInterestSubmission();
   setYear();
 })();
