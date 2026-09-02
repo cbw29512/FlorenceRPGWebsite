@@ -28,27 +28,26 @@
       document.querySelectorAll('a[href="index.html#games"]').forEach((link) => { link.href = "index.html#systems"; });
       document.querySelectorAll('a[href="index.html#learn"]').forEach((link) => { link.href = "first-adventure.html"; });
       document.querySelectorAll('a[href="index.html#community"]').forEach((link) => { link.href = "guild-hall.html"; });
+      document.querySelectorAll('a[href="index.html#interest"]').forEach((link) => { link.href = "join.html"; });
     } catch (error) { logError("Legacy links could not be repaired.", error); }
   };
 
-  const focusInterestForm = () => {
-    const firstInput = document.querySelector('[data-interest-form] input[name="name"]');
-    if (firstInput) window.setTimeout(() => firstInput.focus(), 150);
-  };
-
-  const setupPathSelection = () => {
+  const setupJoinPrefill = () => {
     try {
-      document.querySelectorAll("[data-role-target]").forEach((link) => link.addEventListener("click", () => {
-        const checkbox = document.querySelector(`#role-${link.dataset.roleTarget}`);
+      const form = document.querySelector("[data-interest-form]");
+      if (!form) return;
+      const params = new URLSearchParams(window.location.search);
+      const role = params.get("role");
+      const system = params.get("system");
+      if (["player", "gm"].includes(role)) {
+        const checkbox = document.querySelector(`#role-${role}`);
         if (checkbox) checkbox.checked = true;
-        focusInterestForm();
-      }));
-      document.querySelectorAll("[data-system-target]").forEach((link) => link.addEventListener("click", () => {
-        const checkbox = document.querySelector(`#system-${link.dataset.systemTarget}`);
+      }
+      if (["dnd", "cthulhu", "other"].includes(system)) {
+        const checkbox = document.querySelector(`#system-${system}`);
         if (checkbox) checkbox.checked = true;
-        focusInterestForm();
-      }));
-    } catch (error) { logError("Path selection could not be initialized.", error); }
+      }
+    } catch (error) { logError("Join-page prefill could not be applied.", error); }
   };
 
   const setupInterestValidation = () => {
@@ -94,7 +93,7 @@
 
   repairLegacyLinks();
   setupNavigation();
-  setupPathSelection();
+  setupJoinPrefill();
   setupInterestValidation();
   setYear();
 })();
