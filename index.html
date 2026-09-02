@@ -3,19 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Tabletop RPG Games in Florence, SC | Florence Tabletop Guild</title>
-  <meta name="description" content="Find welcoming Dungeons & Dragons, Call of Cthulhu, and tabletop RPG games in Florence and the Pee Dee. Beginner-friendly, accessible, community-led play.">
-  <link rel="canonical" href="https://cbw29512.github.io/FlorenceRPGWebsite/">
+  <title>Florence Tabletop Guild | Play, Learn, or Run TTRPGs</title>
+  <meta name="description" content="Choose how you want to join Florence's tabletop RPG community: play, learn, or run Dungeons & Dragons, Call of Cthulhu, and other TTRPGs.">
   <meta name="theme-color" content="#171322">
   <meta property="og:title" content="Florence Tabletop Guild">
-  <meta property="og:description" content="Find your table. Tell your story. Join tabletop RPG games in Florence, South Carolina.">
+  <meta property="og:description" content="Play. Learn. Run games. Help build Florence and the Pee Dee's tabletop RPG community.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cbw29512.github.io/FlorenceRPGWebsite/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Florence Tabletop Guild","description":"A welcoming tabletop role-playing game community concept serving Florence and the Pee Dee region of South Carolina.","url":"https://cbw29512.github.io/FlorenceRPGWebsite/","areaServed":{"@type":"AdministrativeArea","name":"Pee Dee region, South Carolina"},"knowsAbout":["Dungeons & Dragons","Call of Cthulhu","Pathfinder","Starfinder","Blades in the Dark","Vaesen","Cyberpunk RED","tabletop role-playing games"]}</script>
+  <link rel="stylesheet" href="assets/css/home-paths.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -27,8 +25,11 @@
     </a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav"><span aria-hidden="true">☰</span><span>Menu</span></button>
     <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
-      <a href="#games">Find a Game</a><a href="#learn">Learn to Play</a><a href="#run">Run a Game</a>
-      <a href="#coming">Coming Soon</a><a href="#community">Community</a><a class="nav-cta" href="#interest">Join the Launch List</a>
+      <a href="#paths">Choose Your Path</a>
+      <a href="first-adventure.html">Learn D&amp;D</a>
+      <a href="#systems">Games</a>
+      <a href="#community">Community</a>
+      <a class="nav-cta" href="#interest">Join</a>
     </nav>
   </div>
 </header>
@@ -36,86 +37,88 @@
 <main id="main">
   <section class="hero" id="top">
     <div class="hero-glow" aria-hidden="true"></div>
-    <div class="container hero-grid">
-      <div class="hero-copy">
+    <div class="container hero-choice-shell" id="paths">
+      <div class="hero-choice-copy">
         <p class="eyebrow">Florence, South Carolina · The Pee Dee</p>
-        <h1>Every great story starts with finding the right table.</h1>
-        <p class="hero-lede">A welcoming local hub for tabletop role-playing games—built for first-time players, experienced storytellers, families, horror fans, and everyone ready to roll.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#games">Find Your First Game</a>
-          <a class="button button-ghost" href="#learn">I’m Brand New</a>
-        </div>
-        <ul class="trust-list" aria-label="Community priorities">
-          <li><span aria-hidden="true">✦</span>Beginner friendly</li><li><span aria-hidden="true">♿</span>Accessibility first</li>
-          <li><span aria-hidden="true">◇</span>Clear safety standards</li><li><span aria-hidden="true">⌖</span>Florence focused</li>
-        </ul>
+        <h1>What do you want to do?</h1>
+        <p class="hero-lede">You do not need to know the rules, own dice, or already have a group. Start with what sounds interesting and we will show you the next step.</p>
       </div>
-      <div class="hero-art">
-        <img src="assets/d20-book-hero.svg" alt="A polished gold and purple twenty-sided die floating above an open storybook">
-        <aside class="launch-card" aria-labelledby="launch-title">
-          <div><span class="status-dot" aria-hidden="true"></span><strong id="launch-title">Community launch preview</strong></div>
-          <p>We are building the first event calendar, beginner tables, and volunteer Game Master network.</p>
-          <a href="#interest">Help shape the launch <span aria-hidden="true">→</span></a>
-        </aside>
+      <div class="hero-choice-grid" aria-label="Ways to participate">
+        <a class="hero-choice" href="#interest" data-role-target="player">
+          <span class="hero-choice-icon" aria-hidden="true">⚔</span>
+          <h2>I want to play</h2>
+          <p>Meet people interested in D&amp;D, Call of Cthulhu, one-shots, campaigns, and other tabletop RPGs.</p>
+          <strong>Find my path →</strong>
+        </a>
+        <a class="hero-choice" href="first-adventure.html">
+          <span class="hero-choice-icon" aria-hidden="true">📖</span>
+          <h2>I want to learn</h2>
+          <p>See what a complete adventure looks like, learn the core rules as they happen, and arrive at your first table prepared.</p>
+          <strong>Start with D&amp;D →</strong>
+        </a>
+        <a class="hero-choice" href="#interest" data-role-target="gm">
+          <span class="hero-choice-icon" aria-hidden="true">🎲</span>
+          <h2>I want to run games</h2>
+          <p>Join as a DM or Keeper, learn how to lead a table, answer beginner questions, and help the local community grow.</p>
+          <strong>Become a GM / Keeper →</strong>
+        </a>
       </div>
+      <p class="path-note">Want to play and run games? Choose both when you join.</p>
     </div>
   </section>
 
-  <section class="section paper" id="games">
+  <section class="section paper" id="systems">
     <div class="container">
-      <div class="section-heading"><p class="eyebrow dark">Find your table</p><h2>Start with the kind of game that fits you.</h2><p>Every listing will clearly show age range, experience level, tone, accessibility details, content notes, materials, and open seats.</p></div>
-      <div class="program-grid">
-        <article class="program-card accent-red"><span class="card-kicker">Fantasy adventure</span><h3>Beginner D&amp;D One-Shots</h3><p>Learn the basics with a ready-to-play character, patient guidance, and a complete story in one session.</p><ul><li>No books required</li><li>Dice and characters provided</li><li>Adult, teen, and family options</li></ul><a href="#interest">Join the first-table list →</a></article>
-        <article class="program-card accent-green"><span class="card-kicker">Mystery and horror</span><h3>Call of Cthulhu Investigations</h3><p>Follow clues, question witnesses, and confront the unknown with clear expectations and table safety tools.</p><ul><li>Content notes before play</li><li>Beginner investigators provided</li><li>Adult-focused horror sessions</li></ul><a href="#interest">Join the mystery list →</a></article>
-        <article class="program-card accent-purple" id="run"><span class="card-kicker">Build the community</span><h3>Game Master &amp; Keeper Guild</h3><p>Get mentoring, event support, accessibility guidance, and practical workshops for running excellent games.</p><ul><li>First-time GM coaching</li><li>Adventure preparation support</li><li>Volunteer and paid-event pathways</li></ul><a href="#interest">Help run a table →</a></article>
+      <div class="section-heading">
+        <p class="eyebrow dark">Choose a game</p>
+        <h2>Start with the world that interests you.</h2>
+        <p>The learning pages explain how each game actually works. The community page connects that interest to local players and Game Masters.</p>
+      </div>
+      <div class="system-choice-grid">
+        <article class="system-choice"><span class="status-label">Learning path live</span><h3>Dungeons &amp; Dragons</h3><p>Fantasy adventure, exploration, roleplay, tactical combat, spells, monsters, and heroic stories.</p><a href="first-adventure.html">Walk through your first D&amp;D adventure →</a></article>
+        <article class="system-choice"><span class="status-label">Next build</span><h3>Call of Cthulhu</h3><p>Mystery, investigation, clues, dangerous knowledge, sanity, and horror. A parallel beginner walkthrough is coming next.</p><a href="#interest" data-system-target="cthulhu">Tell us you are interested →</a></article>
+        <article class="system-choice"><span class="status-label">Community driven</span><h3>Other TTRPGs</h3><p>Pathfinder, Cyberpunk, indie games, and whatever Florence players want to bring to the table.</p><a href="#interest" data-system-target="other">Suggest another game →</a></article>
       </div>
     </div>
   </section>
 
-  <section class="section steps-section" id="learn">
+  <section class="section steps-section" id="how-it-works">
     <div class="container steps-grid">
-      <div class="section-heading left"><p class="eyebrow">New players welcome</p><h2>You do not need to know the rules.</h2><p>Choose a game, reserve a seat, and arrive curious. We will make sure you know what to bring, what to expect, and who will be at the table.</p><a class="button button-gold" href="#interest">Get Launch Updates</a></div>
+      <div class="section-heading left"><p class="eyebrow">Keep it simple</p><h2>Interest first. Tables second.</h2><p>We are building around real people instead of inventing a calendar before the community exists.</p></div>
       <ol class="steps">
-        <li><span>01</span><div><h3>Pick your experience</h3><p>Fantasy, horror, family-friendly play, workshops, campaigns, or a single-night adventure.</p></div></li>
-        <li><span>02</span><div><h3>Know before you go</h3><p>See the venue, access details, game tone, age group, materials, and community expectations.</p></div></li>
-        <li><span>03</span><div><h3>Meet your table</h3><p>Join a welcoming group with a prepared Game Master and a clear path to your next game.</p></div></li>
+        <li><span>01</span><div><h3>Tell us what you want</h3><p>Player, GM/Keeper, or both. D&amp;D, Call of Cthulhu, or another system.</p></div></li>
+        <li><span>02</span><div><h3>Learn what you need</h3><p>Use the walkthroughs and quick guides to understand the game before you ever sit down.</p></div></li>
+        <li><span>03</span><div><h3>Build a table</h3><p>As local interest clusters together, we can organize beginner sessions, one-shots, campaigns, and GM support.</p></div></li>
       </ol>
-    </div>
-  </section>
-
-  <section class="section paper coming-section" id="coming">
-    <div class="container">
-      <div class="section-heading centered"><p class="eyebrow dark">The library will grow</p><h2>Other TTRPGs coming soon</h2><p>D&amp;D and Call of Cthulhu are only the beginning. Members will help choose the next systems, events, and workshops.</p></div>
-      <div class="system-roadmap">
-        <article><strong>Pathfinder 2e</strong><span>Deep fantasy tactics</span></article><article><strong>Starfinder</strong><span>Science-fantasy adventure</span></article>
-        <article><strong>Blades in the Dark</strong><span>Haunted city heists</span></article><article><strong>Vaesen</strong><span>Nordic folklore horror</span></article>
-        <article><strong>Cyberpunk RED</strong><span>Neon action and intrigue</span></article><article class="community-pick"><strong>Your Pick</strong><span>Chosen by community vote</span></article>
-      </div>
-      <p class="roadmap-note"><span aria-hidden="true">✦</span> Workshops, indie games, and local creator spotlights will be added as the community grows.</p>
     </div>
   </section>
 
   <section class="section community-section" id="community">
     <div class="container community-grid">
-      <div><p class="eyebrow">Built to last</p><h2>A community people can trust.</h2><p class="large-copy">The goal is bigger than filling seats. We are creating a dependable local network where people can learn, volunteer, make friends, and keep coming back.</p></div>
+      <div><p class="eyebrow">A community people can trust</p><h2>Welcoming tables. Clear expectations.</h2><p class="large-copy">The goal is to make it easier for someone in Florence to go from “I have always wanted to try that” to actually sitting at a good table.</p></div>
       <div class="commitment-grid">
-        <article><span aria-hidden="true">◇</span><h3>Safe community</h3><p>Published conduct standards, consent tools, content notes, and private reporting.</p></article>
-        <article><span aria-hidden="true">♿</span><h3>Accessible by design</h3><p>Keyboard-friendly pages, readable contrast, and practical venue access details.</p></article>
-        <article><span aria-hidden="true">♙</span><h3>Youth safeguards</h3><p>Guardian-managed registration, public venues, and clearly supervised programs.</p></article>
-        <article><span aria-hidden="true">⌖</span><h3>Local partnerships</h3><p>Seeking libraries, businesses, restaurants, and community spaces across Florence.</p></article>
+        <article><span aria-hidden="true">◇</span><h3>Beginner friendly</h3><p>No rules knowledge, books, dice, or existing group required to express interest.</p></article>
+        <article><span aria-hidden="true">♿</span><h3>Accessible</h3><p>Readable pages, practical venue details, and clear expectations before play.</p></article>
+        <article><span aria-hidden="true">♙</span><h3>Community standards</h3><p>Published conduct expectations, table safety tools, and clear reporting paths as programs launch.</p></article>
+        <article><span aria-hidden="true">⌖</span><h3>Florence focused</h3><p>Built around Florence and the Pee Dee instead of trying to become another giant global social network.</p></article>
       </div>
     </div>
   </section>
 
   <section class="section interest-section" id="interest">
     <div class="container interest-card">
-      <div><p class="eyebrow dark">Help build the first tables</p><h2>Tell us what you want to play.</h2><p>This preview form does not send or store information yet. It demonstrates the launch-list experience we will connect next.</p></div>
-      <form class="interest-form" data-interest-form>
+      <div><p class="eyebrow dark">Join the interest list</p><h2>Player, GM, or both.</h2><p>Tell us what you are interested in. When this site is deployed on Netlify, this form can feed the community interest list without a custom backend.</p></div>
+      <form class="interest-form" name="community-interest" method="POST" action="/thanks.html" data-netlify="true" data-netlify-honeypot="bot-field" data-interest-form>
+        <input type="hidden" name="form-name" value="community-interest">
+        <p class="bot-field"><label>Do not fill this out<input name="bot-field"></label></p>
         <label>Name or nickname<input name="name" autocomplete="name" required></label>
         <label>Email<input name="email" type="email" autocomplete="email" required></label>
-        <label class="wide">I’m interested in<select name="interest"><option>Learning Dungeons &amp; Dragons</option><option>Playing Call of Cthulhu</option><option>Running games</option><option>Family or teen programs</option><option>Hosting or partnering</option><option>Other TTRPGs</option></select></label>
-        <button class="button button-primary wide" type="submit">Preview My Signup</button>
-        <p class="form-status wide" data-form-status tabindex="-1" aria-live="polite"></p>
+        <fieldset class="signup-fieldset"><legend>I want to</legend><div class="check-grid"><label><input id="role-player" type="checkbox" name="role" value="player"> Play</label><label><input id="role-gm" type="checkbox" name="role" value="gm"> DM / Keep / run games</label></div></fieldset>
+        <fieldset class="signup-fieldset"><legend>I am interested in</legend><div class="check-grid"><label><input id="system-dnd" type="checkbox" name="system" value="dnd"> Dungeons &amp; Dragons</label><label><input id="system-cthulhu" type="checkbox" name="system" value="cthulhu"> Call of Cthulhu</label><label><input id="system-other" type="checkbox" name="system" value="other"> Other TTRPGs</label></div></fieldset>
+        <label class="wide">Experience<select name="experience"><option>Never played</option><option>Beginner</option><option>Regular player</option><option>Experienced GM / Keeper</option></select></label>
+        <label class="wide">What sounds best right now?<select name="next-step"><option>Learn how to play</option><option>Find people interested in playing</option><option>Join a beginner one-shot</option><option>Learn to DM / Keep</option><option>Run a game for others</option><option>Help build the community</option></select></label>
+        <button class="button button-primary wide" type="submit">Add Me to the Florence Interest List</button>
+        <p class="form-note">Only share what you are comfortable sharing. We will keep the launch form intentionally small.</p>
       </form>
     </div>
   </section>
@@ -124,7 +127,7 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Florence Tabletop Guild</strong><span>Find your table. Tell your story.</span></div></div>
-    <p>Independent community concept. Game names and trademarks belong to their respective owners.</p>
+    <p>Independent community project. Game names and trademarks belong to their respective owners.</p>
     <p>© <span data-year>2026</span> Florence Tabletop Guild.</p>
   </div>
 </footer>
