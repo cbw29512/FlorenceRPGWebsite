@@ -7,6 +7,7 @@ const pages = [
   'first-adventure.html',
   'character-sheet-guide.html',
   'guild-hall.html',
+  'community.html',
   'one-shots.html',
   'tools.html',
   'join.html',
@@ -124,7 +125,18 @@ if (!tomeForgeCard) {
   if (!tomeForgeCard.includes('No launch link yet')) warn('tools.html', 'TomeForge pre-release boundary is missing');
 }
 
-const supportPages = ['index.html', 'guild-hall.html', 'one-shots.html', 'tools.html'];
+const community = exists('community.html') ? read('community.html') : '';
+const communityJs = exists('assets/js/community.js') ? read('assets/js/community.js') : '';
+if (!community.includes('The Light Tower <em>Guild Board.</em>')) warn('community.html', 'Light Tower Guild Board identity is missing');
+if (!community.includes('data-community-post-form')) warn('community.html', 'community submission form is missing');
+if (!community.includes('name="public-ok"')) warn('community.html', 'public-post consent boundary is missing');
+if (!community.includes('name="website"')) warn('community.html', 'community honeypot is missing');
+if (!community.includes('No stranger DMs')) warn('community.html', 'no-stranger-DM safety promise is missing');
+if (!community.includes('Keep the Beacon Burning')) warn('community.html', 'Light Tower donation CTA is missing');
+if (!communityJs.includes('/functions/v1/community-api')) warn('assets/js/community.js', 'community API endpoint is missing');
+if (communityJs.includes('.innerHTML')) warn('assets/js/community.js', 'community content must not render through innerHTML');
+
+const supportPages = ['index.html', 'guild-hall.html', 'community.html', 'one-shots.html', 'tools.html'];
 for (const page of supportPages) {
   const html = exists(page) ? read(page) : '';
   if (!html.includes('https://www.buymeacoffee.com/divclass016')) warn(page, 'canonical Buy Me a Coffee support link is missing');
@@ -166,4 +178,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${pages.length} pages: accessibility landmarks, internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, community boundaries, public tool links, ad-free support, learning flow, adventure download integrity, and canonical branding all passed.`);
+console.log(`Validated ${pages.length} pages: accessibility landmarks, internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, community moderation boundaries, public tool links, ad-free support, learning flow, adventure download integrity, and canonical branding all passed.`);
