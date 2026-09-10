@@ -8,6 +8,7 @@ module.exports = {
         'http://localhost/first-adventure.html',
         'http://localhost/character-sheet-guide.html',
         'http://localhost/guild-hall.html',
+        'http://localhost/community.html',
         'http://localhost/one-shots.html',
         'http://localhost/tools.html',
         'http://localhost/join.html',
