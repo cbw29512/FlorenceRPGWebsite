@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Organizer Console | Light Tower Table Top Guild</title>
-  <meta name="description" content="Private organizer console for reviewing Guild interest, forming compatible adult tables, and managing confirmed games.">
+  <meta name="description" content="Private organizer console for reviewing Light Tower interest, moderating the Guild Board, forming compatible adult tables, and managing confirmed games.">
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#130d18">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -19,19 +19,20 @@
 <a class="skip-link" href="#main">Skip to main content</a>
 <header class="site-header"><div class="container header-inner">
   <a class="brand" href="index.html" aria-label="Light Tower Table Top Guild home"><img src="assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>Private organizer operations</small></span></a>
-  <nav class="site-nav" aria-label="Organizer navigation"><a href="guild-hall.html">Back to Guild Hall</a><a href="index.html">Public site</a></nav>
+  <nav class="site-nav" aria-label="Organizer navigation"><a href="community.html">Guild Board</a><a href="guild-hall.html">Guild Hall</a><a href="index.html">Public site</a></nav>
 </div></header>
 <main id="main">
-  <section class="page-hero"><div class="container"><p class="eyebrow">Authorized organizers only</p><h1>Guild <em>Organizer Console</em></h1><p>Review private intake, promote approved adults into the matching pool, form compatible tables, invite members, and confirm games. This page is intentionally excluded from public navigation and search indexing.</p></div></section>
+  <section class="page-hero"><div class="container"><p class="eyebrow">Authorized organizers only</p><h1>Light Tower <em>Organizer Console</em></h1><p>Review private intake, moderate the Guild Board, promote approved adults into matching, form compatible tables, invite members, and confirm games. This page is intentionally excluded from public navigation and search indexing.</p></div></section>
   <section class="section parchment-section"><div class="container organizer-shell">
     <div class="organizer-panel organizer-login" data-organizer-login>
       <p class="eyebrow dark">Secure access</p><h2>Sign in by email link</h2>
-      <p>Only pre-authorized organizer accounts can load Guild data. A successful email login alone does not grant organizer access.</p>
+      <p>Only pre-authorized organizer accounts can load Light Tower data. A successful email login alone does not grant organizer access.</p>
       <form data-organizer-login-form><label>Organizer email<input name="email" type="email" autocomplete="email" required></label><button class="button button-primary" type="submit">Send secure sign-in link</button></form>
     </div>
     <p class="organizer-status" data-organizer-status role="status" aria-live="polite"></p>
     <div class="organizer-hidden" data-organizer-app>
-      <section class="organizer-panel"><div class="organizer-toolbar"><div><p class="eyebrow dark">Operations</p><h2>Guild status</h2></div><button class="button button-ghost" type="button" data-organizer-signout>Sign out</button></div><div class="organizer-grid" data-organizer-kpis></div></section>
+      <section class="organizer-panel"><div class="organizer-toolbar"><div><p class="eyebrow dark">Operations</p><h2>Light Tower status</h2></div><button class="button button-ghost" type="button" data-organizer-signout>Sign out</button></div><div class="organizer-grid" data-organizer-kpis></div></section>
+      <section class="organizer-panel"><div class="organizer-toolbar"><div><p class="eyebrow dark">Community moderation</p><h2>Guild Board review queue</h2></div><div class="organizer-kpi compact"><strong data-community-moderation-count>0</strong><span>Waiting</span></div></div><p class="organizer-private-note">Nothing submitted by the public appears on the Board until an organizer approves it. Email addresses shown here remain private and are never returned by the public community API.</p><div class="organizer-list" data-community-moderation-list></div></section>
       <section class="organizer-panel"><p class="eyebrow dark">Table formation</p><h2>Create an adult table proposal</h2><p class="organizer-private-note">Matching uses hard compatibility filters first. Exact member ZIP and accessibility information remain organizer-only.</p>
         <form class="organizer-form" data-proposal-form>
           <label>Game system<select name="system-name" required><option value="D&D">Dungeons &amp; Dragons</option><option value="Call of Cthulhu">Call of Cthulhu</option></select></label>
