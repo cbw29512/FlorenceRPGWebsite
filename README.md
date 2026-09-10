@@ -55,6 +55,7 @@ A public download link should only be enabled after the exact binary ZIP has bee
 
 - **Nothing But A TTRPG Dice Roller** — Live production tool: https://nothingbutattrpgdiceroller.netlify.app/
 - **Character Forge** — Live production tool: https://characterforgerdnd.netlify.app/
+- **TomeForge** — Coming Soon on the Guild Tool Bench: free, offline/local-first Player and DM digital tomes with no account required.
 - **The Iron Pit** — remains governed by its own project status and is intentionally excluded from this optimization pass.
 - **Dungeon Cards** — remains off the public finished-tool list until its release/status surface is strong enough to justify promotion.
 
