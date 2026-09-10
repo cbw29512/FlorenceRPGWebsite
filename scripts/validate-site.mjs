@@ -103,7 +103,7 @@ if (!youth.includes('Other TTRPG — interest only')) warn('youth-groups.html', 
 const tools = exists('tools.html') ? read('tools.html') : '';
 const requiredToolLinks = [
   'https://nothingbutattrpgdiceroller.netlify.app/',
-  'https://cbw29512.github.io/dnd-character-forge/',
+  'https://characterforgerdnd.netlify.app/',
   'https://cbw29512.github.io/D20-ironpit/'
 ];
 for (const toolUrl of requiredToolLinks) {

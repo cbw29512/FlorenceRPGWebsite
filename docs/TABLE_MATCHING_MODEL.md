@@ -248,8 +248,8 @@ Florence-area places previously identified during founding-chapter research rema
 Verified public tool URLs:
 
 - **Nothing But A TTRPG Dice Roller** — https://nothingbutattrpgdiceroller.netlify.app/
-- **D&D Character Forge** — https://cbw29512.github.io/dnd-character-forge/
+- **Character Forge** — https://characterforgerdnd.netlify.app/
 
-Character Forge currently identifies itself as a release-candidate/friend-test build, so Light Tower labels it **Public Preview / Release Candidate** until that project is formally promoted.
+Character Forge is a **Live production tool**. The Guild should use the Netlify production URL as its single public Character Forge destination.
 
 Tool links remain optional and do not share Light Tower matching data unless a future integration is deliberately designed with explicit consent.
