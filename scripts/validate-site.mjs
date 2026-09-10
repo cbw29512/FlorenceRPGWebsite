@@ -111,6 +111,19 @@ for (const toolUrl of requiredToolLinks) {
 }
 if (!tools.includes('<strong>Coming soon:</strong>')) warn('tools.html', 'future-tool Coming Soon notice is missing');
 
+const toolCards = [...tools.matchAll(/<article class="tool-card">([\s\S]*?)<\/article>/g)].map((match) => match[0]);
+const tomeForgeCard = toolCards.find((card) => card.includes('<h3>TomeForge</h3>'));
+if (!tomeForgeCard) {
+  warn('tools.html', 'TomeForge Coming Soon card is missing');
+} else {
+  if (!tomeForgeCard.includes('status-planned">Coming Soon</span>')) warn('tools.html', 'TomeForge must be clearly labeled Coming Soon');
+  for (const promise of ['Free', 'Offline', 'No account required', 'Player + DM tomes']) {
+    if (!tomeForgeCard.includes(`<span>${promise}</span>`)) warn('tools.html', `TomeForge card missing promise: ${promise}`);
+  }
+  if (/<a\b/i.test(tomeForgeCard)) warn('tools.html', 'TomeForge must not expose a launch link before Guild release');
+  if (!tomeForgeCard.includes('No launch link yet')) warn('tools.html', 'TomeForge pre-release boundary is missing');
+}
+
 const supportPages = ['index.html', 'guild-hall.html', 'one-shots.html', 'tools.html'];
 for (const page of supportPages) {
   const html = exists(page) ? read(page) : '';
