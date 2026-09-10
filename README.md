@@ -106,8 +106,7 @@ assets/
 │   ├── first-adventure.css
 │   ├── first-adventure-rules.css
 │   ├── one-shots.css
-│   ├── guild-pages.css
-│   └── tool-bench-coming-soon.css
+│   └── guild-pages.css
 └── js/
     ├── site.js
     ├── guild-intake.js
