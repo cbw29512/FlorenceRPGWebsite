@@ -27,7 +27,7 @@
     try {
       document.querySelectorAll('a[href="index.html#games"]').forEach((link) => { link.href = "index.html#systems"; });
       document.querySelectorAll('a[href="index.html#learn"]').forEach((link) => { link.href = "first-adventure.html"; });
-      document.querySelectorAll('a[href="index.html#community"]').forEach((link) => { link.href = "guild-hall.html"; });
+      document.querySelectorAll('a[href="index.html#community"]').forEach((link) => { link.href = "community.html"; });
       document.querySelectorAll('a[href="index.html#interest"]').forEach((link) => { link.href = "join.html"; });
     } catch (error) { logError("Legacy links could not be repaired.", error); }
   };
