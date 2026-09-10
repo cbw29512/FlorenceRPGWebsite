@@ -1,0 +1,23 @@
+.coming-tools {
+  margin-top: 2.4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #d7c4a7;
+}
+
+.coming-tools .section-heading {
+  margin-bottom: 1rem;
+}
+
+.coming-soon-grid {
+  grid-template-columns: 1fr;
+  max-width: 48rem;
+}
+
+.coming-soon-grid .tool-card {
+  min-height: 14rem;
+}
+
+.coming-soon-grid .card-action {
+  margin-top: auto;
+  color: #675760;
+}
