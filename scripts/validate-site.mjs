@@ -103,12 +103,14 @@ if (!youth.includes('Other TTRPG — interest only')) warn('youth-groups.html', 
 const tools = exists('tools.html') ? read('tools.html') : '';
 const requiredToolLinks = [
   'https://nothingbutattrpgdiceroller.netlify.app/',
-  'https://cbw29512.github.io/dnd-character-forge/',
+  'https://characterforgerdnd.netlify.app/',
   'https://cbw29512.github.io/D20-ironpit/'
 ];
 for (const toolUrl of requiredToolLinks) {
   if (!tools.includes(`href="${toolUrl}"`)) warn('tools.html', `required public tool link missing: ${toolUrl}`);
 }
+if (tools.includes('https://cbw29512.github.io/dnd-character-forge/')) warn('tools.html', 'stale Character Forge GitHub Pages URL is still present');
+if (!tools.includes('Live premium tool')) warn('tools.html', 'Character Forge production status is missing');
 if (!tools.includes('<strong>Coming soon:</strong>')) warn('tools.html', 'future-tool Coming Soon notice is missing');
 
 const supportPages = ['index.html', 'guild-hall.html', 'one-shots.html', 'tools.html'];
