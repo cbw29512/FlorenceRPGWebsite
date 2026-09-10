@@ -54,7 +54,7 @@ A public download link should only be enabled after the exact binary ZIP has bee
 `tools.html` uses explicit release labels:
 
 - **Nothing But A TTRPG Dice Roller** — Live production tool: https://nothingbutattrpgdiceroller.netlify.app/
-- **D&D Character Forge** — Public release candidate: https://cbw29512.github.io/dnd-character-forge/
+- **Character Forge** — Live premium tool: https://characterforgerdnd.netlify.app/
 - **The Iron Pit** — remains off the public finished-tool list while its own repository identifies it as an MVP.
 - **Dungeon Cards** — remains off the public finished-tool list until its release/status surface is strong enough to justify promotion.
 
