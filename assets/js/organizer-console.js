@@ -4,7 +4,7 @@
   const auth = window.GuildOrganizerAuth;
   const api = window.GuildOrganizerApi;
   const render = window.GuildOrganizerRender;
-  const logError = (message, error) => console.error(`[Guild Organizer Console] ${message}`, error);
+  const logError = (message, error) => console.error(`[Light Tower Organizer Console] ${message}`, error);
   const $ = (selector) => document.querySelector(selector);
 
   const setStatus = (message, kind = "") => {
@@ -21,12 +21,24 @@
     $("[data-organizer-app]")?.classList.toggle("organizer-hidden", !signedIn);
   };
 
+  const loadCommunityQueue = async () => {
+    try {
+      const response = await api.communityQueue();
+      render.renderCommunityQueue(response.data);
+    } catch (error) {
+      logError("Community moderation queue load failed.", error);
+      const target = $("[data-community-moderation-list]");
+      if (target) target.textContent = "Community moderation could not be loaded.";
+    }
+  };
+
   const loadDashboard = async () => {
     try {
       setStatus("Loading organizer data…");
       const response = await api.dashboard(50);
       render.renderDashboard(response.data);
       showSignedIn(true);
+      await loadCommunityQueue();
       setStatus("Organizer data is current.", "success");
     } catch (error) {
       logError("Dashboard load failed.", error);
@@ -88,6 +100,14 @@
       if (action === "decline-adult") await api.reviewAdult(button.dataset.id, "declined", prompt("Organizer note (optional):") || null);
       if (action === "youth-contacted") await api.reviewYouth(button.dataset.id, "contacted");
       if (action === "youth-closed") await api.reviewYouth(button.dataset.id, "closed", prompt("Organizer note (optional):") || null);
+      if (action === "approve-community-post") await api.reviewCommunityPost(button.dataset.id, "approved");
+      if (action === "reject-community-post") await api.reviewCommunityPost(button.dataset.id, "rejected");
+      if (action === "approve-community-reply") await api.reviewCommunityReply(button.dataset.id, "approved");
+      if (action === "reject-community-reply") await api.reviewCommunityReply(button.dataset.id, "rejected");
+      if (action === "approve-dm-answer") {
+        await api.reviewCommunityReply(button.dataset.id, "approved");
+        await api.markDmAnswer(button.dataset.id, true);
+      }
       if (action === "rank") {
         const response = await api.rankCandidates(button.dataset.id);
         const target = document.querySelector(`[data-candidates-for="${CSS.escape(button.dataset.id)}"]`);
