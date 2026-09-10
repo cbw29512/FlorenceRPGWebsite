@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Light Tower Guild Board | Ask a DM, Share Table Tales, Help Players</title>
+  <meta name="description" content="Visit the Light Tower Table Top Guild community board to ask a DM, help new players, share tabletop stories, and read official Light Tower notes without ads or public contact details.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#160d12">
+  <meta property="og:title" content="Light Tower Guild Board">
+  <meta property="og:description" content="Ask a DM. Help an adventurer. Share a table tale. Keep the community free and focused on play.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/fantasy-theme.css">
+  <link rel="stylesheet" href="assets/css/guild-pages.css">
+  <link rel="stylesheet" href="assets/css/community.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="container header-inner">
+  <a class="brand" href="index.html" aria-label="Light Tower Table Top Guild home"><img src="assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>Find your table. Learn the game. Tell your story.</small></span></a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <nav id="primary-nav" class="site-nav" aria-label="Primary navigation"><a href="index.html">Home</a><a href="first-adventure.html">Learn D&amp;D</a><a href="guild-hall.html">Guild Hall</a><a href="community.html" aria-current="page">Community</a><a href="one-shots.html">One-Shots</a><a href="tools.html">Tools</a><a class="nav-cta" href="join.html">Join</a></nav>
+</div></header>
+<main id="main">
+  <section class="page-hero board-hero"><div class="container board-hero-grid"><div><p class="eyebrow">Light Tower community</p><h1>The Light Tower <em>Guild Board.</em></h1><p class="hero-lede">Ask a DM. Help a new adventurer. Share a table tale. Read what Light Tower is building next. This is a moderated tabletop noticeboard—not an open chat room or a place to publish private contact information.</p><div class="hero-chip-row"><span>Free community</span><span>No ads</span><span>Moderated posts</span><span>No stranger DMs</span></div></div><aside class="board-oath" aria-label="Board promise"><span aria-hidden="true">✦</span><strong>Leave the table better than you found it.</strong><p>Be useful. Be welcoming. Disagree about rules without attacking people. Keep real-world contact details private.</p></aside></div></section>
+
+  <section class="board-rail" aria-label="Community shortcuts"><div class="container board-rail-inner"><a href="#board">Read the Board</a><a href="#ask">Ask a DM</a><a href="join.html">Find a Table</a><a href="#notes">Light Tower Notes</a></div></section>
+
+  <section class="section parchment-section" id="board"><div class="container"><div class="section-heading"><p class="eyebrow dark">Pinned parchment &amp; fresh notes</p><h2>What adventurers are talking about.</h2><p>Only approved posts and replies appear publicly. Official Light Tower notes are clearly marked so they are never confused with community submissions.</p></div>
+    <div class="board-layout">
+      <div class="board-main">
+        <div class="board-filters" aria-label="Filter board posts">
+          <button type="button" class="board-filter is-active" data-board-filter="all" aria-pressed="true">All Notes</button>
+          <button type="button" class="board-filter" data-board-filter="ask-a-dm" aria-pressed="false">Ask a DM</button>
+          <button type="button" class="board-filter" data-board-filter="new-adventurers" aria-pressed="false">New Adventurers</button>
+          <button type="button" class="board-filter" data-board-filter="dm-corner" aria-pressed="false">DM's Corner</button>
+          <button type="button" class="board-filter" data-board-filter="table-tales" aria-pressed="false">Table Tales</button>
+          <button type="button" class="board-filter" data-board-filter="guild-notes" aria-pressed="false">Light Tower Notes</button>
+          <button type="button" class="board-filter" data-board-filter="workshop" aria-pressed="false">Workshop</button>
+        </div>
+        <p class="board-status" data-board-status role="status" aria-live="polite">Opening the noticeboard…</p>
+        <div class="noticeboard" data-community-list aria-live="polite">
+          <article class="notice-card notice-loading"><span class="notice-pin" aria-hidden="true"></span><p>Loading approved Light Tower notes…</p></article>
+        </div>
+      </div>
+
+      <aside class="board-sidebar" id="ask">
+        <section class="board-form-card parchment-card"><p class="eyebrow dark">Leave a note</p><h2>Ask a DM or start a discussion.</h2><p>Use a nickname if you prefer. Your email is private and is never shown on the Board.</p>
+          <form class="board-form" data-community-post-form>
+            <label>Post type<select name="category" required><option value="ask-a-dm">Ask a DM</option><option value="new-adventurers">New Adventurers</option><option value="dm-corner">DM's Corner</option><option value="table-tales">Table Tales</option></select></label>
+            <label>Name or nickname<input name="author-name" maxlength="60" autocomplete="nickname" required></label>
+            <label>Private email<input name="author-email" type="email" maxlength="254" autocomplete="email" required><small>Used for moderation/follow-up only. Never published.</small></label>
+            <label>Title<input name="title" maxlength="140" required placeholder="What do you want to ask or share?"></label>
+            <label>Your note<textarea name="body" maxlength="2400" required placeholder="Give enough context for another player or DM to help."></textarea></label>
+            <label class="honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+            <label class="board-consent"><input type="checkbox" name="public-ok" required><span>I understand this may become public after review, and I have not included my email address, phone number, or other private contact details in the post.</span></label>
+            <button class="button button-primary fantasy-button" type="submit">Pin My Note for Review</button>
+            <p class="board-form-status" data-community-form-status role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="board-side-card"><span class="side-icon" aria-hidden="true">⚔</span><p class="eyebrow dark">Looking for adventurers?</p><h3>Use Find a Table.</h3><p>Game matching belongs in Light Tower's structured table flow so schedules, locations and private contact details stay out of public posts.</p><a class="button button-secondary" href="join.html">Find or Run a Game</a></section>
+
+        <section class="board-side-card" id="notes"><span class="side-icon" aria-hidden="true">🕯</span><p class="eyebrow dark">Official posts</p><h3>Light Tower Notes</h3><p>Announcements, project updates, DM articles and workshop notes will appear on this same board with an official Light Tower seal.</p></section>
+      </aside>
+    </div>
+  </div></section>
+
+  <section class="section guild-dark board-values"><div class="container"><div class="section-heading centered"><p class="eyebrow">How the Board works</p><h2>Conversation without becoming another social network.</h2></div><div class="action-grid">
+    <article class="action-card"><span class="card-kicker">Ask &amp; answer</span><h3>Tabletop questions first</h3><p>Rules, character choices, DM problems, new-player questions and useful table stories have a home here.</p></article>
+    <article class="action-card"><span class="card-kicker">Moderated</span><h3>Every public post is reviewed</h3><p>Submissions wait for Light Tower review before they become visible. Approved replies can be marked as a DM Answer.</p></article>
+    <article class="action-card"><span class="card-kicker">Private by design</span><h3>No public contact directory</h3><p>The Board does not expose member emails, phone numbers or private matching information, and it does not offer stranger-to-stranger direct messages.</p></article>
+  </div></div></section>
+
+  <section class="section support-section"><div class="container support-card beacon-card"><div><p class="eyebrow">Community-supported · no ads</p><h2>Keep the beacon burning.</h2><p>Light Tower Table Top Guild keeps community access and table tools free. If the Board or one of the tools helps your table, optional support helps pay for hosting and continued development.</p></div><a class="coffee-button" href="https://www.buymeacoffee.com/divclass016" target="_blank" rel="noopener noreferrer">Keep the Beacon Burning</a></div></section>
+</main>
+<footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Light Tower Table Top Guild</strong><span>Find your table. Learn the game. Tell your story.</span></div></div><div class="page-footer-nav"><a href="index.html">Home</a><a href="guild-hall.html">Guild Hall</a><a href="community.html">Community</a><a href="one-shots.html">One-Shots</a><a href="tools.html">Tools</a></div><p>© <span data-year>2026</span> Light Tower Table Top Guild.</p></div></footer>
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/community.js" defer></script>
+</body>
+</html>
