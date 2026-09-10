@@ -3,7 +3,7 @@
 
   const ENDPOINT = "https://vtqoxflirpfhnxzzpxfa.supabase.co/functions/v1/organizer-api";
   const PUBLISHABLE_KEY = "sb_publishable_I17DfovO1Sp6YQd79fcF2A_MMCIUuDi";
-  const logError = (message, error) => console.error(`[Guild Organizer API] ${message}`, error);
+  const logError = (message, error) => console.error(`[Light Tower Organizer API] ${message}`, error);
 
   const call = async (action, payload = {}) => {
     try {
@@ -36,5 +36,9 @@
     rankCandidates: (proposalId) => call("rankCandidates", { proposalId }),
     inviteCandidate: (proposalId, userId, seatRole) => call("inviteCandidate", { proposalId, userId, seatRole }),
     confirmProposal: (proposalId, startsAt, privateJoinDetails = null) => call("confirmProposal", { proposalId, startsAt, privateJoinDetails }),
+    communityQueue: () => call("communityQueue"),
+    reviewCommunityPost: (postId, state) => call("reviewCommunityPost", { postId, state }),
+    reviewCommunityReply: (replyId, state) => call("reviewCommunityReply", { replyId, state }),
+    markDmAnswer: (replyId, enabled = true) => call("markDmAnswer", { replyId, enabled }),
   };
 })();
