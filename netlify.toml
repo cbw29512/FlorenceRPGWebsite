@@ -1,5 +1,5 @@
 [build]
-  command = "node scripts/validate-site.mjs && node scripts/validate-organizer.mjs && node scripts/check-organizer-js.mjs && node scripts/build-shell.mjs && node scripts/build-css.mjs && node scripts/build-meta.mjs && node scripts/validate-site.mjs && node scripts/validate-organizer.mjs"
+  command = "node scripts/validate-site.mjs && node scripts/validate-organizer.mjs && node scripts/check-organizer-js.mjs && node scripts/build-shell.mjs && node scripts/build-experience.mjs && node scripts/build-css.mjs && node scripts/build-meta.mjs && node scripts/validate-site.mjs && node scripts/validate-organizer.mjs"
   publish = "."
 
 # Public clean URLs. Source files stay static and framework-free.
