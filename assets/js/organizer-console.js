@@ -41,6 +41,35 @@
     return hours * 60 + minutes;
   };
 
+  const openDialog = (dialog, beforeOpen) => new Promise((resolve) => {
+    if (!dialog) { resolve(null); return; }
+    beforeOpen?.(dialog);
+    const onClose = () => {
+      dialog.removeEventListener("close", onClose);
+      resolve(dialog.returnValue === "confirm" ? new FormData(dialog.querySelector("form")) : null);
+    };
+    dialog.addEventListener("close", onClose);
+    dialog.showModal();
+  });
+
+  const requestNote = async (title) => {
+    const formData = await openDialog($("[data-note-dialog]"), (dialog) => {
+      dialog.querySelector("[data-note-title]").textContent = title;
+      dialog.querySelector("form").reset();
+    });
+    return formData ? (formData.get("note")?.toString().trim() || null) : undefined;
+  };
+
+  const requestConfirmation = async () => {
+    const formData = await openDialog($("[data-confirm-dialog]"), (dialog) => dialog.querySelector("form").reset());
+    if (!formData) return null;
+    const startsAt = formData.get("starts-at")?.toString();
+    if (!startsAt) throw new Error("Choose the confirmed start date and time.");
+    const parsed = new Date(startsAt);
+    if (Number.isNaN(parsed.getTime())) throw new Error("Choose a valid confirmed start date and time.");
+    return { startsAt: parsed.toISOString(), privateJoinDetails: formData.get("join-details")?.toString().trim() || null };
+  };
+
   const setupLogin = () => {
     $("[data-organizer-login-form]")?.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -49,7 +78,7 @@
         if (!email) throw new Error("Enter the organizer email address.");
         setStatus("Sending secure sign-in link…");
         await auth.requestMagicLink(email);
-        setStatus("Sign-in link sent. Open it in this browser to continue.", "success");
+        setStatus("If this is an authorized organizer account, a sign-in link has been sent.", "success");
       } catch (error) { setStatus(error.message || "Could not send sign-in link.", "error"); }
     });
     $("[data-organizer-signout]")?.addEventListener("click", async () => {
@@ -85,9 +114,17 @@
     try {
       button.disabled = true;
       if (action === "approve-adult") await api.approveAdult(button.dataset.id);
-      if (action === "decline-adult") await api.reviewAdult(button.dataset.id, "declined", prompt("Organizer note (optional):") || null);
+      if (action === "decline-adult") {
+        const note = await requestNote("Decline adult interest");
+        if (note === undefined) return;
+        await api.reviewAdult(button.dataset.id, "declined", note);
+      }
       if (action === "youth-contacted") await api.reviewYouth(button.dataset.id, "contacted");
-      if (action === "youth-closed") await api.reviewYouth(button.dataset.id, "closed", prompt("Organizer note (optional):") || null);
+      if (action === "youth-closed") {
+        const note = await requestNote("Close youth-group inquiry");
+        if (note === undefined) return;
+        await api.reviewYouth(button.dataset.id, "closed", note);
+      }
       if (action === "rank") {
         const response = await api.rankCandidates(button.dataset.id);
         const target = document.querySelector(`[data-candidates-for="${CSS.escape(button.dataset.id)}"]`);
@@ -96,10 +133,9 @@
       }
       if (action === "invite") await api.inviteCandidate(button.dataset.proposal, button.dataset.user, button.dataset.role);
       if (action === "confirm") {
-        const starts = prompt("Confirmed start date/time (example: 2026-09-12T18:00):");
-        if (!starts) return;
-        const details = prompt("Private venue/join details for accepted participants (optional):") || null;
-        await api.confirmProposal(button.dataset.id, new Date(starts).toISOString(), details);
+        const confirmation = await requestConfirmation();
+        if (!confirmation) return;
+        await api.confirmProposal(button.dataset.id, confirmation.startsAt, confirmation.privateJoinDetails);
       }
       await loadDashboard();
     } catch (error) {

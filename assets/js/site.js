@@ -8,28 +8,19 @@
       const button = document.querySelector(".menu-button");
       const nav = document.querySelector("#primary-nav");
       if (!button || !nav) return;
-      button.setAttribute("aria-label", "Open menu");
-      button.addEventListener("click", () => {
-        const open = button.getAttribute("aria-expanded") === "true";
-        button.setAttribute("aria-expanded", String(!open));
-        button.setAttribute("aria-label", open ? "Open menu" : "Close menu");
-        nav.dataset.open = String(!open);
-      });
-      nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
-        button.setAttribute("aria-expanded", "false");
-        button.setAttribute("aria-label", "Open menu");
-        nav.dataset.open = "false";
-      }));
-    } catch (error) { logError("Navigation could not be initialized.", error); }
-  };
 
-  const repairLegacyLinks = () => {
-    try {
-      document.querySelectorAll('a[href="index.html#games"]').forEach((link) => { link.href = "index.html#systems"; });
-      document.querySelectorAll('a[href="index.html#learn"]').forEach((link) => { link.href = "first-adventure.html"; });
-      document.querySelectorAll('a[href="index.html#community"]').forEach((link) => { link.href = "guild-hall.html"; });
-      document.querySelectorAll('a[href="index.html#interest"]').forEach((link) => { link.href = "join.html"; });
-    } catch (error) { logError("Legacy links could not be repaired.", error); }
+      const setOpen = (open) => {
+        button.setAttribute("aria-expanded", String(open));
+        button.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        nav.dataset.open = String(open);
+      };
+
+      setOpen(false);
+      button.addEventListener("click", () => setOpen(button.getAttribute("aria-expanded") !== "true"));
+      nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+      document.addEventListener("keydown", (event) => { if (event.key === "Escape") setOpen(false); });
+      window.addEventListener("resize", () => { if (window.innerWidth > 880) setOpen(false); }, { passive: true });
+    } catch (error) { logError("Navigation could not be initialized.", error); }
   };
 
   const setupJoinPrefill = () => {
@@ -39,14 +30,8 @@
       const params = new URLSearchParams(window.location.search);
       const role = params.get("role");
       const system = params.get("system");
-      if (["player", "gm"].includes(role)) {
-        const checkbox = document.querySelector(`#role-${role}`);
-        if (checkbox) checkbox.checked = true;
-      }
-      if (["dnd", "cthulhu", "other"].includes(system)) {
-        const checkbox = document.querySelector(`#system-${system}`);
-        if (checkbox) checkbox.checked = true;
-      }
+      if (["player", "gm"].includes(role)) document.querySelector(`#role-${role}`)?.click();
+      if (["dnd", "cthulhu", "other"].includes(system)) document.querySelector(`#system-${system}`)?.click();
     } catch (error) { logError("Join-page prefill could not be applied.", error); }
   };
 
@@ -55,7 +40,6 @@
     catch (error) { logError("Footer year could not be updated.", error); }
   };
 
-  repairLegacyLinks();
   setupNavigation();
   setupJoinPrefill();
   setYear();

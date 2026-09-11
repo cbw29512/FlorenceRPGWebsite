@@ -18,11 +18,11 @@ try {
   if (!/<a\s+class="skip-link"\s+href="#main"/i.test(html)) warn('organizer.html missing skip link');
   if (!/<main[^>]+id="main"/i.test(html)) warn('organizer.html missing main landmark');
 
-  const requiredHooks = ['data-organizer-login-form','data-organizer-app','data-organizer-status','data-proposal-form','data-adult-list','data-youth-list','data-proposal-list'];
-  for (const hook of requiredHooks) if (!html.includes(hook)) warn(`organizer.html missing ${hook}`);
+  for (const hook of ['data-organizer-login-form','data-organizer-app','data-organizer-status','data-proposal-form','data-adult-list','data-youth-list','data-proposal-list','data-note-dialog','data-confirm-dialog']) {
+    if (!html.includes(hook)) warn(`organizer.html missing ${hook}`);
+  }
 
-  const scripts = ['assets/js/organizer-auth.js','assets/js/organizer-api.js','assets/js/organizer-render.js','assets/js/organizer-console.js'];
-  for (const script of scripts) {
+  for (const script of ['assets/js/organizer-auth.js','assets/js/organizer-api.js','assets/js/organizer-render.js','assets/js/organizer-console.js']) {
     if (!exists(script)) warn(`missing organizer script: ${script}`);
     if (!html.includes(`src="${script}"`)) warn(`organizer.html does not load ${script}`);
   }
@@ -39,9 +39,14 @@ try {
   const auth = read('assets/js/organizer-auth.js');
   if (!auth.includes('sessionStorage')) warn('organizer auth token must remain session-scoped');
   if (/service[_-]?role/i.test(auth)) warn('organizer browser auth must never reference a service-role credential');
+  if (!auth.includes('create_user: false')) warn('organizer magic links must not create unknown accounts');
 
   const api = read('assets/js/organizer-api.js');
   if (!api.includes('Authorization') || !api.includes('Bearer')) warn('organizer API client must send the user bearer token');
+
+  const consoleJs = read('assets/js/organizer-console.js');
+  if (/\bprompt\s*\(/.test(consoleJs)) warn('organizer console must not use browser prompt() for operational data');
+  if (!consoleJs.includes('showModal()')) warn('organizer console must use structured dialogs for review/confirmation workflows');
 } catch (error) {
   warn(error.message || String(error));
 }
@@ -53,4 +58,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log('Organizer validation passed: noindex, hidden navigation, auth hooks, session token handling, local scripts, and exact Supabase CSP allowlist are intact.');
+console.log('Organizer validation passed: noindex, hidden navigation, preauthorized account boundary, session token handling, structured dialogs, local scripts, and exact Supabase CSP allowlist are intact.');
