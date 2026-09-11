@@ -1,0 +1,188 @@
+:root {
+  --display: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --guild-deep: #09060d;
+  --guild-panel: #17101f;
+  --guild-plum-2: #3c214a;
+  --guild-gold-2: #e9bc61;
+  --guild-paper-2: #f8edd7;
+  --guild-ink-2: #231a22;
+  --guild-red: #8d3d3a;
+}
+
+h1, h2, .brand strong, .feature-app h3, .vault-cover__title { font-family: var(--display); }
+body { text-rendering: optimizeLegibility; }
+
+.site-header { box-shadow: 0 10px 30px rgba(0,0,0,.24); }
+.header-inner { min-height: 4.7rem; }
+.brand strong { font-size: 1.18rem; }
+.site-nav a { letter-spacing: .01em; }
+.site-nav .nav-cta { box-shadow: 0 8px 22px rgba(230,174,78,.18); }
+
+.guild-home-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 44rem;
+  display: grid;
+  align-items: center;
+  background:
+    radial-gradient(circle at 76% 32%, rgba(127,72,159,.34), transparent 28rem),
+    radial-gradient(circle at 16% 84%, rgba(194,135,49,.13), transparent 26rem),
+    linear-gradient(115deg,#09060d 0%,#15101c 48%,#281530 100%);
+  color: #fff9ef;
+}
+.guild-home-hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.28;
+  background-image:
+    linear-gradient(90deg, transparent 49.7%, rgba(233,188,97,.12) 50%, transparent 50.3%),
+    linear-gradient(0deg, transparent 49.7%, rgba(233,188,97,.08) 50%, transparent 50.3%);
+  background-size: 7rem 7rem;
+  mask-image: linear-gradient(90deg, transparent, #000 45%, #000);
+}
+.guild-home-grid {
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(22rem,.92fr);
+  gap:clamp(2rem,6vw,6rem);
+  align-items:center;
+  padding-block:clamp(4.8rem,8vw,7rem);
+}
+.guild-home-copy h1 { max-width: 11ch; margin-bottom:1rem; font-size:clamp(3.3rem,7.2vw,6.9rem); }
+.guild-home-copy h1 em { color: var(--guild-gold-2); font-style:normal; }
+.guild-home-copy .hero-lede { max-width: 42rem; }
+.guild-home-actions { display:flex; flex-wrap:wrap; gap:.75rem; margin:1.5rem 0 0; }
+.guild-home-art { position:relative; min-height:31rem; display:grid; place-items:center; }
+.guild-home-art img { width:min(36rem,100%); filter:drop-shadow(0 35px 48px rgba(0,0,0,.44)); }
+.guild-home-art::after {
+  content:"LIGHT TOWER";
+  position:absolute;
+  bottom:1rem;
+  padding:.48rem .78rem;
+  border:1px solid rgba(233,188,97,.38);
+  border-radius:999px;
+  background:rgba(9,6,13,.72);
+  color:#f5d98f;
+  font-size:.72rem;
+  font-weight:950;
+  letter-spacing:.18em;
+}
+.guild-proof-row { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.3rem; }
+.guild-proof-row span { padding:.34rem .58rem; border:1px solid rgba(233,188,97,.27); border-radius:999px; color:#e8dce9; font-size:.78rem; font-weight:800; }
+
+.home-feature-section { background:linear-gradient(180deg,#f7ead3,#fff9ee); }
+.feature-app-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; }
+.feature-app {
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height:23rem;
+  padding:1.35rem;
+  border:1px solid #c9b58f;
+  border-radius:1rem;
+  background:#fffaf1;
+  box-shadow:0 18px 45px rgba(57,34,38,.09);
+}
+.feature-app::before { content:""; position:absolute; inset:0 0 auto; height:5px; background:linear-gradient(90deg,#6e3a80,var(--guild-gold-2)); }
+.feature-app__sigil { display:grid; width:3.3rem; height:3.3rem; place-items:center; margin-bottom:1rem; border:1px solid #b89555; border-radius:50%; background:#24162c; color:#f2cf7c; font-family:var(--display); font-weight:900; }
+.feature-app h3 { margin:.2rem 0 .55rem; font-size:1.55rem; }
+.feature-app p { color:#5b4f56; }
+.feature-app small { margin-top:auto; padding-top:.85rem; color:#755f68; font-weight:800; }
+.feature-app .button { margin-top:.7rem; width:100%; }
+
+.guild-path-section { background:#120c18; color:#fff8ed; }
+.guild-path-section .section-heading > p { color:#d6cad9; }
+.guild-path-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+.guild-path-card { padding:1.25rem; border:1px solid rgba(233,188,97,.2); border-radius:1rem; background:linear-gradient(155deg,rgba(255,255,255,.065),rgba(255,255,255,.025)); }
+.guild-path-card .path-glyph { margin-bottom:.7rem; }
+.guild-path-card h3 { color:#fff6e8; font-family:var(--display); font-size:1.45rem; }
+.guild-path-card p { color:#d5c9d7; }
+.guild-path-card a { color:#f3cf7c; font-weight:900; }
+
+.tool-feature-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.tool-feature {
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  gap:1rem;
+  align-items:start;
+  min-height:15rem;
+  padding:1.4rem;
+  border:1px solid #c4ad85;
+  border-radius:1rem;
+  background:#fffaf1;
+  box-shadow:0 16px 38px rgba(57,34,38,.08);
+}
+.tool-feature .tool-icon { margin-top:.15rem; }
+.tool-feature h3 { margin:.15rem 0 .45rem; font-family:var(--display); font-size:1.55rem; }
+.tool-feature p { margin:.3rem 0; color:#5a4e55; }
+.tool-feature__actions { display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.9rem; }
+.project-index { display:grid; gap:.65rem; margin-top:1rem; }
+.project-row { display:grid; grid-template-columns:auto 1fr auto; gap:1rem; align-items:center; padding:.9rem 1rem; border:1px solid #cfbea2; border-radius:.8rem; background:rgba(255,250,241,.75); }
+.project-row strong { font-family:var(--display); }
+.project-row p { margin:0; color:#665a61; font-size:.92rem; }
+.project-row .status-chip { white-space:nowrap; }
+.status-chip { display:inline-flex; align-items:center; min-height:1.8rem; padding:.28rem .55rem; border-radius:999px; font-size:.7rem; font-weight:950; letter-spacing:.06em; text-transform:uppercase; }
+.status-chip.live { background:#dcebd8; color:#285c3c; }
+.status-chip.beta { background:#f4e2c6; color:#875009; }
+.status-chip.soon { background:#e9def0; color:#644174; }
+.status-chip.workshop { background:#e7e1dc; color:#675953; }
+
+.vault-showcase { display:grid; grid-template-columns:minmax(18rem,.72fr) minmax(0,1.28fr); gap:2rem; align-items:stretch; }
+.vault-cover {
+  position:relative;
+  overflow:hidden;
+  min-height:31rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:1.5rem;
+  border:1px solid #c49b4d;
+  border-radius:.85rem .85rem 1.3rem .85rem;
+  background:
+    radial-gradient(circle at 70% 18%,rgba(239,191,98,.3),transparent 12rem),
+    linear-gradient(155deg,#150d18,#4b253f 54%,#19111c);
+  color:#fff8e8;
+  box-shadow:18px 22px 45px rgba(48,25,33,.22);
+}
+.vault-cover::before { content:""; position:absolute; inset:.65rem; border:1px solid rgba(241,199,109,.4); border-radius:.55rem; pointer-events:none; }
+.vault-cover__mark { position:absolute; top:1.5rem; right:1.5rem; width:4.2rem; opacity:.9; }
+.vault-cover__kicker { color:#f1c96d; font-size:.72rem; font-weight:950; letter-spacing:.16em; text-transform:uppercase; }
+.vault-cover__title { max-width:8ch; margin:.35rem 0 .65rem; font-size:clamp(2.4rem,5vw,4rem); line-height:.92; }
+.vault-cover p { position:relative; z-index:1; color:#e6d9e4; }
+.vault-cover__spine { position:absolute; left:0; inset-block:0; width:9px; background:linear-gradient(#d9ac55,#71441d,#d9ac55); opacity:.8; }
+
+.learning-progress { display:grid; grid-template-columns:repeat(6,1fr); gap:.55rem; margin:1.25rem 0 0; }
+.learning-progress a { min-height:3.2rem; display:flex; align-items:center; justify-content:center; padding:.55rem; border:1px solid rgba(246,205,119,.24); border-radius:.7rem; background:rgba(255,255,255,.045); color:#f0e5f1; text-align:center; text-decoration:none; font-size:.78rem; font-weight:850; }
+.learning-progress a:hover,.learning-progress a:focus-visible { background:rgba(246,205,119,.13); color:#fff; }
+
+.organizer-modal { width:min(38rem,calc(100% - 2rem)); border:1px solid #b99a64; border-radius:1rem; padding:0; background:#fff9ee; color:#271b22; box-shadow:0 30px 90px rgba(0,0,0,.45); }
+.organizer-modal::backdrop { background:rgba(7,4,10,.72); backdrop-filter:blur(4px); }
+.organizer-modal form { display:grid; gap:.9rem; padding:1.25rem; }
+.organizer-modal label { display:grid; gap:.35rem; font-weight:850; }
+.organizer-modal input,.organizer-modal textarea { width:100%; padding:.72rem; border:1px solid #c9b697; border-radius:.6rem; background:#fff; color:#231820; }
+.organizer-modal__actions { display:flex; justify-content:flex-end; gap:.6rem; flex-wrap:wrap; }
+
+@media (max-width:1050px) {
+  .feature-app-grid { grid-template-columns:repeat(2,1fr); }
+  .learning-progress { grid-template-columns:repeat(3,1fr); }
+}
+@media (max-width:860px) {
+  .guild-home-grid,.vault-showcase { grid-template-columns:1fr; }
+  .guild-home-art { min-height:25rem; }
+  .tool-feature-grid { grid-template-columns:1fr; }
+  .guild-path-grid { grid-template-columns:1fr; }
+}
+@media (max-width:620px) {
+  .feature-app-grid { grid-template-columns:1fr; }
+  .guild-home-actions .button { width:100%; }
+  .guild-home-art { min-height:20rem; }
+  .project-row { grid-template-columns:1fr; gap:.35rem; }
+  .project-row .status-chip { width:max-content; }
+  .tool-feature { grid-template-columns:1fr; }
+  .learning-progress { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:420px) { .learning-progress { grid-template-columns:1fr; } }
