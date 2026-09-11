@@ -1,151 +1,104 @@
-# Light Tower Table Top Guild — Direction
+# Light Tower Table Top Guild — Product Direction
 
-Status: approved working direction saved for continuation.
+Status: approved working direction.
 
 ## Brand
 
 **Light Tower Table Top Guild**
 
-Working promise: **Find your table. Learn the game. Tell your story.**
+Public promise: **Free tools. Table-ready adventures. Learn to play. Find your table.**
 
-Florence, South Carolina becomes the **Founding Chapter**, not the limit of the platform.
+Community line: **Find your table. Learn the game. Tell your story.**
 
-## National Product Model
+Florence, South Carolina is the **Founding Chapter**, not the limit of the platform.
 
-The Guild should be usable anywhere in the United States.
+## Core product rule
 
-### Core structure
+The website is the front door to the entire Light Tower tabletop ecosystem. It should immediately show useful things a player or DM can do, then provide community and table-formation paths without turning the Guild into social media.
 
-- **Home** — asks what the visitor wants to do: Play, Learn, or Run Games.
-- **Learn** — beginner walkthroughs, character-sheet guide, downloadable field guide, sample adventures.
-- **Find a Table** — structured 18+ matching by ZIP code, travel radius, system, schedule, experience, campaign length, accessibility, and table style.
-- **Run a Game** — GM/Keeper onboarding and table creation.
-- **Guild Hall** — real community activity: tables forming, confirmed games, approved GMs, verified venues, active chapters, volunteer opportunities, and Guild resources.
-- **One-Shots / Guild Vault** — complete downloadable adventure packages such as **Right to OwlBear Arms**.
-- **Tools** — Dice Roller, Character Forge, and future first-party tools.
-- **Chapters** — Florence, SC as Founding Chapter; future chapters only where real activity exists.
-- **Safety** — 18+ individual matching, youth-group policy, table standards, reporting.
-- **Support** — visible CTA text: **Support This Page**.
+The homepage should lead with:
 
-## Community Philosophy
+1. strongest live Guild tools;
+2. original adventures / Guild Vault;
+3. beginner learning;
+4. Find a Table;
+5. Guild/community context.
 
-The website **is the Guild**. It should help people reach real tables rather than keep them inside an app.
+Table matching is an important Guild service, not the sole identity of the website.
+
+## Public information architecture
+
+- **Home** — ecosystem overview and strongest entry points.
+- **Learn** — guided beginner walkthroughs and character-sheet education.
+- **Tools** — player/DM app catalog with Live, Beta, Coming Soon, and Workshop status.
+- **Adventures / Guild Vault** — complete original releases plus clearly labeled previews.
+- **Guild** — chapters, organizers, venues, safety, contribution, and community structure.
+- **Find a Table** — structured 18+ matching interest and later table formation.
+- **Youth** — existing youth groups only, with guardian/authorized-adult involvement and manual review.
+
+Public navigation should use job-oriented labels and one primary **Find a Table** action. Clean public routes are preferred over exposed `.html` filenames.
+
+## Visual direction
+
+Light Tower should feel like a modern fantasy guild rather than a generic SaaS dashboard:
+
+- dark plum/night surfaces and parchment reading surfaces;
+- gold and teal accents;
+- distinctive readable fantasy-display typography using safe local/system stacks unless a licensed self-hosted font is intentionally added;
+- the Guild mark plus the d20/open-book illustration as recurring brand anchors;
+- stronger product visual hierarchy and fewer repetitive card grids;
+- screenshots/illustrated product previews when real assets exist;
+- no fake screenshots, ratings, community counts, or placeholder art presented as real output.
+
+Accessibility and legibility take priority over decorative fantasy styling.
+
+## Community philosophy
 
 Do not build:
-- direct messages
-- public chat rooms
-- anonymous posts
-- friend/follower systems
-- swipe mechanics
-- public emails/phone numbers
-- public member search
-- photo-first people discovery
-- adult/minor individual matching
+
+- public member directories;
+- direct stranger messaging;
+- public chat rooms;
+- swipe mechanics;
+- public emails/phone numbers;
+- photo-first people discovery;
+- adult/minor individual matching.
 
 Use structured communication instead:
 
-**Preferences -> compatibility filtering -> proposed table -> structured invitation -> accept/decline -> confirmed game.**
+**Preferences → compatibility filters → proposed table → structured invitation → accept/decline → confirmed game.**
 
-Discord, if used later, should be an optional coordination workspace for approved adult GMs, Keepers, chapter organizers, venue coordinators, and playtesters—not the public community itself.
+The goal is to help people reach real tables rather than keep them inside a social app.
 
-## Age / Youth Boundary
+## Release tiers
 
-- Individual matching: **18+ only**.
-- Under-18 participation: existing youth group only, with parent/guardian consent and manual review.
-- No individual minor enters the adult matching pool.
-- Young DMs may be trained in an appropriate supervised/group setting.
-- The current founder operating rule: willing to train a young DM, but not serve as the regular DM for a youth group.
+Public Guild projects follow:
 
-## National Matching Model
+**Workshop → Coming Soon → Beta → Live**
 
-Primary location input: **ZIP code + preferred travel radius**.
+A public deployment does not automatically qualify a project as released. Status must reflect the project's actual implementation and validation.
 
-Useful matching fields:
-- Player / GM / Keeper / both
-- game system and edition
-- experience level
-- availability
-- one-shot / short arc / campaign
-- play style
-- table size
-- beginner-friendly preference
-- accessibility needs
-- venue preferences
-- travel radius
+## Product standard: no duplication
 
-Hard filters must be evaluated before preference scoring.
+Every concept should have one canonical home:
 
-Public counts must come from real stored records. Never fabricate activity to make an area look busy.
+- Home summarizes and routes.
+- Learn teaches.
+- Tools presents apps.
+- Guild Vault presents adventures.
+- Guild explains community/safety/chapters.
+- Find a Table owns matching intake.
 
-## Local Chapters
+Short summaries and links are encouraged; repeating the same long policy or feature explanation across pages is not.
 
-A chapter is an organized local layer inside the national Guild.
+## Data and trust rules
 
-Example:
-- **Light Tower Table Top Guild — Florence, SC** — Founding Chapter
+- Public community counts must come from real stored data.
+- Preview/test builds must not write into production matching intake.
+- Sensitive organizer/youth/accessibility data stays private.
+- Organizer authentication must not auto-create unknown organizer users.
+- Production changes should pass required quality/security checks before merge.
 
-A chapter may eventually have:
-- verified local venues
-- chapter organizers
-- confirmed events
-- learn-to-play sessions
-- local GMs/Keepers
-- game days
+## Social/discovery strategy
 
-A visitor does **not** need an established chapter to use national matching or learning resources.
-
-## Guild Hall
-
-The Guild Hall should provide community without becoming social media.
-
-Show real structured data such as:
-- tables currently forming
-- confirmed upcoming games
-- number of compatible players seeking games
-- approved GMs / Keepers looking to run
-- beginner interest
-- verified venues
-- active chapters
-- latest Guild Vault adventures
-- Guild tools
-- ways to volunteer or start a chapter
-
-If a count is zero, say so and offer a useful next action rather than inventing activity.
-
-## Social Media Strategy
-
-Social platforms are discovery/distribution channels. The website remains the source of truth.
-
-- **LinkedIn** — venue partnerships, libraries, businesses, community organizers, volunteer GMs, chapter leads, sponsors/partners.
-- **Facebook** — local chapter discovery and event announcements.
-- **Instagram** — adventure art, maps, character cards, visual beginner education.
-- **TikTok / Reels** — short beginner lessons and tabletop discovery.
-- **YouTube** — full tutorials, new-DM training, adventure previews, play examples.
-- **Meetup** — real-world event discovery / chapter feeder.
-- **Warhorn** — organized game days or larger scheduled events if useful.
-- **Reddit** — community participation and discovery.
-- **Discord** — optional organizer/GM workspace, not the public Guild.
-
-Prefer native browser/device sharing over embedded social tracking widgets.
-
-Track referral sources so future effort is driven by real conversion data.
-
-## Current Guild Ecosystem
-
-- **Nothing But A TTRPG Dice Roller** — live utility.
-- **D&D 5e Character Forge** — public preview/release-candidate until its own project is formally promoted.
-- **Right to OwlBear Arms** — first complete Guild Vault adventure package being prepared as a single ZIP.
-- **First Light** — planned flagship Session Zero / beginner-learning adventure.
-
-## Product Rule: No Duplication
-
-Every important concept should have one canonical home.
-
-Homepage summarizes and routes.
-Learn explains learning.
-Guild Hall shows community.
-Guild Vault shows products.
-Safety owns policy.
-Matching owns table formation.
-
-Avoid repeating the same explanations, CTAs, rules, or package contents across multiple sections unless a short link/summary is genuinely necessary.
+Social platforms are discovery channels; the website remains the source of truth. Prefer native links/sharing over embedded trackers. Shared links should have intentional social-preview metadata and branded imagery.
