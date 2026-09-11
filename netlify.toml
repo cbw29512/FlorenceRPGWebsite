@@ -1,5 +1,5 @@
 [build]
-  command = "node scripts/validate-site.mjs && node scripts/validate-organizer.mjs && node scripts/check-organizer-js.mjs && node scripts/build-css.mjs && node scripts/build-meta.mjs && node scripts/validate-site.mjs && node scripts/validate-organizer.mjs"
+  command = "node scripts/validate-site.mjs && node scripts/validate-organizer.mjs && node scripts/check-organizer-js.mjs && node scripts/build-shell.mjs && node scripts/build-css.mjs && node scripts/build-meta.mjs && node scripts/validate-site.mjs && node scripts/validate-organizer.mjs"
   publish = "."
 
 [[headers]]
@@ -10,17 +10,74 @@
     X-Frame-Options = "SAMEORIGIN"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Strict-Transport-Security = "max-age=31536000"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://vtqoxflirpfhnxzzpxfa.supabase.co; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self' https://vtqoxflirpfhnxzzpxfa.supabase.co; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests"
 
-# Netlify already handles long-lived edge caching and deploy invalidation for static assets.
-# Browser copies revalidate because asset filenames are not content-hashed yet.
 [[headers]]
-  for = "/assets/*"
+  for = "/assets/css/dist/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/js/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 [[headers]]
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
     Netlify-CDN-Cache-Control = "public, max-age=0, stale-while-revalidate=86400"
+
+[[redirects]]
+  from = "/learn"
+  to = "/first-adventure.html"
+  status = 200
+[[redirects]]
+  from = "/learn/"
+  to = "/first-adventure.html"
+  status = 200
+[[redirects]]
+  from = "/tools"
+  to = "/tools.html"
+  status = 200
+[[redirects]]
+  from = "/tools/"
+  to = "/tools.html"
+  status = 200
+[[redirects]]
+  from = "/adventures"
+  to = "/one-shots.html"
+  status = 200
+[[redirects]]
+  from = "/adventures/"
+  to = "/one-shots.html"
+  status = 200
+[[redirects]]
+  from = "/guild"
+  to = "/guild-hall.html"
+  status = 200
+[[redirects]]
+  from = "/guild/"
+  to = "/guild-hall.html"
+  status = 200
+[[redirects]]
+  from = "/join"
+  to = "/join.html"
+  status = 200
+[[redirects]]
+  from = "/join/"
+  to = "/join.html"
+  status = 200
+[[redirects]]
+  from = "/character-sheet"
+  to = "/character-sheet-guide.html"
+  status = 200
+[[redirects]]
+  from = "/character-sheet/"
+  to = "/character-sheet-guide.html"
+  status = 200
