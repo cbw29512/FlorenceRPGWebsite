@@ -81,7 +81,8 @@ for (const page of pages) {
 
 const formFiles = {
   'guild-interest': 'join.html',
-  'youth-group-interest': 'youth-groups.html'
+  'youth-group-interest': 'youth-groups.html',
+  'guild-app-request': 'tools.html'
 };
 
 for (const [formName, file] of Object.entries(formFiles)) {
@@ -91,6 +92,9 @@ for (const [formName, file] of Object.entries(formFiles)) {
   if (!formPattern.test(html)) warn(file, `Netlify form not detectable: ${formName}`);
   if (!hiddenPattern.test(html)) warn(file, `missing hidden form-name for ${formName}`);
 }
+
+const home = exists('index.html') ? read('index.html') : '';
+if (!home.includes('href="tools.html#request-app"')) warn('index.html', 'homepage app-request entry point is missing');
 
 const join = exists('join.html') ? read('join.html') : '';
 if (!join.includes('name="accessibility-needs"')) warn('join.html', 'optional accessibility/table-needs field is missing');
@@ -106,12 +110,13 @@ const requiredToolLinks = [
   'https://characterforgerdnd.netlify.app/',
   'https://cbw29512.github.io/monstercardforge/',
   'https://cbw29512.github.io/healingbox/',
-  'https://cbw29512.github.io/D20-ironpit/'
+  'https://cbw29512.github.io/D20-ironpit/',
+  'https://cbw29512.github.io/DNDCards/'
 ];
 for (const toolUrl of requiredToolLinks) {
   if (!tools.includes(`href="${toolUrl}"`)) warn('tools.html', `required public tool link missing: ${toolUrl}`);
 }
-if (!tools.includes('<strong>Also in development:</strong>')) warn('tools.html', 'Workshop development notice is missing');
+if (!tools.includes('Workshop → Coming Soon → Beta → Live')) warn('tools.html', 'tool release path is missing');
 
 const toolCards = [...tools.matchAll(/<article class="tool-card">([\s\S]*?)<\/article>/g)].map((match) => match[0]);
 const requiredLiveCards = [
@@ -126,6 +131,15 @@ for (const [name, url] of requiredLiveCards) {
   }
   if (!card.includes('status-live')) warn('tools.html', `${name} must be labeled live`);
   if (!card.includes(`href="${url}"`)) warn('tools.html', `${name} card is missing its verified public URL`);
+}
+
+const dungeonCardsBeta = toolCards.find((card) => card.includes('<h3>Dungeon Cards</h3>'));
+if (!dungeonCardsBeta) {
+  warn('tools.html', 'Dungeon Cards Beta card is missing');
+} else {
+  if (!dungeonCardsBeta.includes('status-beta">Beta · Public Testing</span>')) warn('tools.html', 'Dungeon Cards must be clearly labeled Beta');
+  if (!dungeonCardsBeta.includes('https://cbw29512.github.io/DNDCards/')) warn('tools.html', 'Dungeon Cards Beta is missing its public test URL');
+  if (!dungeonCardsBeta.includes('<strong>Beta:</strong>')) warn('tools.html', 'Dungeon Cards Beta warning is missing');
 }
 
 const tomeForgeCard = toolCards.find((card) => card.includes('<h3>TomeForge</h3>'));
@@ -153,6 +167,20 @@ for (const [name, releaseCopy] of workshopCards) {
   if (!card.includes('status-planned">In the Workshop</span>')) warn('tools.html', `${name} must be labeled In the Workshop`);
   if (!card.includes(releaseCopy)) warn('tools.html', `${name} Workshop release boundary is missing`);
   if (/<a\b/i.test(card)) warn('tools.html', `${name} must not expose a Guild launch link before release`);
+}
+
+const appRequestForm = tools.match(/<form[^>]+name="guild-app-request"[\s\S]*?<\/form>/i)?.[0] || '';
+if (!appRequestForm) {
+  warn('tools.html', 'Guild app request form is missing');
+} else {
+  for (const field of ['app-idea', 'audience', 'problem', 'must-have', 'frequency', 'existing-tool']) {
+    if (!appRequestForm.includes(`name="${field}"`)) warn('tools.html', `Guild app request field is missing: ${field}`);
+  }
+  if (!/name="app-idea"[^>]+required/i.test(appRequestForm)) warn('tools.html', 'app idea must be required');
+  if (!/name="audience"[^>]+required/i.test(appRequestForm)) warn('tools.html', 'app audience must be required');
+  if (!/name="problem"[^>]+required/i.test(appRequestForm)) warn('tools.html', 'app problem statement must be required');
+  if (!appRequestForm.includes('data-netlify-honeypot="bot-field"')) warn('tools.html', 'Guild app request honeypot is missing');
+  if (!appRequestForm.includes('Send App Request')) warn('tools.html', 'Guild app request submit action is missing');
 }
 
 const supportPages = ['index.html', 'guild-hall.html', 'one-shots.html', 'tools.html'];
@@ -197,4 +225,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${pages.length} pages: accessibility landmarks, internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, community boundaries, live/coming-soon/workshop tool status, ad-free support, learning flow, adventure download integrity, and canonical branding all passed.`);
+console.log(`Validated ${pages.length} pages: accessibility landmarks, internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, community boundaries, live/beta/coming-soon/workshop tool status, Guild app requests, ad-free support, learning flow, adventure download integrity, and canonical branding all passed.`);
