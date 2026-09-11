@@ -33,6 +33,41 @@
     Cache-Control = "public, max-age=0, must-revalidate"
     Netlify-CDN-Cache-Control = "public, max-age=0, stale-while-revalidate=86400"
 
+# Legacy implementation URLs redirect to the public route names.
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/first-adventure.html"
+  to = "/learn/"
+  status = 301
+[[redirects]]
+  from = "/character-sheet-guide.html"
+  to = "/character-sheet/"
+  status = 301
+[[redirects]]
+  from = "/tools.html"
+  to = "/tools/"
+  status = 301
+[[redirects]]
+  from = "/one-shots.html"
+  to = "/adventures/"
+  status = 301
+[[redirects]]
+  from = "/guild-hall.html"
+  to = "/guild/"
+  status = 301
+[[redirects]]
+  from = "/join.html"
+  to = "/join/"
+  status = 301
+[[redirects]]
+  from = "/youth-groups.html"
+  to = "/youth-groups/"
+  status = 301
+
+# Clean routes rewrite to the static source files without changing the browser URL.
 [[redirects]]
   from = "/learn"
   to = "/first-adventure.html"
