@@ -24,6 +24,10 @@ jobs:
         run: node scripts/validate-organizer.mjs
       - name: Check organizer JavaScript
         run: node scripts/check-organizer-js.mjs
+      - name: Build shared public shell
+        run: node scripts/build-shell.mjs
+      - name: Build guided site experience
+        run: node scripts/build-experience.mjs
       - name: Build production CSS
         run: node scripts/build-css.mjs
       - name: Build deployment metadata
