@@ -21,6 +21,17 @@ const activeByPage = {
   'join.html': 'find-table'
 };
 
+const cleanRoutes = [
+  ['index.html', '/'],
+  ['first-adventure.html', '/learn'],
+  ['character-sheet-guide.html', '/character-sheet'],
+  ['guild-hall.html', '/guild'],
+  ['one-shots.html', '/adventures'],
+  ['tools.html', '/tools'],
+  ['join.html', '/find-table'],
+  ['youth-groups.html', '/youth']
+];
+
 const navItem = (key, href, label, active) => `<a href="${href}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`;
 
 const headerFor = (page) => {
@@ -34,6 +45,16 @@ const headerFor = (page) => {
 
 const footer = `<footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Light Tower Table Top Guild</strong><span>Free tools · Original adventures · Real tables</span></div></div><div class="page-footer-nav"><a href="/learn">Learn</a><a href="/tools">Tools</a><a href="/adventures">Adventures</a><a href="/guild">Guild</a><a href="/find-table">Find a Table</a></div><p>© <span data-year>2026</span> Light Tower Table Top Guild.</p></div></footer>`;
 
+const cleanInternalLinks = (html) => {
+  let next = html;
+  for (const [file, route] of cleanRoutes) {
+    const escaped = file.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    next = next.replace(new RegExp(`href="${escaped}(#[^"]*)?"`, 'g'), (_match, hash = '') => `href="${route}${hash}"`);
+    next = next.replace(new RegExp(`action="/${escaped}"`, 'g'), `action="${route}"`);
+  }
+  return next;
+};
+
 for (const page of publicPages) {
   if (!fs.existsSync(page)) continue;
   let html = fs.readFileSync(page, 'utf8');
@@ -43,7 +64,8 @@ for (const page of publicPages) {
   if (/<footer class="site-footer">[\s\S]*?<\/footer>/i.test(html)) {
     html = html.replace(/<footer class="site-footer">[\s\S]*?<\/footer>/i, footer);
   }
+  html = cleanInternalLinks(html);
   fs.writeFileSync(page, html, 'utf8');
 }
 
-console.log(`Built shared public shell into ${publicPages.length} pages.`);
+console.log(`Built shared public shell and clean internal routes into ${publicPages.length} pages.`);
