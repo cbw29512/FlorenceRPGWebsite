@@ -4,9 +4,9 @@ import crypto from 'node:crypto';
 
 const bundles = {
   home: ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/home-paths.css','assets/css/fantasy-theme.css'],
-  adventure: ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/fantasy-theme.css','assets/css/first-adventure.css','assets/css/first-adventure-rules.css'],
+  adventure: ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/fantasy-theme.css','assets/css/first-adventure.css','assets/css/first-adventure-rules.css','assets/css/learn-modern.css'],
   'character-sheet': ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/fantasy-theme.css','assets/css/character-sheet-guide.css'],
-  'one-shots': ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/fantasy-theme.css','assets/css/one-shots.css'],
+  'one-shots': ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/fantasy-theme.css','assets/css/one-shots.css','assets/css/vault-modern.css'],
   guild: ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/fantasy-theme.css','assets/css/guild-pages.css'],
   form: ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/home-paths.css','assets/css/fantasy-theme.css','assets/css/guild-pages.css'],
   organizer: ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/fantasy-theme.css','assets/css/guild-pages.css','assets/css/organizer.css'],
