@@ -157,6 +157,8 @@ The public gate covers all production pages configured in `lighthouserc.js`, and
 
 This remains a static front end. Netlify publishes the repository root using `netlify.toml`; Supabase provides the private matching intake/backend while Netlify handles the standalone app-request form.
 
+**Netlify Forms must be enabled before the production build that is expected to register the forms.** Enabling Forms after a deploy requires a new production build so Netlify can parse the HTML and register the form definitions.
+
 After deployment:
 
 1. Confirm adult and youth matching forms still submit successfully with JavaScript enabled.
