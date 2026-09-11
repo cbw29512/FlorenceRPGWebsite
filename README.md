@@ -12,7 +12,7 @@ The site is intentionally divided by job so it does not become a repetitive soci
 - **Learn D&D** — teaches core D&D play through a beginner walkthrough.
 - **Guild Hall** — explains community structure, chapters, matching, venues, safety, and ways to help.
 - **One-Shots / Guild Vault** — shows complete original adventure packages and exactly what each package contains.
-- **Tools / Tool Bench** — serves as the central Light Tower hub for public D&D/tabletop projects whose own release status supports public use.
+- **Tools / Tool Bench** — serves as the central Light Tower hub for public D&D/tabletop projects and clearly separates released, near-release, and workshop projects.
 
 Individual matching is **18+**. Youth participation is handled separately as an existing group with parent/guardian consent and manual review.
 
@@ -49,17 +49,27 @@ The first package is **Right to OwlBear Arms v1.1**. The package standard is one
 
 A public download link should only be enabled after the exact binary ZIP has been attached to the production host. The site must not point at a placeholder or incomplete package.
 
-## Guild tools
+## Guild tools and release tiers
 
-`tools.html` is the central public directory for Light Tower-built tabletop projects and uses explicit release labels:
+`tools.html` is the central public directory for Light Tower-built tabletop projects. Every listed project must have an explicit release tier:
+
+- **Live** — released for regular public use and allowed to expose a launch link.
+- **Coming Soon** — approaching a Guild release but not yet allowed to expose a launch link.
+- **In the Workshop** — a real active project with a working foundation, but important capability, validation, or release certification is still incomplete; no Guild launch link is exposed.
+
+Current project inventory:
 
 - **Nothing But A TTRPG Dice Roller** — Live production tool: https://nothingbutattrpgdiceroller.netlify.app/
 - **Character Forge** — Live production tool: https://characterforgerdnd.netlify.app/
 - **DM Forge** — Live DM toolkit: https://cbw29512.github.io/monstercardforge/
 - **Cleric in a Box** — Live table companion: https://cbw29512.github.io/healingbox/
-- **TomeForge** — Coming Soon on the Guild Tool Bench: free, offline/local-first Player and DM digital tomes with no account required.
+- **TomeForge** — Coming Soon: free, offline/local-first Player and DM digital tomes with no account required.
+- **The Living Table** — In the Workshop: live multiplayer and the seven-slot card board exist, while exact combat persistence, broader rules certification, homebrew builders, accessibility review, and release hardening remain incomplete.
+- **DungeonMaps** — In the Workshop: Node/SQLite campaign state, API, and WebSocket foundations exist, while the battle-map canvas, tokens, fog of war, DM/player roles, state broadcasting, upload, and map-resume workflow remain incomplete.
 - **The Iron Pit** — remains governed by its own project status and is intentionally excluded from this optimization pass.
 - **Dungeon Cards** — remains off the public finished-tool list until its release/status surface is strong enough to justify promotion.
+
+A project moves **Workshop → Coming Soon → Live** only when its own status and validation support that promotion. A public deployment by itself is not proof that a project is release-ready.
 
 Using a Guild tool does not imply Guild matching data is shared with that separate project. Standalone Guild projects should provide a clear return path to the Light Tower hub as they are brought under the shared brand.
 

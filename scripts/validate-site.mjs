@@ -111,7 +111,7 @@ const requiredToolLinks = [
 for (const toolUrl of requiredToolLinks) {
   if (!tools.includes(`href="${toolUrl}"`)) warn('tools.html', `required public tool link missing: ${toolUrl}`);
 }
-if (!tools.includes('<strong>Coming soon:</strong>')) warn('tools.html', 'future-tool Coming Soon notice is missing');
+if (!tools.includes('<strong>Also in development:</strong>')) warn('tools.html', 'Workshop development notice is missing');
 
 const toolCards = [...tools.matchAll(/<article class="tool-card">([\s\S]*?)<\/article>/g)].map((match) => match[0]);
 const requiredLiveCards = [
@@ -138,6 +138,21 @@ if (!tomeForgeCard) {
   }
   if (/<a\b/i.test(tomeForgeCard)) warn('tools.html', 'TomeForge must not expose a launch link before Guild release');
   if (!tomeForgeCard.includes('No launch link yet')) warn('tools.html', 'TomeForge pre-release boundary is missing');
+}
+
+const workshopCards = [
+  ['The Living Table', 'Prototype milestone · No Guild launch link yet'],
+  ['DungeonMaps', 'Foundation milestone · No Guild launch link yet']
+];
+for (const [name, releaseCopy] of workshopCards) {
+  const card = toolCards.find((candidate) => candidate.includes(`<h3>${name}</h3>`));
+  if (!card) {
+    warn('tools.html', `${name} Workshop card is missing`);
+    continue;
+  }
+  if (!card.includes('status-planned">In the Workshop</span>')) warn('tools.html', `${name} must be labeled In the Workshop`);
+  if (!card.includes(releaseCopy)) warn('tools.html', `${name} Workshop release boundary is missing`);
+  if (/<a\b/i.test(card)) warn('tools.html', `${name} must not expose a Guild launch link before release`);
 }
 
 const supportPages = ['index.html', 'guild-hall.html', 'one-shots.html', 'tools.html'];
@@ -182,4 +197,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${pages.length} pages: accessibility landmarks, internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, community boundaries, public tool links, ad-free support, learning flow, adventure download integrity, and canonical branding all passed.`);
+console.log(`Validated ${pages.length} pages: accessibility landmarks, internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, community boundaries, live/coming-soon/workshop tool status, ad-free support, learning flow, adventure download integrity, and canonical branding all passed.`);
