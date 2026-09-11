@@ -49,8 +49,8 @@ const cleanInternalLinks = (html) => {
   let next = html;
   for (const [file, route] of cleanRoutes) {
     const escaped = file.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    next = next.replace(new RegExp(`href="${escaped}(#[^"]*)?"`, 'g'), (_match, hash = '') => `href="${route}${hash}"`);
-    next = next.replace(new RegExp(`action="/${escaped}"`, 'g'), `action="${route}"`);
+    next = next.replace(new RegExp(`href="${escaped}((?:[?#][^"]*)?)"`, 'g'), (_match, suffix = '') => `href="${route}${suffix}"`);
+    next = next.replace(new RegExp(`action="/${escaped}((?:[?#][^"]*)?)"`, 'g'), (_match, suffix = '') => `action="${route}${suffix}"`);
   }
   return next;
 };
