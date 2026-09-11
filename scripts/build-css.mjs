@@ -10,7 +10,7 @@ const bundles = {
   guild: ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/fantasy-theme.css','assets/css/guild-pages.css'],
   form: ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/home-paths.css','assets/css/fantasy-theme.css','assets/css/guild-pages.css'],
   organizer: ['assets/css/base.css','assets/css/components.css','assets/css/responsive.css','assets/css/fantasy-theme.css','assets/css/guild-pages.css','assets/css/organizer.css'],
-  core: ['assets/css/base.css','assets/css/components.css','assets/css/fantasy-theme.css']
+  core: ['assets/css/base.css','assets/css/components.css','assets/css/fantasy-theme.css','assets/css/utility-pages.css']
 };
 
 const pageBundleNames = {
