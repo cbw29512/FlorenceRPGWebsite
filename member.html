@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Member Portal | Light Tower Table Top Guild</title>
+  <meta name="description" content="Private Light Tower Table Top Guild member portal for matching preferences, availability, table invitations, and confirmed games.">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#130d18">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/base.css"><link rel="stylesheet" href="assets/css/components.css"><link rel="stylesheet" href="assets/css/responsive.css"><link rel="stylesheet" href="assets/css/fantasy-theme.css"><link rel="stylesheet" href="assets/css/guild-pages.css"><link rel="stylesheet" href="assets/css/member.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="index.html" aria-label="Light Tower Table Top Guild home"><img src="assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>Private member portal</small></span></a><nav class="site-nav" aria-label="Member navigation"><a href="guild-hall.html">Guild Hall</a><a href="index.html">Public site</a></nav></div></header>
+<main id="main">
+  <section class="page-hero"><div class="container"><p class="eyebrow">Approved adult members</p><h1>Your <em>Guild Table</em></h1><p>Keep your matching preferences and availability current, answer table invitations, and view private details for games you have joined. Your contact information is never exposed as a public member profile.</p></div></section>
+  <section class="section parchment-section"><div class="container member-shell">
+    <div class="member-panel member-login" data-member-login><p class="eyebrow dark">Secure access</p><h2>Sign in with your approved Guild email</h2><p>Member sign-in does not create a new account. Your email must already have been approved through the Guild intake process.</p><form data-member-login-form><label>Email<input name="email" type="email" autocomplete="email" required></label><button class="button button-primary" type="submit">Send secure sign-in link</button></form></div>
+    <p class="member-status" data-member-status role="status" aria-live="polite"></p>
+    <div class="member-hidden" data-member-app>
+      <section class="member-panel"><div class="member-toolbar"><div><p class="eyebrow dark">Membership</p><h2>Your matching status</h2></div><button class="button button-ghost" type="button" data-member-signout>Sign out</button></div><div class="member-grid" data-member-kpis></div></section>
+      <section class="member-panel"><p class="eyebrow dark">Matching profile</p><h2>What kind of table fits you?</h2><p class="member-private-note">Exact ZIP, travel radius, and accessibility notes are private organizing data. Other members do not get a directory of this information.</p>
+        <form class="member-settings" data-member-settings>
+          <label>Preferred name<input name="preferred-name" maxlength="80" required></label><label>Timezone<input name="timezone" maxlength="80" placeholder="America/New_York" required></label>
+          <label>U.S. ZIP code<input name="postal-code" pattern="[0-9]{5}(-[0-9]{4})?" required></label><label>Travel radius<select name="travel-radius"><option value="5">5 miles</option><option value="10">10 miles</option><option value="25">25 miles</option><option value="50">50 miles</option><option value="75">75 miles</option><option value="100">100 miles</option></select></label>
+          <fieldset class="wide"><legend>Active game systems</legend><div class="check-row"><label><input type="checkbox" name="system" value="D&D"> Dungeons &amp; Dragons</label><label><input type="checkbox" name="system" value="Call of Cthulhu"> Call of Cthulhu</label><label><input type="checkbox" name="other-interest" value="yes"> Other TTRPG interest only</label></div></fieldset>
+          <fieldset class="wide"><legend>How I participate</legend><div class="check-row"><label><input type="checkbox" name="role" value="player"> Player</label><label><input type="checkbox" name="role" value="gm"> DM / Keeper / GM</label></div></fieldset>
+          <label>Experience<input name="experience" maxlength="120" required></label><label>Preferred session length<select name="session-length"><option value="120">2 hours</option><option value="180">3 hours</option><option value="240">4 hours</option><option value="300">5 hours</option></select></label>
+          <label>Minimum table size<input name="group-min" type="number" min="2" max="12" required></label><label>Maximum table size<input name="group-max" type="number" min="2" max="12" required></label>
+          <fieldset class="wide"><legend>Venue modes</legend><div class="check-row"><label><input type="checkbox" name="venue" value="in_person"> In person</label><label><input type="checkbox" name="venue" value="online"> Online</label><label><input type="checkbox" name="venue" value="hybrid"> Hybrid</label></div></fieldset>
+          <label>Campaign commitment<input name="campaign-commitment" maxlength="120" placeholder="One-shot, short adventure, campaign"></label><label class="check-row"><input type="checkbox" name="beginner-friendly"> Beginner-friendly tables are welcome</label>
+          <label class="wide">Accessibility or table needs <span aria-hidden="true">(optional)</span><textarea name="accessibility-needs" maxlength="1000" rows="3" placeholder="Share only what you want organizers to know."></textarea></label>
+          <div class="wide"><button class="button button-primary" type="submit">Save matching settings</button></div>
+        </form>
+      </section>
+      <section class="member-panel"><p class="eyebrow dark">Availability</p><h2>When can you play?</h2><form class="availability-form" data-availability-form><label>Day<select name="day-of-week"><option value="0">Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option></select></label><label>Start<input name="start-time" type="time" required></label><label>End<input name="end-time" type="time" required></label><label>Mode<select name="venue-mode"><option value="in_person">In person</option><option value="online">Online</option><option value="hybrid">Hybrid</option></select></label><button class="button button-ghost" type="submit">Add window</button></form><div class="availability-list" data-availability-list></div><div class="member-actions"><button class="button button-primary" type="button" data-action="save-availability">Save availability</button></div></section>
+      <section class="member-panel"><p class="eyebrow dark">Invitations</p><h2>Tables waiting on you</h2><div class="member-list" data-invitation-list></div></section>
+      <section class="member-panel"><p class="eyebrow dark">Confirmed games</p><h2>Your scheduled tables</h2><div class="member-list" data-game-list></div></section>
+    </div>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Light Tower Table Top Guild</strong><span>Private member portal.</span></div></div><p>© <span data-year>2026</span> Light Tower Table Top Guild.</p></div></footer>
+<script src="assets/js/site.js" defer></script><script src="assets/js/member-auth.js" defer></script><script src="assets/js/member-api.js" defer></script><script src="assets/js/member-render.js" defer></script><script src="assets/js/member-console.js" defer></script>
+</body>
+</html>

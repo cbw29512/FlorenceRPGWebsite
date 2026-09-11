@@ -1,5 +1,5 @@
 [build]
-  command = "node scripts/validate-site.mjs && node scripts/validate-organizer.mjs && node scripts/check-organizer-js.mjs && node scripts/build-css.mjs && node scripts/build-meta.mjs && node scripts/validate-site.mjs && node scripts/validate-organizer.mjs"
+  command = "node scripts/validate-site.mjs && node scripts/validate-organizer.mjs && node scripts/validate-member.mjs && node scripts/check-organizer-js.mjs && node scripts/check-member-js.mjs && node scripts/build-css.mjs && node scripts/build-meta.mjs && node scripts/validate-site.mjs && node scripts/validate-organizer.mjs && node scripts/validate-member.mjs"
   publish = "."
 
 [[headers]]
