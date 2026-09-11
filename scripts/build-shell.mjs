@@ -19,7 +19,7 @@ const routeReplacements = [
   [/href="index\.html"/g,'href="/"'],[/href="first-adventure\.html"/g,'href="/learn/"'],[/href="guild-hall\.html"/g,'href="/guild/"'],[/href="one-shots\.html"/g,'href="/adventures/"'],[/href="tools\.html"/g,'href="/tools/"'],[/href="join\.html"/g,'href="/join/"'],[/href="character-sheet-guide\.html"/g,'href="/character-sheet/"']
 ];
 
-const learningProgress = `<nav class="learning-progress" aria-label="Beginner learning path"><a href="#party">1 · Choose a hero</a><a href="#rules">2 · Learn the core loop</a><a href="#adventure">3 · Play the story</a><a href="#combat-lab">4 · Run combat</a><a href="/character-sheet/">5 · Read the sheet</a><a href="/tools/">6 · Build your own</a></nav>`;
+const learningProgress = `<div class="container"><nav class="learning-progress" aria-label="Beginner learning path"><a href="#party">1 · Choose a hero</a><a href="#rules">2 · Learn the core loop</a><a href="#adventure">3 · Play the story</a><a href="#combat-lab-title">4 · Run combat</a><a href="/character-sheet/">5 · Read the sheet</a><a href="https://characterforgerdnd.netlify.app/" target="_blank" rel="noopener noreferrer">6 · Build your own</a></nav></div>`;
 
 for (const file of publicPages) {
   if (!fs.existsSync(file)) continue;
