@@ -12,7 +12,7 @@ The site is intentionally divided by job so it does not become a repetitive soci
 - **Learn D&D** — teaches core D&D play through a beginner walkthrough.
 - **Guild Hall** — explains community structure, chapters, matching, venues, safety, and ways to help.
 - **One-Shots / Guild Vault** — shows complete original adventure packages and exactly what each package contains.
-- **Tools / Tool Bench** — promotes only projects whose own release status supports public use.
+- **Tools / Tool Bench** — serves as the central Light Tower hub for public D&D/tabletop projects whose own release status supports public use.
 
 Individual matching is **18+**. Youth participation is handled separately as an existing group with parent/guardian consent and manual review.
 
@@ -51,15 +51,17 @@ A public download link should only be enabled after the exact binary ZIP has bee
 
 ## Guild tools
 
-`tools.html` uses explicit release labels:
+`tools.html` is the central public directory for Light Tower-built tabletop projects and uses explicit release labels:
 
 - **Nothing But A TTRPG Dice Roller** — Live production tool: https://nothingbutattrpgdiceroller.netlify.app/
 - **Character Forge** — Live production tool: https://characterforgerdnd.netlify.app/
+- **DM Forge** — Live DM toolkit: https://cbw29512.github.io/monstercardforge/
+- **Cleric in a Box** — Live table companion: https://cbw29512.github.io/healingbox/
 - **TomeForge** — Coming Soon on the Guild Tool Bench: free, offline/local-first Player and DM digital tomes with no account required.
 - **The Iron Pit** — remains governed by its own project status and is intentionally excluded from this optimization pass.
 - **Dungeon Cards** — remains off the public finished-tool list until its release/status surface is strong enough to justify promotion.
 
-Using a Guild tool does not imply Guild matching data is shared with that separate project.
+Using a Guild tool does not imply Guild matching data is shared with that separate project. Standalone Guild projects should provide a clear return path to the Light Tower hub as they are brought under the shared brand.
 
 ## Community forms and private intake
 

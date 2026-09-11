@@ -104,6 +104,8 @@ const tools = exists('tools.html') ? read('tools.html') : '';
 const requiredToolLinks = [
   'https://nothingbutattrpgdiceroller.netlify.app/',
   'https://characterforgerdnd.netlify.app/',
+  'https://cbw29512.github.io/monstercardforge/',
+  'https://cbw29512.github.io/healingbox/',
   'https://cbw29512.github.io/D20-ironpit/'
 ];
 for (const toolUrl of requiredToolLinks) {
@@ -112,6 +114,20 @@ for (const toolUrl of requiredToolLinks) {
 if (!tools.includes('<strong>Coming soon:</strong>')) warn('tools.html', 'future-tool Coming Soon notice is missing');
 
 const toolCards = [...tools.matchAll(/<article class="tool-card">([\s\S]*?)<\/article>/g)].map((match) => match[0]);
+const requiredLiveCards = [
+  ['DM Forge', 'https://cbw29512.github.io/monstercardforge/'],
+  ['Cleric in a Box', 'https://cbw29512.github.io/healingbox/']
+];
+for (const [name, url] of requiredLiveCards) {
+  const card = toolCards.find((candidate) => candidate.includes(`<h3>${name}</h3>`));
+  if (!card) {
+    warn('tools.html', `${name} live tool card is missing`);
+    continue;
+  }
+  if (!card.includes('status-live')) warn('tools.html', `${name} must be labeled live`);
+  if (!card.includes(`href="${url}"`)) warn('tools.html', `${name} card is missing its verified public URL`);
+}
+
 const tomeForgeCard = toolCards.find((card) => card.includes('<h3>TomeForge</h3>'));
 if (!tomeForgeCard) {
   warn('tools.html', 'TomeForge Coming Soon card is missing');
