@@ -74,6 +74,14 @@
   to = "/join.html"
   status = 200
 [[redirects]]
+  from = "/youth-groups"
+  to = "/youth-groups.html"
+  status = 200
+[[redirects]]
+  from = "/youth-groups/"
+  to = "/youth-groups.html"
+  status = 200
+[[redirects]]
   from = "/character-sheet"
   to = "/character-sheet-guide.html"
   status = 200
