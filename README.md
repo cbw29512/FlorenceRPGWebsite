@@ -1,173 +1,112 @@
 # Light Tower Table Top Guild
 
-A responsive, accessibility-focused tabletop role-playing community platform designed for use across the United States, with Florence, South Carolina preserved as the founding chapter.
+Light Tower is the public hub for a growing tabletop ecosystem: free D&D tools, original adventures, beginner learning resources, Dungeon Master support, and safe real-world table formation. Florence, South Carolina remains the founding chapter; the public platform is designed for use across the United States.
 
-**Working promise:** Find your table. Learn the game. Tell your story.
+**Public promise:** Free tools. Table-ready adventures. Learn to play. Find your table.
 
-## Product direction
+## Product architecture
 
-The site is intentionally divided by job so it does not become a repetitive social network:
+The website is the Guild front door rather than a social network or a single-purpose matching page.
 
-- **Home** — asks what the visitor wants to do: Play, Learn, or Run Games.
-- **Learn D&D** — teaches core D&D play through a beginner walkthrough.
-- **Guild Hall** — explains community structure, chapters, matching, venues, safety, and ways to help.
-- **One-Shots / Guild Vault** — shows complete original adventure packages and exactly what each package contains.
-- **Tools / Tool Bench** — serves as the central Light Tower hub for public D&D/tabletop projects, clearly separates release tiers, and accepts private requests for specific future Guild apps.
+- **Home (`/`)** — introduces the Light Tower ecosystem, features the strongest live projects, and routes visitors to Tools, Adventures, Learn, Guild, or Find a Table.
+- **Learn (`/learn`)** — a guided beginner D&D walkthrough with a complete sample adventure, interactive combat sequence, and annotated character-sheet path.
+- **Tools (`/tools`)** — the public app catalog for live, Beta, Coming Soon, and Workshop projects, plus private app requests.
+- **Adventures (`/adventures`)** — the Guild Vault for complete original releases and clearly separated development previews.
+- **Guild (`/guild`)** — community structure, chapters, venue verification, safety, GM support, and ways to contribute.
+- **Find a Table (`/find-table`)** — structured 18+ interest and matching intake. This is a Guild service, not the entire public identity.
+- **Youth (`/youth`)** — separate guardian-led path for existing youth groups. Minors never enter adult individual matching.
 
-Individual matching is **18+**. Youth participation is handled separately as an existing group with parent/guardian consent and manual review.
+The platform deliberately avoids public member directories, stranger DMs, swipe mechanics, public contact details, adult/minor individual matching, and fabricated community activity.
 
-The matching product is deliberately **not** a messaging app: no public member directory, direct stranger messaging, swipe mechanics, public contact details, or adult/minor individual matching.
+## Visual and UX system
 
-## National matching model
+The public design uses a shared fantasy-guild system: dark plum/night surfaces, parchment content areas, gold accents, the Light Tower mark, an illustrated d20/open-book hero, and role-focused project presentation. Production pages receive one shared navigation/footer from `scripts/build-shell.mjs` so page shells cannot drift independently.
 
-The public interest form collects the minimum information needed to measure real demand and later form compatible tables:
+The production build also:
 
-- name or nickname
-- email
-- U.S. ZIP code
-- preferred travel radius
-- player and/or GM/Keeper role
-- D&D, Call of Cthulhu, and/or other TTRPG interest
-- experience level
-- preferred game format
-- desired next step
-- 18+ confirmation and email consent
+- converts internal navigation to clean public routes;
+- adds the guided Learn progress path;
+- fixes targeted cross-project handoffs such as Character Forge;
+- emits content-hashed external CSS bundles for browser caching;
+- generates canonical clean URLs, social-preview metadata, sitemap, and robots policy;
+- marks preview deploys `noindex` and identifies their environment in page metadata.
 
-Matching applies hard compatibility filters before any preference scoring. Public counts must come from real stored records rather than fabricated launch numbers.
+## Project release tiers
 
-## D&D learning path
+Every public Guild project has an explicit status:
 
-`first-adventure.html` teaches a new player what a complete D&D one-shot looks like while introducing rules in context. The walkthrough covers pregenerated characters, roleplay, ability checks, DCs, advantage/disadvantage, saving throws, initiative, attacks, Armor Class, damage, hit points, spells, death saves, resting, rewards, and milestone advancement.
+- **Live** — released for regular public use.
+- **Beta** — usable public build; workflows or presentation may still change.
+- **Coming Soon** — approaching release but not yet given a Guild launch link.
+- **In the Workshop** — active project with important implementation or certification still incomplete.
 
-The next planned flagship beginner product is **First Light**, a Session Zero adventure designed to teach new players and new DMs while remaining useful as a campaign opener for experienced DMs.
+Normal promotion path: **Workshop → Coming Soon → Beta → Live**. A public deployment alone is never proof that a project is finished.
+
+Current catalog includes live Character Forge, DM Forge, Nothing But A TTRPG Dice Roller, Cleric in a Box, The Iron Pit, and Guild Vault content; Dungeon Cards is Beta; TomeForge is Coming Soon; The Living Table, DungeonMaps, D&D Language Translator, and Tabletop Scribe are Workshop projects.
 
 ## Guild Vault
 
-`one-shots.html` is the product-facing adventure page.
+Released adventures follow a complete-package standard. The first release is **Right to OwlBear Arms v1.1**, hosted directly on the Guild site as one verified ZIP with clearly separated player-safe and DM-only material. The exact binary package is protected by size and SHA-256 checks in `scripts/validate-site.mjs`.
 
-The first package is **Right to OwlBear Arms v1.1**. The package standard is one complete ZIP with clearly separated player-safe and DM-only assets. The current v1.1 package contains exactly 13 files, including the revised 29-page adventure with New DM Fast Start guidance and an expanded DM Cheat Sheet.
+**Demon's Wrath** is a development preview and remains Coming Soon until the complete campaign package is reviewed as one Guild-ready release.
 
-A public download link should only be enabled after the exact binary ZIP has been attached to the production host. The site must not point at a placeholder or incomplete package.
+## Public forms and data boundaries
 
-## Guild tools and release tiers
+Three public Netlify form definitions exist:
 
-`tools.html` is the central public directory for Light Tower-built tabletop projects. Every listed project must have an explicit release tier:
+- `guild-interest` — adult national interest pool;
+- `youth-group-interest` — existing youth-group inquiry;
+- `guild-app-request` — private product-planning input.
 
-- **Live** — released for regular public use and allowed to expose a launch link.
-- **Beta** — has a tested public build that Guild members can use now, but features, data, workflow, or presentation may still change; the public card must say it is Beta.
-- **Coming Soon** — approaching a Guild release but not yet allowed to expose a launch link.
-- **In the Workshop** — a real active project with a working foundation, but important capability, validation, or release certification is still incomplete; no Guild launch link is exposed.
+JavaScript-enabled adult/youth intake uses dedicated Supabase Edge Functions. Browser code never contains a service-role credential. Accessibility and youth-sensitive information remain private organizer data.
 
-The normal promotion path is **Workshop → Coming Soon → Beta → Live**. A public deployment by itself is not proof that a project is release-ready.
+Preview builds are explicitly marked by the build pipeline, and `assets/js/guild-intake.js` refuses to write preview/test submissions into production Supabase. Real matching intake only runs from a production build.
 
-Current project inventory:
+The private organizer console is `noindex,nofollow`, absent from public navigation, bearer-token protected, and uses session-scoped credentials. Magic-link requests do not auto-create unknown organizer users. Operational input uses labeled modal dialogs rather than browser `prompt()` calls.
 
-- **Nothing But A TTRPG Dice Roller** — Live production tool: https://nothingbutattrpgdiceroller.netlify.app/
-- **Character Forge** — Live production tool: https://characterforgerdnd.netlify.app/
-- **DM Forge** — Live DM toolkit: https://cbw29512.github.io/monstercardforge/
-- **Cleric in a Box** — Live table companion: https://cbw29512.github.io/healingbox/
-- **Dungeon Cards** — Beta public test: https://cbw29512.github.io/DNDCards/ — its repository has a tested production build and successful public Pages deployment, while the broader platform remains actively evolving.
-- **TomeForge** — Coming Soon: free, offline/local-first Player and DM digital tomes with no account required.
-- **The Living Table** — In the Workshop: live multiplayer and the seven-slot card board exist, while exact combat persistence, broader rules certification, homebrew builders, accessibility review, and release hardening remain incomplete.
-- **DungeonMaps** — In the Workshop: Node/SQLite campaign state, API, and WebSocket foundations exist, while the battle-map canvas, tokens, fog of war, DM/player roles, state broadcasting, upload, and map-resume workflow remain incomplete.
-- **The Iron Pit** — remains governed by its own project status and is intentionally excluded from this optimization pass.
+## Build pipeline
 
-Using a Guild tool does not imply Guild matching data is shared with that separate project. Standalone Guild projects should provide a clear return path to the Light Tower hub as they are brought under the shared brand.
-
-## Request a Guild app
-
-The Tool Bench includes a public `guild-app-request` Netlify form so players, DMs, and organizers can request a specific future tool without creating an account or a public post.
-
-The request asks for:
-
-- the app or tool idea
-- who needs it
-- the table problem it should solve
-- one optional must-have feature
-- expected use frequency
-- whether an existing Guild tool should be improved instead
-- optional name and optional follow-up email
-
-The form is private planning input. Submitting an idea does not guarantee implementation, but repeated requests can inform what moves into the Workshop next. It uses a honeypot field and the same noindex confirmation page as the other public forms.
-
-## Community forms and private intake
-
-JavaScript-enabled matching submissions use dedicated Supabase Edge Functions and service-role-only database RPCs:
-
-- `guild-interest` — adult national interest pool → `guild-interest` Edge Function
-- `youth-group-interest` — existing youth-group inquiry → `youth-group-interest` Edge Function
-
-The browser never receives a service-role key and cannot query the private intake tables. Adult accessibility information is stored separately from the general adult submission. Youth group data uses its own tables and Edge Function; optional venue/accessibility information is also stored separately. Youth inquiries never enter adult automatic matching.
-
-The existing Netlify form definitions remain as a no-JavaScript fallback for the adult/youth intake forms. The separate `guild-app-request` form is intentionally a simple Netlify planning form rather than part of the matching database. All public forms retain honeypot protection. `thanks.html` is the shared post-submission confirmation page and is marked `noindex`.
-
-## Matching backend boundaries
-
-The Supabase backend separates three layers:
-
-1. **Interest intake** — private, non-public submissions used to measure demand and begin organizer follow-up.
-2. **Authenticated matching records** — member interests, matching preferences, availability, proposals, invitations, and confirmed games protected by Row Level Security.
-3. **Sensitive organizer data** — accessibility, guardian, safety, and compatibility-evaluation data in the non-exposed `private` schema.
-
-There is intentionally no public member-directory table or stranger-messaging system. Member-facing policies expose only the authenticated user's own records, invitations, and confirmed games in which that user participates.
-
-## Architecture
+Netlify runs:
 
 ```text
-index.html
-first-adventure.html
-guild-hall.html
-one-shots.html
-tools.html
-join.html
-youth-groups.html
-thanks.html
-netlify.toml
-assets/
-├── guild-mark.svg
-├── favicon.svg
-├── css/
-│   ├── base.css
-│   ├── components.css
-│   ├── responsive.css
-│   ├── home-paths.css
-│   ├── fantasy-theme.css
-│   ├── first-adventure.css
-│   ├── first-adventure-rules.css
-│   ├── one-shots.css
-│   └── guild-pages.css
-└── js/
-    ├── site.js
-    ├── guild-intake.js
-    └── first-adventure.js
+validate source
+→ validate organizer boundaries
+→ JavaScript syntax checks
+→ build shared shell / clean routes
+→ build guided experience fixes
+→ build content-hashed CSS
+→ build metadata / environment markers
+→ validate production output
+→ validate production organizer
 ```
 
-## Production quality gates
+Production CSS files are generated under `assets/css/build/` with content hashes and immutable cache headers. Source-named scripts and images revalidate normally.
 
-The production build bundles/inlines page CSS and Lighthouse CI checks:
+## Quality gates
 
-- Performance
-- Accessibility
-- Best Practices
-- SEO
+The GitHub workflow runs source validation, organizer-security validation, production build steps, then Lighthouse CI across the public pages. The existing target remains **100/100** for Performance, Accessibility, Best Practices, and SEO.
 
-The public gate covers all production pages configured in `lighthouserc.js`, and source validation runs before and after the production build steps.
+`main` should be protected in GitHub so the Lighthouse quality gate is a required status check before merge. The connected GitHub app used by ChatGPT does not have repository-administration permission, so branch protection itself must be enabled from repository settings by an owner/admin.
 
-## Deployment
+## Clean public routes
 
-This remains a static front end. Netlify publishes the repository root using `netlify.toml`; Supabase provides the private matching intake/backend while Netlify handles the standalone app-request form.
+Netlify exposes:
 
-**Netlify Forms must be enabled before the production build that is expected to register the forms.** Enabling Forms after a deploy requires a new production build so Netlify can parse the HTML and register the form definitions.
+```text
+/                    Home
+/learn               Beginner D&D walkthrough
+/character-sheet     Annotated character sheet
+/tools               Guild app catalog
+/adventures          Guild Vault
+/guild               Guild Hall
+/find-table           Adult table-interest path
+/youth                Guardian-led youth-group path
+```
 
-After deployment:
+Legacy `.html` paths redirect permanently to these public routes.
 
-1. Confirm adult and youth matching forms still submit successfully with JavaScript enabled.
-2. Confirm those matching submissions appear only in the expected private Supabase tables.
-3. Confirm Netlify detects `guild-interest`, `youth-group-interest`, and `guild-app-request`.
-4. Confirm a Guild app request reaches the Netlify form inbox and the confirmation page without creating a public profile.
-5. Keep the Supabase service-role key server-side only; never add it to this repository or browser JavaScript.
-6. Run the repository quality workflow before merging any production change.
+## Support and independence
 
-## Trademark notice
+Light Tower is community-supported and intentionally ad-free. Optional support uses the canonical Buy Me a Coffee link already present on the public site.
 
 Light Tower Table Top Guild is an independent community project and is not affiliated with Wizards of the Coast, Chaosium, or publishers of other games referenced on the site.
