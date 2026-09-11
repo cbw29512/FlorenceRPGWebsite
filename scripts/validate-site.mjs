@@ -156,7 +156,9 @@ if (!tomeForgeCard) {
 
 const workshopCards = [
   ['The Living Table', 'Prototype milestone · No Guild launch link yet'],
-  ['DungeonMaps', 'Foundation milestone · No Guild launch link yet']
+  ['DungeonMaps', 'Foundation milestone · No Guild launch link yet'],
+  ['D&amp;D Language Translator', 'Specification milestone · No Guild launch link yet'],
+  ['Tabletop Scribe', 'Local prototype · No Guild launch link yet']
 ];
 for (const [name, releaseCopy] of workshopCards) {
   const card = toolCards.find((candidate) => candidate.includes(`<h3>${name}</h3>`));
@@ -193,6 +195,16 @@ for (const page of supportPages) {
 const oneShots = exists('one-shots.html') ? read('one-shots.html') : '';
 if (!oneShots.includes('Right to OwlBear Arms')) warn('one-shots.html', 'canonical adventure title missing: Right to OwlBear Arms');
 
+const demonsWrathPreview = oneShots.match(/<section[^>]+id="demons-wrath"[\s\S]*?<\/section>/i)?.[0] || '';
+if (!demonsWrathPreview) {
+  warn('one-shots.html', "Demon's Wrath Coming Soon preview is missing");
+} else {
+  if (!demonsWrathPreview.includes('Coming Soon · Development Preview')) warn('one-shots.html', "Demon's Wrath must remain clearly labeled Coming Soon");
+  if (!demonsWrathPreview.includes('https://cbw29512.github.io/DNDTeachingAdventureDemonsWrath/')) warn('one-shots.html', "Demon's Wrath preview URL is missing");
+  if (/\sdownload(?:\s|>|=)/i.test(demonsWrathPreview)) warn('one-shots.html', "Demon's Wrath preview must not expose a download before release");
+  if (!demonsWrathPreview.includes('complete Guild package is not released yet')) warn('one-shots.html', "Demon's Wrath release boundary is missing");
+}
+
 const adventureZipPath = 'assets/Right_to_OwlBear_Arms_Complete_Adventure_Bundle_v1.1.zip';
 const adventureZipSize = 1524131;
 const adventureZipSha256 = 'b2aace66aed7cb0d5d01096d26fe73be998324f0cba4088629b9dea7db184c11';
@@ -225,4 +237,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${pages.length} pages: accessibility landmarks, internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, community boundaries, live/beta/coming-soon/workshop tool status, Guild app requests, ad-free support, learning flow, adventure download integrity, and canonical branding all passed.`);
+console.log(`Validated ${pages.length} pages: accessibility landmarks, internal links, duplicate IDs, metadata, images, external-link safety, Netlify forms, community boundaries, live/beta/coming-soon/workshop tool status, Guild app requests, adventure preview boundaries, ad-free support, learning flow, adventure download integrity, and canonical branding all passed.`);
