@@ -7,6 +7,7 @@
   };
   const logError = (message, error) => console.error(`[Light Tower Guild Intake] ${message}`, error);
   const checkedValues = (form, name) => Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map((node) => node.value);
+  const isProductionEnvironment = () => document.querySelector('meta[name="light-tower-environment"]')?.content === "production";
 
   const showErrors = (box, messages) => {
     try {
@@ -14,6 +15,13 @@
       box.textContent = messages.join(" ");
       if (messages.length) box.focus();
     } catch (error) { logError("Could not update form errors.", error); }
+  };
+
+  const blockPreviewSubmission = (event, errors) => {
+    if (isProductionEnvironment()) return false;
+    event.preventDefault();
+    showErrors(errors, ["This is a preview build. Real Guild submissions are disabled here so test data cannot enter production."]);
+    return true;
   };
 
   const sendPayload = async (endpoint, payload) => {
@@ -41,7 +49,7 @@
       button.setAttribute("aria-busy", "true");
       button.textContent = "Submitting…";
       if (!await sendPayload(endpoint, payload)) throw new Error("Intake service rejected submission.");
-      window.location.assign("thanks.html");
+      window.location.assign("/thanks.html");
     } catch (error) {
       logError("Form submission could not be completed.", error);
       button.disabled = false;
@@ -59,6 +67,7 @@
       if (!form || !errors || !button) return;
       form.addEventListener("submit", async (event) => {
         try {
+          if (blockPreviewSubmission(event, errors)) return;
           const emailNode = form.querySelector('input[name="email"]');
           const payload = {
             name: form.querySelector('input[name="name"]')?.value.trim() ?? "",
@@ -98,6 +107,7 @@
       if (!form || !errors || !button) return;
       form.addEventListener("submit", async (event) => {
         try {
+          if (blockPreviewSubmission(event, errors)) return;
           const emailNode = form.querySelector('input[name="guardian-email"]');
           const payload = {
             guardianName: form.querySelector('input[name="guardian-name"]')?.value.trim() ?? "",

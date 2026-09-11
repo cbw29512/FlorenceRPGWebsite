@@ -50,7 +50,7 @@
       const response = await fetch(`${PROJECT_URL}/auth/v1/otp?redirect_to=${encodeURIComponent(redirect)}`, {
         method: "POST",
         headers: { "apikey": PUBLISHABLE_KEY, "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), create_user: true }),
+        body: JSON.stringify({ email: email.trim(), create_user: false }),
       });
       if (!response.ok) {
         const body = await response.json().catch(() => ({}));

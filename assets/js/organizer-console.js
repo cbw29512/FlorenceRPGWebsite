@@ -41,6 +41,50 @@
     return hours * 60 + minutes;
   };
 
+  const ask = ({ title, label, type = "text", placeholder = "", optional = false }) => new Promise((resolve) => {
+    const dialog = document.createElement("dialog");
+    dialog.className = "organizer-dialog";
+    const form = document.createElement("form");
+    form.method = "dialog";
+    const heading = document.createElement("h2");
+    heading.textContent = title;
+    const fieldLabel = document.createElement("label");
+    fieldLabel.textContent = label;
+    const field = type === "textarea" ? document.createElement("textarea") : document.createElement("input");
+    if (field instanceof HTMLInputElement) field.type = type;
+    field.placeholder = placeholder;
+    field.required = !optional;
+    fieldLabel.append(field);
+    const actions = document.createElement("div");
+    actions.className = "organizer-dialog-actions";
+    const cancel = document.createElement("button");
+    cancel.type = "button";
+    cancel.className = "button button-ghost";
+    cancel.textContent = "Cancel";
+    const confirm = document.createElement("button");
+    confirm.type = "submit";
+    confirm.className = "button button-primary";
+    confirm.textContent = "Continue";
+    actions.append(cancel, confirm);
+    form.append(heading, fieldLabel, actions);
+    dialog.append(form);
+    document.body.append(dialog);
+    const finish = (value) => {
+      if (dialog.open) dialog.close();
+      dialog.remove();
+      resolve(value);
+    };
+    cancel.addEventListener("click", () => finish(null));
+    dialog.addEventListener("cancel", (event) => { event.preventDefault(); finish(null); });
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      finish(field.value.trim());
+    });
+    dialog.showModal();
+    field.focus();
+  });
+
   const setupLogin = () => {
     $("[data-organizer-login-form]")?.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -84,10 +128,19 @@
     if (!action) return;
     try {
       button.disabled = true;
+      button.setAttribute("aria-busy", "true");
       if (action === "approve-adult") await api.approveAdult(button.dataset.id);
-      if (action === "decline-adult") await api.reviewAdult(button.dataset.id, "declined", prompt("Organizer note (optional):") || null);
+      if (action === "decline-adult") {
+        const note = await ask({ title: "Decline adult submission", label: "Organizer note (optional)", type: "textarea", optional: true });
+        if (note === null) return;
+        await api.reviewAdult(button.dataset.id, "declined", note || null);
+      }
       if (action === "youth-contacted") await api.reviewYouth(button.dataset.id, "contacted");
-      if (action === "youth-closed") await api.reviewYouth(button.dataset.id, "closed", prompt("Organizer note (optional):") || null);
+      if (action === "youth-closed") {
+        const note = await ask({ title: "Close youth-group inquiry", label: "Organizer note (optional)", type: "textarea", optional: true });
+        if (note === null) return;
+        await api.reviewYouth(button.dataset.id, "closed", note || null);
+      }
       if (action === "rank") {
         const response = await api.rankCandidates(button.dataset.id);
         const target = document.querySelector(`[data-candidates-for="${CSS.escape(button.dataset.id)}"]`);
@@ -96,16 +149,22 @@
       }
       if (action === "invite") await api.inviteCandidate(button.dataset.proposal, button.dataset.user, button.dataset.role);
       if (action === "confirm") {
-        const starts = prompt("Confirmed start date/time (example: 2026-09-12T18:00):");
-        if (!starts) return;
-        const details = prompt("Private venue/join details for accepted participants (optional):") || null;
-        await api.confirmProposal(button.dataset.id, new Date(starts).toISOString(), details);
+        const starts = await ask({ title: "Confirm table", label: "Confirmed start date and time", type: "datetime-local" });
+        if (starts === null) return;
+        const startDate = new Date(starts);
+        if (Number.isNaN(startDate.getTime())) throw new Error("Enter a valid start date and time.");
+        const details = await ask({ title: "Private table details", label: "Venue or join details (optional)", type: "textarea", optional: true });
+        if (details === null) return;
+        await api.confirmProposal(button.dataset.id, startDate.toISOString(), details || null);
       }
       await loadDashboard();
     } catch (error) {
       logError(`Action ${action} failed.`, error);
       setStatus(error.message || "Organizer action failed.", "error");
-    } finally { button.disabled = false; }
+    } finally {
+      button.disabled = false;
+      button.removeAttribute("aria-busy");
+    }
   };
 
   document.addEventListener("click", (event) => {

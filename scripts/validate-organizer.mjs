@@ -39,9 +39,15 @@ try {
   const auth = read('assets/js/organizer-auth.js');
   if (!auth.includes('sessionStorage')) warn('organizer auth token must remain session-scoped');
   if (/service[_-]?role/i.test(auth)) warn('organizer browser auth must never reference a service-role credential');
+  if (!auth.includes('create_user: false')) warn('organizer magic-link requests must not auto-create unknown auth users');
 
   const api = read('assets/js/organizer-api.js');
   if (!api.includes('Authorization') || !api.includes('Bearer')) warn('organizer API client must send the user bearer token');
+
+  const consoleJs = read('assets/js/organizer-console.js');
+  if (/\bprompt\s*\(/.test(consoleJs)) warn('organizer console must not use browser prompt() for operational input');
+  if (!consoleJs.includes('document.createElement("dialog")')) warn('organizer console must use an accessible dialog for operational input');
+  if (!consoleJs.includes('datetime-local')) warn('organizer table confirmation must use a structured local date/time input');
 } catch (error) {
   warn(error.message || String(error));
 }
@@ -53,4 +59,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log('Organizer validation passed: noindex, hidden navigation, auth hooks, session token handling, local scripts, and exact Supabase CSP allowlist are intact.');
+console.log('Organizer validation passed: private indexing, hidden navigation, session-scoped auth, no unknown-user creation, bearer authorization, dialog-based operations, and exact Supabase CSP allowlist are intact.');
