@@ -41,11 +41,13 @@ if (!baseUrl) {
 for (const page of publicPages) {
   let html = fs.readFileSync(page.file, 'utf8');
   const canonical = `${baseUrl}${page.route}`;
-  const socialImage = `${baseUrl}/assets/d20-book-hero.svg`;
+  const socialImage = `${baseUrl}/assets/light-tower-social-card.png`;
   html = upsertHeadTag(html, /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${canonical}">`);
   html = upsertHeadTag(html, /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${canonical}">`);
   html = upsertHeadTag(html, /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:image" content="${socialImage}">`);
-  html = upsertHeadTag(html, /<meta\s+property="og:image:alt"\s+content="[^"]*"\s*\/?>/i, '<meta property="og:image:alt" content="A gold and purple d20 above an open book for Light Tower Table Top Guild">');
+  html = upsertHeadTag(html, /<meta\s+property="og:image:width"\s+content="[^"]*"\s*\/?>/i, '<meta property="og:image:width" content="1200">');
+  html = upsertHeadTag(html, /<meta\s+property="og:image:height"\s+content="[^"]*"\s*\/?>/i, '<meta property="og:image:height" content="630">');
+  html = upsertHeadTag(html, /<meta\s+property="og:image:alt"\s+content="[^"]*"\s*\/?>/i, '<meta property="og:image:alt" content="Light Tower Table Top Guild — free D&D tools, adventures, learning, and real tables">');
   html = upsertHeadTag(html, /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${socialImage}">`);
   fs.writeFileSync(page.file, html, 'utf8');
 }
@@ -54,4 +56,4 @@ const sitemapEntries = publicPages.map((page) => `  <url><loc>${baseUrl}${page.r
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`;
 fs.writeFileSync('sitemap.xml', sitemap, 'utf8');
 fs.writeFileSync('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${baseUrl}/sitemap.xml\n`, 'utf8');
-console.log(`Generated clean production canonical URLs, social preview metadata, robots.txt, and sitemap.xml for ${baseUrl}.`);
+console.log(`Generated clean production canonical URLs, PNG social preview metadata, robots.txt, and sitemap.xml for ${baseUrl}.`);
