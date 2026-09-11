@@ -93,6 +93,9 @@ for (const [formName, file] of Object.entries(formFiles)) {
   if (!hiddenPattern.test(html)) warn(file, `missing hidden form-name for ${formName}`);
 }
 
+const home = exists('index.html') ? read('index.html') : '';
+if (!home.includes('href="tools.html#request-app"')) warn('index.html', 'homepage app-request entry point is missing');
+
 const join = exists('join.html') ? read('join.html') : '';
 if (!join.includes('name="accessibility-needs"')) warn('join.html', 'optional accessibility/table-needs field is missing');
 if (!join.includes('Other TTRPGs — interest only')) warn('join.html', 'other-system interest-only boundary is missing');
