@@ -23,6 +23,7 @@ const pageBundles = {
   'tools.html': 'guild',
   'join.html': 'form',
   'youth-groups.html': 'form',
+  'florence.html': 'form',
   'organizer.html': 'organizer',
   '404.html': 'guild',
   'thanks.html': 'core'
@@ -52,7 +53,7 @@ for (const [page, bundleName] of Object.entries(pageBundles)) {
   try {
     let html = fs.readFileSync(page, 'utf8');
     for (const input of allSourceCss) html = html.replaceAll(`${stylesheetTag(input)}\n`, '').replaceAll(stylesheetTag(input), '');
-    html = html.replace(/\s*<link rel="stylesheet" href="assets\/css\/(?:dist\/)?[^\"]+\.css">/g, '');
+    html = html.replace(/\s*<link rel="stylesheet" href="assets\/css\/(?:dist\/)?[^"]+\.css">/g, '');
     html = html.replace(/\s*<style data-production-css>[\s\S]*?<\/style>/g, '');
     const output = outputByBundle.get(bundleName);
     if (!output) throw new Error(`No CSS output for ${bundleName}`);

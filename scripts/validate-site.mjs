@@ -2,10 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 
-const pages = ['index.html','first-adventure.html','character-sheet-guide.html','guild-hall.html','one-shots.html','tools.html','join.html','youth-groups.html','thanks.html','404.html'];
+const pages = ['index.html','first-adventure.html','character-sheet-guide.html','guild-hall.html','one-shots.html','tools.html','join.html','youth-groups.html','florence.html','thanks.html','404.html'];
 const routeMap = new Map([
   ['/','index.html'],['/learn','first-adventure.html'],['/learn/','first-adventure.html'],['/character-sheet','character-sheet-guide.html'],['/character-sheet/','character-sheet-guide.html'],
-  ['/guild','guild-hall.html'],['/guild/','guild-hall.html'],['/adventures','one-shots.html'],['/adventures/','one-shots.html'],['/tools','tools.html'],['/tools/','tools.html'],['/join','join.html'],['/join/','join.html'],['/youth-groups','youth-groups.html'],['/youth-groups/','youth-groups.html']
+  ['/guild','guild-hall.html'],['/guild/','guild-hall.html'],['/adventures','one-shots.html'],['/adventures/','one-shots.html'],['/tools','tools.html'],['/tools/','tools.html'],['/join','join.html'],['/join/','join.html'],['/youth-groups','youth-groups.html'],['/youth-groups/','youth-groups.html'],['/florence','florence.html'],['/florence/','florence.html']
 ]);
 const errors = [];
 const warn = (page, message) => errors.push(`${page}: ${message}`);
@@ -86,7 +86,7 @@ for (const liveName of ['Character Forge','DM Forge','Nothing But A TTRPG Dice R
 }
 if (!tools.includes('Beta · Public Testing') || !tools.includes('<h3>Dungeon Cards</h3>') || !tools.includes('<strong>Beta:</strong>')) warn('tools.html','Dungeon Cards Beta boundary is incomplete');
 if (!tools.includes('<strong>TomeForge</strong>') || !tools.includes('status-chip soon')) warn('tools.html','TomeForge Coming Soon listing is missing');
-for (const workshop of ['The Living Table','DungeonMaps','D&amp;D Language Translator','Tabletop Scribe']) {
+for (const workshop of ['The Living Table','DungeonMaps','D&D Language Translator','Tabletop Scribe']) {
   if (!tools.includes(`<strong>${workshop}</strong>`)) warn('tools.html',`${workshop} Workshop listing is missing`);
 }
 

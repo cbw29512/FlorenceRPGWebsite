@@ -8,7 +8,8 @@ const publicPages = [
   { file: 'one-shots.html', route: '/adventures/' },
   { file: 'tools.html', route: '/tools/' },
   { file: 'join.html', route: '/join/' },
-  { file: 'youth-groups.html', route: '/youth-groups/' }
+  { file: 'youth-groups.html', route: '/youth-groups/' },
+  { file: 'florence.html', route: '/florence/' }
 ];
 
 const allPages = [...publicPages.map((page) => page.file), 'thanks.html', '404.html'];
