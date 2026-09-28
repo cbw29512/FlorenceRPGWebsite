@@ -23,13 +23,13 @@ const navLink = (key, href, label, active) => `<a href="${href}"${active === key
 const header = (file) => {
   const active = activeFor(file);
   return `<header class="site-header"><div class="container header-inner">
-  <a class="brand" href="/" aria-label="Light Tower Table Top Guild home"><img src="assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>D&amp;D tools, adventures &amp; tables.</small></span></a>
+  <a class="brand" href="/" aria-label="Light Tower Table Top Guild home"><img src="assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>D&D tools, adventures & tables.</small></span></a>
   <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav"><span aria-hidden="true">☰</span><span>Menu</span></button>
   <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">${navLink('start','/learn/','Start Here',active)}${navLink('tools','/tools/','Tools',active)}${navLink('adventures','/adventures/','Adventures',active)}<a class="nav-cta" href="/join/"${active === 'join' ? ' aria-current="page"' : ''}>Find a Table</a></nav>
 </div></header>`;
 };
 
-const footer = `<footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Light Tower Table Top Guild</strong><span>Find your table. Learn the game. Tell your story.</span></div></div><div class="page-footer-nav"><a href="/">Home</a><a href="/learn/">Start Here</a><a href="/tools/">Tools</a><a href="/adventures/">Adventures</a><a href="/join/">Find a Table</a><a href="/guild/">About Light Tower</a><a href="/youth-groups/">Youth Groups</a></div><p>© <span data-year>2026</span> Light Tower Table Top Guild.</p></div></footer>`;
+const footer = `<footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Light Tower Table Top Guild</strong><span>Find your table. Learn the game. Tell your story.</span></div></div><div class="page-footer-nav"><a href="/">Home</a><a href="/learn/">Start Here</a><a href="/tools/">Tools</a><a href="/adventures/">Adventures</a><a href="/join/">Find a Table</a><a href="/guild/">About Light Tower</a><a href="/youth-groups/">Youth Groups</a><a href="https://www.buymeacoffee.com/divclass016" target="_blank" rel="noopener noreferrer">☕ Support Light Tower</a></div><p>© <span data-year>2026</span> Light Tower Table Top Guild.</p></div></footer>`;
 
 const breadcrumb = (file) => {
   const label = pageLabel(file);
