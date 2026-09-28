@@ -23,9 +23,10 @@ const navLink = (key, href, label, active) => `<a href="${href}"${active === key
 const header = (file) => {
   const active = activeFor(file);
   return `<header class="site-header"><div class="container header-inner">
-  <a class="brand" href="/" aria-label="Light Tower Table Top Guild home"><img src="assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>D&D tools, adventures & tables.</small></span></a>
+  <a class="brand" href="/" aria-label="Light Tower Table Top Guild home"><img src="assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>D&amp;D tools, adventures &amp; tables.</small></span></a>
   <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav"><span aria-hidden="true">☰</span><span>Menu</span></button>
   <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">${navLink('start','/learn/','Start Here',active)}${navLink('tools','/tools/','Tools',active)}${navLink('adventures','/adventures/','Adventures',active)}<a class="nav-cta" href="/join/"${active === 'join' ? ' aria-current="page"' : ''}>Find a Table</a></nav>
+  <a class="header-support" href="https://www.buymeacoffee.com/divclass016" target="_blank" rel="noopener noreferrer" aria-label="Support Light Tower on Buy Me a Coffee (opens in a new tab)"><span aria-hidden="true">☕</span><span class="header-support__label">Support</span></a>
 </div></header>`;
 };
 
