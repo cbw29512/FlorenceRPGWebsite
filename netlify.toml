@@ -69,68 +69,81 @@
   from = "/florence.html"
   to = "/florence/"
   status = 301
+[[redirects]]
+  from = "/thanks.html"
+  to = "/thanks/"
+  status = 301
 
 [[redirects]]
   from = "/learn"
-  to = "/first-adventure.html"
-  status = 200
+  to = "/learn/"
+  status = 301
+[[redirects]]
+  from = "/tools"
+  to = "/tools/"
+  status = 301
+[[redirects]]
+  from = "/adventures"
+  to = "/adventures/"
+  status = 301
+[[redirects]]
+  from = "/guild"
+  to = "/guild/"
+  status = 301
+[[redirects]]
+  from = "/join"
+  to = "/join/"
+  status = 301
+[[redirects]]
+  from = "/youth-groups"
+  to = "/youth-groups/"
+  status = 301
+[[redirects]]
+  from = "/character-sheet"
+  to = "/character-sheet/"
+  status = 301
+[[redirects]]
+  from = "/florence"
+  to = "/florence/"
+  status = 301
+[[redirects]]
+  from = "/thanks"
+  to = "/thanks/"
+  status = 301
+
 [[redirects]]
   from = "/learn/"
   to = "/first-adventure.html"
-  status = 200
-[[redirects]]
-  from = "/tools"
-  to = "/tools.html"
   status = 200
 [[redirects]]
   from = "/tools/"
   to = "/tools.html"
   status = 200
 [[redirects]]
-  from = "/adventures"
-  to = "/one-shots.html"
-  status = 200
-[[redirects]]
   from = "/adventures/"
   to = "/one-shots.html"
-  status = 200
-[[redirects]]
-  from = "/guild"
-  to = "/guild-hall.html"
   status = 200
 [[redirects]]
   from = "/guild/"
   to = "/guild-hall.html"
   status = 200
 [[redirects]]
-  from = "/join"
-  to = "/join.html"
-  status = 200
-[[redirects]]
   from = "/join/"
   to = "/join.html"
-  status = 200
-[[redirects]]
-  from = "/youth-groups"
-  to = "/youth-groups.html"
   status = 200
 [[redirects]]
   from = "/youth-groups/"
   to = "/youth-groups.html"
   status = 200
 [[redirects]]
-  from = "/character-sheet"
-  to = "/character-sheet-guide.html"
-  status = 200
-[[redirects]]
   from = "/character-sheet/"
   to = "/character-sheet-guide.html"
   status = 200
 [[redirects]]
-  from = "/florence"
+  from = "/florence/"
   to = "/florence.html"
   status = 200
 [[redirects]]
-  from = "/florence/"
-  to = "/florence.html"
+  from = "/thanks/"
+  to = "/thanks.html"
   status = 200
