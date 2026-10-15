@@ -87,7 +87,7 @@ for (const liveName of ['Character Forge','DM Forge','Nothing But A TTRPG Dice R
 if (!tools.includes('Beta · Public Testing') || !tools.includes('<h3>Dungeon Cards</h3>') || !tools.includes('<strong>Beta:</strong>')) warn('tools.html','Dungeon Cards Beta boundary is incomplete');
 if (!tools.includes('<strong>TomeForge</strong>') || !tools.includes('status-chip soon')) warn('tools.html','TomeForge Coming Soon listing is missing');
 for (const workshop of ['The Living Table','DungeonMaps','D&D Language Translator','Tabletop Scribe']) {
-  if (!tools.includes(`<strong>${workshop}</strong>`)) warn('tools.html',`${workshop} Workshop listing is missing`);
+  if (!tools.includes(`<strong>${workshop.replaceAll('&', '&amp;')}</strong>`)) warn('tools.html',`${workshop} Workshop listing is missing`);
 }
 
 const appRequestForm = tools.match(/<form[^>]+name="guild-app-request"[\s\S]*?<\/form>/i)?.[0] || '';
@@ -126,7 +126,7 @@ else {
   const actualSha256 = crypto.createHash('sha256').update(adventureZip).digest('hex');
   if (adventureZip.length !== adventureZipSize) warn('one-shots.html',`adventure ZIP size changed: expected ${adventureZipSize}, got ${adventureZip.length}`);
   if (actualSha256 !== adventureZipSha256) warn('one-shots.html',`adventure ZIP checksum changed: expected ${adventureZipSha256}, got ${actualSha256}`);
-  if (!oneShots.includes(`href="${adventureZipPath}" download`)) warn('one-shots.html','verified adventure ZIP is not wired to a same-site download link');
+  if (!oneShots.includes(`href="/${adventureZipPath}" download`)) warn('one-shots.html','verified adventure ZIP is not wired to a same-site download link');
 }
 
 const learn = read('first-adventure.html');

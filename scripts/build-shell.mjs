@@ -25,13 +25,13 @@ const navLink = (key, href, label, active) => `<a href="${href}"${active === key
 const header = (file) => {
   const active = activeFor(file);
   return `<header class="site-header"><div class="container header-inner">
-  <a class="brand" href="/" aria-label="Light Tower Table Top Guild home"><img src="assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>D&D tools, adventures & tables.</small></span></a>
+  <a class="brand" href="/" aria-label="Light Tower Table Top Guild home"><img src="/assets/guild-mark.svg" alt="" width="62" height="62"><span><strong>Light Tower Table Top Guild</strong><small>D&D tools, adventures & tables.</small></span></a>
   <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav"><span aria-hidden="true">☰</span><span>Menu</span></button>
   <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">${navLink('start','/learn/','Start Here',active)}${navLink('tools','/tools/','Tools',active)}${navLink('adventures','/adventures/','Adventures',active)}<a class="nav-cta" href="/join/"${active === 'join' ? ' aria-current="page"' : ''}>Find a Table</a></nav>
 </div></header>`;
 };
 
-const footer = `<footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img src="assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Light Tower Table Top Guild</strong><span>Find your table. Learn the game. Tell your story.</span></div></div><div class="page-footer-nav"><a href="/">Home</a><a href="/learn/">Start Here</a><a href="/tools/">Tools</a><a href="/adventures/">Adventures</a><a href="/join/">Find a Table</a><a href="/florence/">Florence SC</a><a href="/guild/">About Light Tower</a><a href="/youth-groups/">Youth Groups</a></div><p>© <span data-year>2026</span> Light Tower Table Top Guild.</p></div></footer>`;
+const footer = `<footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img src="/assets/guild-mark.svg" alt="" width="52" height="52"><div><strong>Light Tower Table Top Guild</strong><span>Find your table. Learn the game. Tell your story.</span></div></div><div class="page-footer-nav"><a href="/">Home</a><a href="/learn/">Start Here</a><a href="/tools/">Tools</a><a href="/adventures/">Adventures</a><a href="/join/">Find a Table</a><a href="/florence/">Florence SC</a><a href="/guild/">About Light Tower</a><a href="/youth-groups/">Youth Groups</a></div><p>© <span data-year>2026</span> Light Tower Table Top Guild.</p></div></footer>`;
 
 const breadcrumb = (file) => {
   const label = pageLabel(file);
@@ -56,7 +56,7 @@ for (const file of publicPages) {
   for (const [pattern,replacement] of routeReplacements) html = html.replace(pattern,replacement);
   html = html.replace(/<a class="button button-secondary" href="\/tools\/">Open Character Forge<\/a>/, '<a class="button button-secondary" href="https://characterforgerdnd.netlify.app/" target="_blank" rel="noopener noreferrer">Open Character Forge</a>');
   if (file === 'first-adventure.html' && !html.includes('class="learning-progress"')) {
-    html = html.replace('</section>\n\n  <section class="section paper" id="party">', `${learningProgress}</section>\n\n  <section class="section paper" id="party">');
+    html = html.replace('</section>\n\n  <section class="section paper" id="party">', `${learningProgress}</section>\n\n  <section class="section paper" id="party">`);
   }
   fs.writeFileSync(file, html, 'utf8');
   console.log(`Applied simplified Guild navigation and clean routes to ${file}.`);

@@ -30,7 +30,7 @@ const pageBundles = {
 };
 
 const allSourceCss = [...new Set(Object.values(bundles).flat())];
-const stylesheetTag = (file) => `<link rel="stylesheet" href="${file}">`;
+const stylesheetTag = (file) => `<link rel="stylesheet" href="/${file}">`;
 const minifyCss = (css) => css.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').replace(/\s*([{}:;,])\s*/g, '$1').replace(/;}/g, '}').trim();
 const outputByBundle = new Map();
 
@@ -53,11 +53,11 @@ for (const [page, bundleName] of Object.entries(pageBundles)) {
   try {
     let html = fs.readFileSync(page, 'utf8');
     for (const input of allSourceCss) html = html.replaceAll(`${stylesheetTag(input)}\n`, '').replaceAll(stylesheetTag(input), '');
-    html = html.replace(/\s*<link rel="stylesheet" href="assets\/css\/(?:dist\/)?[^"]+\.css">/g, '');
+    html = html.replace(/\s*<link rel="stylesheet" href="\/?assets\/css\/(?:dist\/)?[^"]+\.css">/g, '');
     html = html.replace(/\s*<style data-production-css>[\s\S]*?<\/style>/g, '');
     const output = outputByBundle.get(bundleName);
     if (!output) throw new Error(`No CSS output for ${bundleName}`);
-    const iconMarker = '<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">';
+    const iconMarker = '<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">';
     html = html.replace(iconMarker, `${iconMarker}\n  ${stylesheetTag(output)}`);
     fs.writeFileSync(page, html, 'utf8');
     console.log(`Linked cacheable ${bundleName} CSS from ${page}.`);

@@ -20,6 +20,8 @@ jobs:
           node-version: 24
       - name: Validate source site
         run: node scripts/validate-site.mjs
+      - name: Validate clean-route resources
+        run: node scripts/validate-route-resources.mjs
       - name: Validate organizer security
         run: node scripts/validate-organizer.mjs
       - name: Check organizer JavaScript
@@ -32,6 +34,8 @@ jobs:
         run: node scripts/build-meta.mjs
       - name: Validate production output
         run: node scripts/validate-site.mjs
+      - name: Validate production clean-route resources
+        run: node scripts/validate-route-resources.mjs
       - name: Validate production organizer
         run: node scripts/validate-organizer.mjs
       - name: Install Lighthouse CI

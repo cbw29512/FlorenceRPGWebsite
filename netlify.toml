@@ -1,5 +1,5 @@
 [build]
-  command = "node scripts/validate-site.mjs && node scripts/validate-organizer.mjs && node scripts/check-organizer-js.mjs && node scripts/build-shell.mjs && node scripts/build-css.mjs && node scripts/build-meta.mjs && node scripts/validate-site.mjs && node scripts/validate-organizer.mjs"
+  command = "node scripts/validate-site.mjs && node scripts/validate-route-resources.mjs && node scripts/validate-organizer.mjs && node scripts/check-organizer-js.mjs && node scripts/build-shell.mjs && node scripts/build-css.mjs && node scripts/build-meta.mjs && node scripts/validate-site.mjs && node scripts/validate-route-resources.mjs && node scripts/validate-organizer.mjs"
   publish = "."
 
 [[headers]]
@@ -71,43 +71,6 @@
   status = 301
 [[redirects]]
   from = "/thanks.html"
-  to = "/thanks/"
-  status = 301
-
-[[redirects]]
-  from = "/learn"
-  to = "/learn/"
-  status = 301
-[[redirects]]
-  from = "/tools"
-  to = "/tools/"
-  status = 301
-[[redirects]]
-  from = "/adventures"
-  to = "/adventures/"
-  status = 301
-[[redirects]]
-  from = "/guild"
-  to = "/guild/"
-  status = 301
-[[redirects]]
-  from = "/join"
-  to = "/join/"
-  status = 301
-[[redirects]]
-  from = "/youth-groups"
-  to = "/youth-groups/"
-  status = 301
-[[redirects]]
-  from = "/character-sheet"
-  to = "/character-sheet/"
-  status = 301
-[[redirects]]
-  from = "/florence"
-  to = "/florence/"
-  status = 301
-[[redirects]]
-  from = "/thanks"
   to = "/thanks/"
   status = 301
 

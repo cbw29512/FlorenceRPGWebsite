@@ -24,7 +24,7 @@ try {
 
   for (const script of ['assets/js/organizer-auth.js','assets/js/organizer-api.js','assets/js/organizer-render.js','assets/js/organizer-console.js']) {
     if (!exists(script)) warn(`missing organizer script: ${script}`);
-    if (!html.includes(`src="${script}"`)) warn(`organizer.html does not load ${script}`);
+    if (!html.includes(`src="/${script}"`)) warn(`organizer.html does not load ${script}`);
   }
 
   for (const page of publicPages) {
